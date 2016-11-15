@@ -1,0 +1,186 @@
+@charset "ISO-8859-1";
+
+/*
+Theme name: Band Theme
+Theme URL: http://cdifestival.fr
+Description: Theme for web site cdifestival.fr
+Author: Claire
+Version: 20161112
+License: GNU GPLv3
+*/
+
+
+/*--------------------------------------------------- Body*/
+body {
+	background: url("img/bg.jpg");
+	background-size: cover;
+	font-family: Arial, Sans-Serif;
+	margin: 0px;
+}
+
+#container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+}
+
+#inner-container {
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #000;	
+}
+
+h1 {
+	margin: 0px;
+}
+
+h2 {
+	color: white;
+	background-color: #1c1c1c;
+	text-align : center;
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+h3 {
+	color: white;
+	background-color: #000;
+	margin: 0px;
+	padding-bottom: 15px;;
+}
+
+p {
+	color: white;
+	margin: 0px;
+	padding-bottom: 15px;
+}
+
+.row {
+	display: flex;
+	justify-content: space-around;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+
+hr {
+    margin-bottom: 15px;
+    border: 0;
+    border-top: 1px solid #777777;
+}
+
+/*--------------------------------------------------- Navigation*/
+nav {
+	min-height: 45px;
+	background-color: #000;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav li {
+	display: block;
+	float: left;
+	padding: 10px 15px;
+}
+
+nav li a {
+	color: white;
+	font-size: 20px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+nav li a:hover {
+	text-decoration: underline;
+}
+
+/*------------------------------------------------- Header*/
+header {
+	display: block;
+}
+
+#logo {
+	width: 260px;
+	height: 120px;
+	margin-top: 15px;
+	margin-left: 20%;
+}
+
+#date {
+	width: 500px;
+	height: 120px;
+	margin-top: 15px;
+}
+
+/*--------------------------------------------------------- Administration*/
+/*-------------------------------------------------- Form*/
+form {
+	width: 310px;
+	margin: 0px auto;
+	padding: 20px;
+}
+
+label {
+	display: inline-block;
+	width: 150px;
+	color: white;
+}
+
+/*-------------------------------------------------- Lists*/
+.list {
+	width: 310px;
+	margin: 0px auto;
+	padding: 20px;
+}
+
+select {
+	margin-bottom: 20px;
+}
+
+/*------------------------------------------------------------------ Public*/
+/*---------------------------------------------- Bands block*/
+.bands {
+	display: flex;
+	justify-content: space-around;
+	color: #fff;
+	background-color: #000;
+	padding-bottom: 10px;
+}
+
+/*----------------------------------------------- Band page*/
+#bandlogo {
+	width: 250px;
+	height: 120px;
+}
+
+#bandpicture {
+	width: 500px;
+	height: 300px;
+	background-color: #fff;
+}
+
+.info {
+	padding-bottom: 15px;
+}
+
+.info ul {
+	color: white;
+	margin: 0px;
+}
+
+/*--------------------------------------------------- Footer*/
+footer {
+	display: flex;
+	justify-content: space-around;
+	background-color: #1c1c1c;
+}
+
+footer p {
+	font-size: 13px;
+	padding-top: 15px;
+}
