@@ -1,4 +1,4 @@
-package BDD;
+package fr.cdiFestival.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
