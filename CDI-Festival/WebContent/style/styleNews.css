@@ -54,14 +54,14 @@ body {
  
  /*About articles */
 /*All*/
-.summary_container {
-	width: 500px;
-	height: auto;
-	margin: auto;
-	margin-top: 5em;
+.container {
+	margin-top: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
 	border: 1px solid black;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 
 }
 .summary_container a {
