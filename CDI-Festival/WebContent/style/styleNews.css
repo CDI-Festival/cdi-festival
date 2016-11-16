@@ -62,6 +62,7 @@ body {
 	border: 1px solid black;
 	display: flex;
 	justify-content: space-around;
+	background-color: black;
 
 }
 .summary_container a {
@@ -85,10 +86,11 @@ body {
 }
 
 /*Left side*/
-.summary_containerleft {
+.summary_container {
 	border: 1px solid black;
 	width: 300px;
 	height: auto;
+	background-color: white;
 }
 
 /*Right side*/
@@ -96,6 +98,7 @@ body {
 	border: 1px solid black;
 	width: 300px;
 	height: auto;
+	background-color: white;
 }
 
 .summary_container a {
