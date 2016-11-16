@@ -12,7 +12,7 @@ License: GNU GPLv3
 
 /*--------------------------------------------------- Body*/
 body {
-	background: url("img/bg.jpg");
+	background: url("../images/bg.jpg");
 	background-size: cover;
 	font-family: Arial, Sans-Serif;
 	margin: 0px;
