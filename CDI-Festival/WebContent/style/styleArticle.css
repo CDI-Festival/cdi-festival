@@ -1,15 +1,18 @@
 /* Body style */
 body {
 	background-image: url("../images/bg.jpg");
-	width: 100%;
 	margin: 0;
-	padding: 0;
-	font-family: Arial, Sans Serif;
+	background-size: cover;
+	font-family: Arial, Sans-Serif;
+	margin: 0px;
+	
 }
 
 
 /* Banner style */
 .banner {
+	padding-bottom: 10px;
+	padding-top: 10px;
 	background-color: black;
 	display: flex;
 	justify-content: space-around;
@@ -91,21 +94,7 @@ body {
 	width: 300px;
 	height: auto;
 	background-color: white;
-}
-
-/*Right side*/
-.summary_containerright {
-	border: 1px solid black;
-	width: 300px;
-	height: auto;
-	background-color: white;
-}
-
-.summary_container a {
-	text-decoration: none;
-	color: black;
-}
- 
+} 
  
  /* Footer style */
 .icon {
@@ -139,5 +128,14 @@ body {
 	letter-spacing: 1px;
 	text-decoration: none;
 	color: white;
+}
+
+#login {
+	padding-top: 30px;
+}
+
+#login a {
+	text-decoration: none;
+	color: grey;
 }
 
