@@ -1,4 +1,4 @@
-/* About body */
+/* Body style */
 body {
 	background-image: url("../images/bg.jpg");
 	width: 100%;
@@ -7,20 +7,20 @@ body {
 	font-family: Arial, Sans Serif;
 }
 
-/* ABout banner */
+
+/* Banner style */
 .banner {
 	background-color: black;
+	display: flex;
+	justify-content: space-around;
 }
 
-#banner_logo {
-	position: center;
+#slogan {
+	color: orange;
 }
 
-#banner_dates {
-	margin-left: 250px;
-}
 
-/* About navigation menu bar */
+/* Navigation menu bar style */
 #menu {
 	margin-left: 30%;
 	margin-top: 1em;
@@ -44,19 +44,67 @@ body {
 
 #menu li a {
  	display:block;
- 	width: 100px;
+ 	width: 120px;
  	color: white;
  	border-right: 1px solid;
  	text-decoration: none;
  	padding: 5px;
  }
+ 
+ 
+ /*About articles */
+/*All*/
+.summary_container {
+	width: 500px;
+	height: auto;
+	margin: auto;
+	margin-top: 5em;
+	border: 1px solid black;
+	display: flex;
+	justify-content: space-between;
 
-/*About articles */
-.article {
-	clear: both;
+}
+.summary_container a {
+	text-decoration: none;
+	color: black;
 }
 
-/* About footer */
+.summary {
+	font-size: 11;
+	max-height: 15%;
+}
+
+.summary_container h3 {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.summary p {
+	text-align: justify;
+}
+
+/*Left side*/
+.summary_containerleft {
+	border: 1px solid black;
+	width: 300px;
+	height: auto;
+}
+
+/*Right side*/
+.summary_containerright {
+	border: 1px solid black;
+	width: 300px;
+	height: auto;
+}
+
+.summary_container a {
+	text-decoration: none;
+	color: black;
+}
+ 
+ 
+ /* Footer style */
 .icon {
 	width: 30px;
 	height: 30px;
@@ -89,3 +137,4 @@ body {
 	text-decoration: none;
 	color: white;
 }
+
