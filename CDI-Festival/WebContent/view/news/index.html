@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
 
 <head>
 <meta charset="utf-8" />
 <title>Accueil Festival</title>
-<link rel="stylesheet" type="text/css" href="../../style/style.css">
+<link rel="stylesheet" type="text/css" href="../../style/index_style.css">
+<link rel="stylesheet" type="text/css" href="../../style/banner-footer_style.css">
 </head>
 
 <body>
 
-<!--  header with texte and logo -->
-	<header>
-	<div class="banner">
+
+<!--  Banner with logo and text -->
+	<header class="banner">
 		<img id="banner_logo" src="../../images//banner/logo.png">
+		<h1 id="slogan">More code, more ROCK !!</h1>
 		<img id="banner_dates" src="../../images/banner/dates.png">
-	</div>
 	</header>
+
 
 <!-- Navigation menu bar -->
 	<nav id="menu">
@@ -28,16 +30,34 @@
 		</ul>
 	</nav>
 
-<!-- Differents news -->
-<section class="article">
-	<div class="article_img">
-		<img src="">Photo de l'article
+
+<!-- News section -->
+	<div class="summary_container">
+		<article class="summary_containerleft" role="article">
+			<header>
+     			<h3><a href="">Article1</a></h3>
+     			<time datetime="" pubdate="pubdate"></time>
+    		</header>              
+    	<div class="summary"><p>L’archéologue, dans une approche 
+    	diachronique, acquiert donc l’essentiel de sa documentation 
+    	à travers des travaux de terrainN 1, par « opposition » à l’historien, 
+    	dont les principales sources sont des textes.</p>
+    	</div>
+		</article>
+		
+		<article class="summary_containerright" role="article">
+			<header>
+     			<h3><a href="">Article2</a></h3>
+     			<time datetime="" pubdate="pubdate"></time>
+    		</header>              
+    	<div class="summary"><p>L’archéologue, dans une approche 
+    	diachronique, acquiert donc l’essentiel de sa documentation 
+    	à travers des travaux de terrainN 1, par « opposition » à l’historien, 
+    	dont les principales sources sont des textes.</p>
+    	</div>
+		</article>
 	</div>
-	<div class="article_body">
-		<h4>Le titre de l'article</h4>
-		<p>Le contenu de l'article</p>	
-	</div>
-</section>
+		
 
 <!-- Footer with informations, partners and links -->
 	<footer class="footer_container">
