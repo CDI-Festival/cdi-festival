@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
 
 <head>
 <meta charset="utf-8" />
-<title>New festival article</title>
-<link rel="stylesheet" type="text/css" href="../../style/style.css">
+<title>Accueil Festival</title>
+<link rel="stylesheet" type="text/css" href="../../style/styleNews.css">
 </head>
 
 <body>
 
-<!--  header with texte and logo -->
+
+<!--  Banner with logo and text -->
 	<header class="banner">
 		<img id="banner_logo" src="../../images//banner/logo.png">
-		<h1 id="banner_title"> More code, more rock </h1>
-		<img id="banner_dates" src="../../images/banner/datesLogo.png">
+		<h1 id="slogan">More code, more ROCK !!</h1>
+		<img id="banner_dates" src="../../images/banner/dates.png">
 	</header>
 
+
 <!-- Navigation menu bar -->
-	<nav class="nav_bar">
+	<nav id="menu">
 		<ul>
 			<li><a href="#">Accueil</a></li>
 			<li><a href="#">Groupes</a></li>
@@ -27,33 +29,40 @@
 		</ul>
 	</nav>
 
-<!-- Article maker -->
-	<section class="article_maker">
-		<header class="article_head">
-			<h2>Le litre de l'article</h2>
-			<h5>La date de création ici</h5>
-		</header>
-		<div class="article_txt">
-			<p>L'article est écrit ici</p>
-			<img class="article_image" src="">
-		</div>
-	</section>
+
+<!-- News maker -->
+	<div class="container">
+		<form class="news_maker" onsubmit="" action="">
+			<header class="news_context">
+     			<label id="news_title">Titre</label>
+     			<input id="title_edit" type="text" placeholder="Titre de l'article">
+    		</header>    
+    		<div class="news_corps">
+    			<label id="news_txt">Article</label>
+    			<textarea id="txt_edit" placeholder="Votre article" maxlength="1000"></textarea>
+    		</div> 
+    		<div class="btn">
+    			<button id="create" type="submit">Créer</button>
+    			<button id="cancel" type="reset">Annuler</button>
+    		</div>  
+   		</form>
+   	</div>
+
+
 
 <!-- Footer with informations, partners and links -->
-	<footer>
-		<div class="footer_container">
-			<ul class="footer_links">
+	<footer class="footer_container">
+			<ul class="footer_links, footer_list">
 				<li><a href="#">Contact</a></li>
-				<li><a href="#">Mentoins légales</a></li>
+				<li><a href="#">Mentions légales</a></li>
 				<li><a href="#">Crédits</a></li>
 				<li><a href="#">WebMaster</a></li>
 			</ul>
-			<ul class="footer_socials">
-				<li><a href="#"><img id="logo_FB" src="../../images/socials/logoFB.png"></a></li>
-				<li><a href="#"><img id="logo_Twitter" src="../../images/socials/logoTwitter.png"></a></li>
-				<li><a href="#"><img id="logo_YT" src="../../images/socials/logoYT.png"></a></li>
+			<ul class="footer_socials, footer_list">
+				<li><a href="#"><img id="logo_FB" class="icon" src="../../images/socials/logoFB.png"></a></li>
+				<li><a href="#"><img id="logo_Twitter" class="icon" src="../../images/socials/logoTwitter.png"></a></li>
+				<li><a href="#"><img id="logo_YT" class="icon" src="../../images/socials/logoYT.png"></a></li>
 			</ul>
-		</div>
 	</footer>
 </body>
 </html>
