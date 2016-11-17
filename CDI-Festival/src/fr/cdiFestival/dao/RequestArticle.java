@@ -18,6 +18,7 @@ public class RequestArticle {
 	private String		date;
 	private	String		title; 
 	private String		content;
+	
 	private Article		article;
 	private Articles	listArticle;
 	
@@ -27,7 +28,12 @@ public class RequestArticle {
 	}
 	
 	//Méthodes DLM
-	public void add(int id, String author, String date, String title, String content) {
+	public void add(Article article) {
+		id 		= article.getId();
+		author 	= article.getAuthor();
+		date 	= article.getDate();
+		title 	= article.getTitle();
+		content = article.getContent();
 		
 		try {
 			connection.initConnectionLocal();
@@ -71,22 +77,36 @@ public class RequestArticle {
 		
 		try {
 			connection.initConnectionLocal();
+			System.out.println("ceci est la connection :" + connection);
 			
-			prepStmt = connection.prepareStatement("select id, author, date, title, content from article where id = ?");
+			prepStmt = connection.prepareStatement("select id, author, dateC, title, content from article where id = ?");
 			prepStmt.setInt(1,id); 
 			result = prepStmt.executeQuery();
 
+			System.out.println("avant le while : " + id);
+			
 			while (result.next()) {
+				System.out.println("c'est le while");
 				author		= result.getString("author");
-				date		= result.getString("date");
+				System.out.println(author);
+				date		= result.getString("dateC");
+				System.out.println(date);
 				title		= result.getString("title");
+				System.out.println(title);
 				content		= result.getString("content");
+				System.out.println(content);
 			}
-
-				if ((id != 0) && (author != null) && (date != null) && (title != null) && (content != null)) {	
-					article	= new Article(id, author, date, title, content);
-				}
-				
+			
+			System.out.println("après le while----");
+			System.out.println(id);
+			System.out.println(author);
+			System.out.println(date);
+			System.out.println(title);
+			System.out.println(content);
+			
+			if ((id != 0) && (author != null) && (date != null) && (title != null) && (content != null)) {	
+				article	= new Article(id, author, date, title, content);
+			}
 
 			if (prepStmt != null)	prepStmt.close();
 			if (connection != null)	connection.closeConnection();
@@ -105,14 +125,14 @@ public class RequestArticle {
 		try {
 			connection.initConnectionLocal();
 
-			prepStmt = connection.prepareStatement("select id, author, date, title, content from article");
+			prepStmt = connection.prepareStatement("select id, author, dateC, title, content from article");
 
 			result = prepStmt.executeQuery();
 
 			while (result.next()) {
 				id			= result.getInt("id");
 				author		= result.getString("author");
-				date		= result.getString("date");
+				date		= result.getString("dateC");
 				title		= result.getString("title");
 				content		= result.getString("content");
 
@@ -134,12 +154,17 @@ public class RequestArticle {
 		return listArticle;
 	}
 	
-	public void upDateArticle (int id, String author, String date, String title, String content) {
+	public void upDateArticle (Article article) {
+		id 		= article.getId();
+		author 	= article.getAuthor();
+		date 	= article.getDate();
+		title 	= article.getTitle();
+		content = article.getContent();
 
 		try {
 			connection.initConnectionLocal();
 
-			prepStmt = connection.prepareStatement("UPDATE article set author = ?, date = ?, title = ?, content = ? where id = ?"); 
+			prepStmt = connection.prepareStatement("UPDATE article set author = ?, dateC = ?, title = ?, content = ? where id = ?"); 
 			prepStmt.setString(1, author); 
 			prepStmt.setString(2, date);
 			prepStmt.setString(3,title); 
