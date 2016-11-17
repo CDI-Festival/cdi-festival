@@ -77,7 +77,6 @@ public class RequestArticle {
 		
 		try {
 			connection.initConnectionLocal();
-			System.out.println("ceci est la connection :" + connection);
 			
 			prepStmt = connection.prepareStatement("select id, author, dateC, title, content from article where id = ?");
 			prepStmt.setInt(1,id); 
@@ -86,23 +85,11 @@ public class RequestArticle {
 			System.out.println("avant le while : " + id);
 			
 			while (result.next()) {
-				System.out.println("c'est le while");
 				author		= result.getString("author");
-				System.out.println(author);
 				date		= result.getString("dateC");
-				System.out.println(date);
 				title		= result.getString("title");
-				System.out.println(title);
 				content		= result.getString("content");
-				System.out.println(content);
 			}
-			
-			System.out.println("après le while----");
-			System.out.println(id);
-			System.out.println(author);
-			System.out.println(date);
-			System.out.println(title);
-			System.out.println(content);
 			
 			if ((id != 0) && (author != null) && (date != null) && (title != null) && (content != null)) {	
 				article	= new Article(id, author, date, title, content);

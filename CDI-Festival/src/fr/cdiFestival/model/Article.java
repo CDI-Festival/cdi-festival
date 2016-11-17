@@ -3,7 +3,7 @@ package fr.cdiFestival.model;
 
 public class Article {
 
-	
+
 	private int			id;
 	private String		author;
 	private String		date;
@@ -55,4 +55,9 @@ public class Article {
 		return id;
 	}
 	
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", author=" + author + ", date=" + date + ", title=" + title + ", content="
+				+ content + "]";
+	}
 }

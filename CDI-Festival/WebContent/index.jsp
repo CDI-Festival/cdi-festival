@@ -38,7 +38,7 @@
 <!-- Articles section -->
 	<div class="container">
 		
-		<%-- Article maker with the list sent by ArticleController --%>
+<%-- Article maker with the list sent by ArticleController --%>
 		<% for (Article article : listArticle) { %>
 		
 			<article id="<%=article.getId()%>" class="summary_container" role="article">

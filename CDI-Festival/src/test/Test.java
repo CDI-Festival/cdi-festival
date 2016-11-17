@@ -11,7 +11,7 @@ public static void main(String[] args) {
 	
 	RequestArticle re = new RequestArticle();
 //	re.add(a);
-	System.out.println(re.getArticle(1));
+//	System.out.println(re.getArticle(1));
 	System.out.println("-----------Coupure------------");
 	System.out.println(re.getArticles());
 }
