@@ -15,24 +15,29 @@ import fr.cdiFestival.model.Article;
 /**
  * Servlet implementation class ControllerNews
  */
-@WebServlet(name = "Controller", 
-		description = "Article controller", 
-		urlPatterns = {"/Article/*"})
+@WebServlet(name 		= "Controller", 
+			description = "Article controller", 
+			urlPatterns = {"/Article/*"})
 
-public class ControllerArticle extends HttpServlet {
+public class ArticleController extends HttpServlet {
 	
-	private static final long 				serialVersionUID = 1L;
-	private				 RequestDispatcher	dispatcher;
-	private				 String				path;
+	private static final long 	serialVersionUID = 1L;
 	
-	private				 Article			article;
-	private				 RequestArticle		reqArticle;
-	private				 int				id;
+	private	RequestDispatcher	dispatcher;
+	private	String				path;
+	
+	private	Article			article;
+	private	RequestArticle	reqArticle;
+	private	int				id;
+	private String			author;
+	private String			date;
+	private	String			title; 
+	private String			content;			 
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerArticle() {
+    public ArticleController() {
         super();
 
     }
@@ -57,22 +62,22 @@ public class ControllerArticle extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	//
+	//Index page for administrator (work in progress)
 	public void goIndexAdm (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		dispatcher = request.getRequestDispatcher("/indexAdm.jsp");
 		dispatcher.forward(request,response);
 		System.out.println("Methode goIndexAdm");
 	}
 	
+	//Get the article onClick and open a new page to read it (work in progress)
 	public void goRead(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		id = Integer.parseInt(request.getParameter("cote"));
-		
-		article = reqArticle.getArticle(id);
-		
-		request.setAttribute( "article", article );
-		this.getServletContext().getRequestDispatcher( "WEB-INF/article/read.jsp" ).forward( request, response );
-		System.out.println("Methode goRead");
-		
+//		id = Integer.parseInt(request.getParameter("cote"));
+//		
+//		article = reqArticle.getArticle(id);
+//		
+//		request.setAttribute( "article", article );
+//		this.getServletContext().getRequestDispatcher( "WEB-INF/article/read.jsp" ).forward( request, response );
+		System.out.println("Methode goRead");		
 	}
 	
 }

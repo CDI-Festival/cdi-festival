@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 
+<%@ page import="fr.cdiFestival.model.Article" %>
+<%@ page import="fr.cdiFestival.service.Articles" %>
+
+<% Articles listArticle = (Articles) request.getAttribute("articles"); %>
+
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -32,31 +37,21 @@
 
 <!-- Articles section -->
 	<div class="container">
-		<article class="summary_container" role="article">
-			<header>
-     			<h3><a href="">Article1</a></h3>
-     			<time datetime="" pubdate="pubdate"></time>
-    		</header>              
-    	<div class="summary"><p>L’archéologue, dans une approche 
-    	diachronique, acquiert donc l’essentiel de sa documentation 
-    	à travers des travaux de terrainN 1, par « opposition » à l’historien, 
-    	dont les principales sources sont des textes.</p>
-    	</div>
-		</article>
 		
-		<article class="summary_container" role="article">
-			<header>
-     			<h3><a href="">Article2</a></h3>
-     			<time datetime="" pubdate="pubdate"></time>
-    		</header>              
-    	<div class="summary"><p>L’archéologue, dans une approche 
-    	diachronique, acquiert donc l’essentiel de sa documentation 
-    	à travers des travaux de terrainN 1, par « opposition » à l’historien, 
-    	dont les principales sources sont des textes.</p>
-    	</div>
-		</article>
+		<%-- Article maker with the list sent by ArticleController --%>
+		<% for (Article article : listArticle) { %>
+		
+			<article id="<%=article.getId()%>" class="summary_container" role="article">
+				<header>
+					<h3><a href=""> <%= article.getTitle() %></a></h3>
+					<time pubdate="pubdate">Le : <%= article.getDate() %>, par : <%= article.getAuthor() %></time> par : 
+				</header>
+				<div class="summary"><p> <%= article.getContent().substring(0, 150) + "..." %> </p></div>
+			</article>
+		
+		<% } %>
+	
 	</div>
-		
 <!-- Footer -->
 	<footer class="footer_container">
 			<ul class="footer_links, footer_list">

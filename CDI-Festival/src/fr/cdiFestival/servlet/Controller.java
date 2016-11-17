@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.cdiFestival.dao.RequestArticle;
+import fr.cdiFestival.model.Article;
+import fr.cdiFestival.service.Articles;
+
 /**
  * Servlet implementation class Controller
  */
@@ -20,9 +24,19 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Controller extends HttpServlet {
 	
-	private static final long 				serialVersionUID = 1L;
-	private				 RequestDispatcher	dispatcher;
-	private				 String 			path;
+	private static final long serialVersionUID = 1L;
+	
+	private	RequestDispatcher dispatcher;
+	private	String			  path;
+	
+	private	Article			article;
+	private Articles		listArticle;
+	private	RequestArticle	reqArticle;
+	private	int				id;
+	private String			author;
+	private String			date;
+	private	String			title; 
+	private String			content;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -54,10 +68,13 @@ public class Controller extends HttpServlet {
 	}
 	
 	
-	// Public index page method
+	// Public index page method to display all the articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		dispatcher = request.getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request,response);
+		listArticle = reqArticle.getArticles();
+		
+		request.setAttribute("articles", listArticle);
+		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+	
 		System.out.println("Methode doIndex");
 	}
 }
