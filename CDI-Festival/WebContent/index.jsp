@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Accueil Festival</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/styleArticle.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
 </head>
 
 <body>
