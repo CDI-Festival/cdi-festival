@@ -27,6 +27,7 @@ public class ControllerArticle extends HttpServlet {
 	
 	private				 Article			article;
 	private				 RequestArticle		reqArticle;
+	private				 int				id;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -64,9 +65,11 @@ public class ControllerArticle extends HttpServlet {
 	}
 	
 	public void goRead(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqArticle.getArticle(id);
+		id = Integer.parseInt(request.getParameter("cote"));
 		
-		request.setAttribute( "test", message );
+		article = reqArticle.getArticle(id);
+		
+		request.setAttribute( "article", article );
 		this.getServletContext().getRequestDispatcher( "WEB-INF/article/read.jsp" ).forward( request, response );
 		System.out.println("Methode goRead");
 		
