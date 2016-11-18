@@ -2,17 +2,32 @@ package test;
 
 import fr.cdiFestival.dao.RequestArticle;
 import fr.cdiFestival.model.Article;
+import fr.cdiFestival.service.Articles;
 
 public class Test {
 public static void main(String[] args) {
 	
-//	Article a = new Article(2, "jo", "21/11/2016", "Le titre", "L'article");
 	
 	
 	RequestArticle re = new RequestArticle();
-//	re.add(a);
-//	System.out.println(re.getArticle(1));
-	System.out.println("-----------Coupure------------");
-	System.out.println(re.getArticles());
+
+	
+	
+	Articles listArticle = re.getArticles();
+	
+	for (Article article : listArticle) {
+		System.out.println(article.getId());
+		System.out.println(article.getTitle());
+		System.out.println(article.getDate());
+		System.out.println( article.getAuthor());
+		
+			if (article.getContent().length() >= 149) {
+				System.out.println(article.getContent().substring(0, 150) + "...");
+			}
+			else { 
+				System.out.println(article.getContent());
+			}
+	}
+	
 }
 }

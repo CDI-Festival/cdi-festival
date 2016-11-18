@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 
 <%@ page import="fr.cdiFestival.model.Article" %>
@@ -38,15 +38,21 @@
 <!-- Articles section -->
 	<div class="container">
 		
-<%-- Article maker with the list sent by ArticleController --%>
+<%-- Article maker with the list sent by ArticleController  --%>
 		<% for (Article article : listArticle) { %>
 		
 			<article id="<%=article.getId()%>" class="summary_container" role="article">
 				<header>
 					<h3><a href=""> <%= article.getTitle() %></a></h3>
-					<time pubdate="pubdate">Le : <%= article.getDate() %>, par : <%= article.getAuthor() %></time> par : 
+					<time class="date" pubdate="pubdate">Le : <%= article.getDate() %>, par : <%= article.getAuthor() %></time> 
 				</header>
-				<div class="summary"><p> <%= article.getContent().substring(0, 150) + "..." %> </p></div>
+				<div class="summary"><p class="txt">
+				<%if (article.getContent().length() >= 149) { %>
+					<%=article.getContent().substring(0, 150) + "..." %> 
+				<% } else { %>
+					<%=article.getContent()%>
+				<% } %>
+				</p></div>
 			</article>
 		
 		<% } %>

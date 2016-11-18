@@ -1,15 +1,16 @@
-/* Body style */
+/********************************/ 
+/* 			Body style  		*/
+/********************************/
 body {
 	background-image: url("../images/bg.jpg");
 	margin: 0;
 	background-size: cover;
 	font-family: Arial, Sans-Serif;
-	margin: 0px;
-	
 }
 
-
-/* Banner style */
+/********************************/ 
+/* 			Banner style 		*/
+/********************************/ 
 .banner {
 	padding-bottom: 10px;
 	padding-top: 10px;
@@ -22,8 +23,9 @@ body {
 	color: orange;
 }
 
-
-/* Navigation menu bar style */
+/********************************/ 
+/* 	Navigation menu bar style 	*/
+/********************************/ 
 #menu {
 	margin-left: 30%;
 	margin-top: 1em;
@@ -54,56 +56,55 @@ body {
  	padding: 5px;
  }
  
- 
- /*About articles */
-/*All*/
+ /********************************/ 
+ /*			Articles style		 */
+ /********************************/ 
 .container {
+	text-align: center;
 	margin-top: 150px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 960px;
+	width: 800px;
 	border: 1px solid black;
-	display: flex;
-	justify-content: space-around;
-	background-color: black;
-
-}
-.summary_container a {
-	text-decoration: none;
-	color: black;
+	/*background-color: rgba(0, 0, 0, 0.7);*/
 }
 
-.summary {
-	font-size: 11;
-	max-height: 15%;
-}
-
-.summary_container h3 {
-	text-align: center;
-	margin: 0;
-	padding: 0;
-}
-
-.summary p {
-	text-align: justify;
-}
-
-/*Left side*/
 .summary_container {
+	display: inline-block;
 	border: 1px solid black;
 	width: 300px;
 	height: auto;
 	background-color: white;
 } 
+
+.summary_container a {
+	text-decoration: none;
+	color: black;
+}
+
+.summary_container h3 {
+	text-align: center;
+	background-color: grey;
+}
+
+.summary {
+	font-size: 11;
+}
+
+.summary p {
+	text-align: justify;
+}
  
- /* Footer style */
+ /********************************/ 
+ /* 		Footer style		 */
+ /********************************/ 
 .icon {
 	width: 30px;
 	height: 30px;
 }
 
 .footer_container {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
 	background-color: black;

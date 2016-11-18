@@ -17,10 +17,10 @@ import fr.cdiFestival.service.Articles;
  * Servlet implementation class Controller
  */
 @WebServlet(
-	name 		= "Controller", 
-	description = "Main controller", 
-	urlPatterns = {"/Festival/*"}
-)
+		name = "Controleur", 
+		description = "Controleur General", 
+		urlPatterns = {"/festival/*"}
+		)
 
 public class Controller extends HttpServlet {
 	
@@ -29,21 +29,15 @@ public class Controller extends HttpServlet {
 	private	RequestDispatcher dispatcher;
 	private	String			  path;
 	
-	private	Article			article;
 	private Articles		listArticle;
 	private	RequestArticle	reqArticle;
-	private	int				id;
-	private String			author;
-	private String			date;
-	private	String			title; 
-	private String			content;
+
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Controller() {
         super();
-        System.out.println("COntroller init");
     }
 
 
@@ -70,9 +64,10 @@ public class Controller extends HttpServlet {
 	
 	// Public index page method to display all the articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		listArticle = reqArticle.getArticles();
+		reqArticle = new RequestArticle();
+		listArticle = null;
 		
-		request.setAttribute("articles", listArticle);
+		request.setAttribute("articles", reqArticle.getArticles());
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	
 		System.out.println("Methode doIndex");

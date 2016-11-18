@@ -17,7 +17,7 @@ import fr.cdiFestival.model.Article;
  */
 @WebServlet(name 		= "Controller", 
 			description = "Article controller", 
-			urlPatterns = {"/Article/*"})
+			urlPatterns = {"/article/*"})
 
 public class ArticleController extends HttpServlet {
 	
