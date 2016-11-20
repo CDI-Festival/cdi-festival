@@ -31,7 +31,7 @@
 			<li><a href="#">Accueil</a></li>
 			<li><a href="#">Groupes</a></li>
 			<li><a href="#">Programmation</a></li>
-			<li><a href="#">Billeterie</a></li>
+			<li><a href="#">Billetterie</a></li>
 		</ul>
 	</nav>
 

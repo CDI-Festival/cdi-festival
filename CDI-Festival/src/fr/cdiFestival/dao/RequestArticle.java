@@ -141,7 +141,7 @@ public class RequestArticle {
 		return listArticle;
 	}
 	
-	public void upDateArticle (Article article) {
+	public void upDate (Article article) {
 		id 		= article.getId();
 		author 	= article.getAuthor();
 		date 	= article.getDate();
