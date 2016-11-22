@@ -19,24 +19,10 @@
 
 <body>
 
-<!--  Banner with logo and text -->
-	<header class="banner">
-		<img id="banner_logo" src="images//banner/logo.png">
-		<h1 id="slogan">More code, more ROCK !!</h1>
-		<img id="banner_dates" src="images/banner/dates.png">
-	</header>
+	<%-- Include banner --%>
+	<jsp:include page="WEB-INF/include/header.jsp" />
 
-<!-- Navigation menu bar -->
-
-	<nav id="menu">
-		<ul>
-			<li><a href="">Accueil</a></li>
-			<li><a href="#" onclick="callBandController('Groupe')">Groupes</a></li>
-			<li><a href="">Programmation</a></li>
-			<li><a href="pass/manage">Billetterie</a></li>
-		</ul>
-	</nav>
-
+	<!-- Include main menu -->
 	<jsp:include page="/WEB-INF/include/menu.jsp" />
 
 
