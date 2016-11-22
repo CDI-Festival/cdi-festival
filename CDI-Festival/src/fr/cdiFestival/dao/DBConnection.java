@@ -18,7 +18,7 @@ public class DBConnection {
 	//Defines a connection string
 	// TODO (group) ask for a group connection!
 	// Claire connection
-	private final static String JUNON_URL = "jdbc:oracle:thin:cdifestival/stagpw@junon:1521:AFPA";
+	private final static String JUNON_URL = "jdbc:oracle:thin:cdifestival/stagp@junon:1521:AFPA";
 	
 	// Jean-Luc connection
 	
