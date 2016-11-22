@@ -29,14 +29,14 @@ public class ArticleController extends HttpServlet {
 	private	RequestDispatcher	dispatcher;
 	private	String				path;
 	
-	private	Article			article;
-	private Articles		listArticle;
-	private	RequestArticle	reqArticle;
-	private	int				id;
-	private String			author;
-	private String			date;
-	private	String			title; 
-	private String			content;
+	private	Article				article;
+	private Articles			listArticle;
+	private	RequestArticle		reqArticle;
+	private	int					id;
+	private String				author;
+	private String				date;
+	private	String				title; 
+	private String				content;
 	
 	private	DateTimeFormatter 	format;
        
@@ -54,14 +54,13 @@ public class ArticleController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getPathInfo();
 		
-		System.out.println("ArticleController path=" + path );
-		System.out.println("ArticleController path contexte =" + request.getContextPath() );
+		System.out.println("ArticleController doGet path=" + path );
+		System.out.println("ArticleController doGet path contexte =" + request.getContextPath() );
 		
 		if (path == null || path.equals("/")) this.goIndex(request, response);
 		if (path.equals("/read")) this.read(request, response);
 		if (path.equals("/updatepage")) this.upDate(request, response);
 		if (path.equals("/addpage")) this.goAddPage(request, response);
-		
 	}
 
 
@@ -69,7 +68,7 @@ public class ArticleController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Méthode doPost");
+		path = request.getPathInfo();
 		System.out.println("ArticleController doPost path=" + path );
 		System.out.println("ArticleController doPost path contexte =" + request.getContextPath() );
 		
@@ -89,7 +88,7 @@ public class ArticleController extends HttpServlet {
 		request.setAttribute("articles", reqArticle.getArticles());
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	
-		System.out.println("Methode doIndex");
+		System.out.println("Methode goIndex");
 	}
 	
 	//Get the article onClick and open a new page to read it
@@ -100,28 +99,33 @@ public class ArticleController extends HttpServlet {
 			
 		request.setAttribute( "article", article );
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/read.jsp" ).forward( request, response );	
+		
+		System.out.println("Methode Read");
 	}
 	
 	//Open the article maker page
 	public void goAddPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("http://localhost:8085/CDI_Festival/view/article/createArticle.html");
+		System.out.println("Methode goAddPage");
 	}
 	
 	//add a new article in the dataBase
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		reqArticle  = new RequestArticle();
-//		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
-//		
-//		author		= request.getParameter("author");
-//		title		= request.getParameter("title");
-//		date		= (LocalDate.now().format(format));
-//		content		= request.getParameter("content");
-//		
-//		article		= new Article(author, date, title, content);
-//		
-//		reqArticle.add(article);
-//		
-		System.out.println("Méthode add");
+		reqArticle  = new RequestArticle();
+		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		
+		author		= request.getParameter("author");
+		title		= request.getParameter("title");
+		date		= (LocalDate.now().format(format));
+		content		= request.getParameter("content");
+		
+		article		= new Article(author, date, title, content);
+		
+		reqArticle.add(article);
+		
+		this.goIndex(request, response);
+		
+		System.out.println("Méthode add !!");
 	}
 	
 	//Open page to update an article
