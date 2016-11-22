@@ -1,6 +1,6 @@
 package fr.cdiFestival.model;
 
-import fr.cdiFestival.dao.BandDAO;
+import fr.cdiFestival.dao.band.BandDAO;
 
 /**
  * Class for band creation.
