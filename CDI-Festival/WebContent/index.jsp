@@ -27,7 +27,18 @@
 	</header>
 
 <!-- Navigation menu bar -->
+
+	<nav id="menu">
+		<ul>
+			<li><a href="">Accueil</a></li>
+			<li><a href="#" onclick="callBandController('Groupe')">Groupes</a></li>
+			<li><a href="">Programmation</a></li>
+			<li><a href="pass/manage">Billetterie</a></li>
+		</ul>
+	</nav>
+
 	<jsp:include page="/WEB-INF/include/menu.jsp" />
+
 
 <!-- Creation button -->
 	<form action="<%=request.getContextPath()%>/article/addpage">

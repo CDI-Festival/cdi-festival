@@ -60,7 +60,7 @@ public class PassController extends HttpServlet {
 			System.out.println("Redirect to passes managment");
 			url = "/ControlManager/ManagePass";
 		} else {
-			System.out.println("SendRedirect to the main "+request.getContextPath() + "/main.jsp");
+			System.out.println("SendRedirect to the main "+request.getContextPath() + "/index.jsp");
 			//response.sendRedirect(request.getContextPath() + "/main.html");
 			url = "/main.jsp";
 			//response.encodeRedirectURL(request.getContextPath() + "/main.html");
