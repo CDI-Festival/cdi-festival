@@ -63,7 +63,10 @@ public class Controller extends HttpServlet {
 		case "/groupe":
 			response.sendRedirect(request.getContextPath() + "/groupes");
 			break;
-			
+
+		case "/pass":
+			response.sendRedirect(request.getContextPath() + "/pass");
+			break;
 		default:
 			goIndex(request, response);
 		}

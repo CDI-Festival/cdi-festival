@@ -39,7 +39,7 @@ public class ManagePass extends HttpServlet {
 	}
 
 	public void init() {
-		url = "/WEB-INF/gestion.jsp";
+		url = "/WEB-INF/pass/gestion.jsp";
 	}
 
 	/**

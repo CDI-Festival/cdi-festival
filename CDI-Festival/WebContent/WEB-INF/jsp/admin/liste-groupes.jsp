@@ -7,7 +7,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bandstyle.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/bandstyle.css" />
 <title>CDI Festival 2017 - Gestion groupes</title>
 </head>
 <body>
@@ -15,12 +16,12 @@
 	<%-- Attributes for JSP --%>
 	<jsp:useBean id="bandNameList" type="java.util.ArrayList<String>" scope="request" />
 
+	<jsp:include page="/WEB-INF/include/header.jsp" />
+
 	<%--Include the main administration menu --%>
 	<jsp:include page="/WEB-INF/include/menu-admin.jsp" />
 
 	<div id="container">
-
-		<jsp:include page="/WEB-INF/include/header.jsp" />
 
 		<h2>Gestion des groupes</h2>
 

@@ -14,6 +14,7 @@
 <meta charset="utf-8" />
 <title>Accueil Festival</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/articleStyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 </head>
 
 <body>
@@ -26,14 +27,18 @@
 	</header>
 
 <!-- Navigation menu bar -->
+
 	<nav id="menu">
 		<ul>
 			<li><a href="">Accueil</a></li>
 			<li><a href="#" onclick="callBandController('Groupe')">Groupes</a></li>
 			<li><a href="">Programmation</a></li>
-			<li><a href="">Billetterie</a></li>
+			<li><a href="pass/manage">Billetterie</a></li>
 		</ul>
 	</nav>
+
+	<jsp:include page="/WEB-INF/include/menu.jsp" />
+
 
 <!-- Creation button -->
 	<form action="<%=request.getContextPath()%>/article/addpage">
@@ -79,6 +84,8 @@
 			</ul>
 			<div id="login"><a href="#">Login</a></div>
 	</footer>
+	
+	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
 	
 </body>
 
