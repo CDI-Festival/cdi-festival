@@ -50,8 +50,23 @@ public class Controller extends HttpServlet {
 		System.out.println("Controller path2=" + path );
 		System.out.println("Controller path contexte =" + request.getContextPath() );
 		
+		if (path == null) {
+			goIndex(request, response);
+		}
 		
-		if (path == null || path.equals("/")) goIndex(request, response);
+		switch (path) {
+		
+		case "/":
+			goIndex(request, response);
+			break;
+			
+		case "/groupe":
+			response.sendRedirect(request.getContextPath() + "/groupes");
+			break;
+			
+		default:
+			goIndex(request, response);
+		}
 	}
 
 

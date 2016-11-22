@@ -29,7 +29,7 @@
 	<nav id="menu">
 		<ul>
 			<li><a href="">Accueil</a></li>
-			<li><a href="">Groupes</a></li>
+			<li><a href="#" onclick="callBandController('Groupe')">Groupes</a></li>
 			<li><a href="">Programmation</a></li>
 			<li><a href="">Billetterie</a></li>
 		</ul>
