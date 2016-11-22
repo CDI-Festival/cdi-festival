@@ -13,7 +13,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Accueil Festival</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/articleStyle.css">
 </head>
 
 <body>
@@ -28,12 +28,18 @@
 <!-- Navigation menu bar -->
 	<nav id="menu">
 		<ul>
-			<li><a href="#">Accueil</a></li>
-			<li><a href="#">Groupes</a></li>
-			<li><a href="#">Programmation</a></li>
-			<li><a href="#">Billetterie</a></li>
+			<li><a href="">Accueil</a></li>
+			<li><a href="">Groupes</a></li>
+			<li><a href="">Programmation</a></li>
+			<li><a href="">Billetterie</a></li>
 		</ul>
 	</nav>
+
+<!-- Creation button -->
+	<form action="<%=request.getContextPath()%>/article/addpage">
+		<button onclick="back()">Créer un nouvel article</button>
+	</form>
+	
 
 <!-- Articles section -->
 	<div class="container">
@@ -43,10 +49,10 @@
 		
 			<article id="<%=article.getId()%>" class="summary_container" role="article">
 				<header>
-					<h3><a href=""> <%= article.getTitle() %></a></h3>
-					<time class="date" pubdate="pubdate">Le : <%= article.getDate() %>, par : <%= article.getAuthor() %></time> 
+					<h3><a href="<%=request.getContextPath()%>/article/read?id=<%=article.getId()%>"> <%= article.getTitle() %></a></h3>
+					<time class="date" pubdate="pubdate">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></time> 
 				</header>
-				<div class="summary"><p class="txt">
+				<div class="summary"><p class="justify">
 				<%if (article.getContent().length() >= 149) { %>
 					<%=article.getContent().substring(0, 150) + "..." %> 
 				<% } else { %>
@@ -58,6 +64,7 @@
 		<% } %>
 	
 	</div>
+	
 <!-- Footer -->
 	<footer class="footer_container">
 			<ul class="footer_links, footer_list">
