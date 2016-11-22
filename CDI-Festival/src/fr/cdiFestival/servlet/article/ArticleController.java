@@ -74,6 +74,7 @@ public class ArticleController extends HttpServlet {
 		
 		if (path.equals("/add")) this.add(request, response);
 		if (path.equals("/update")) this.upDate(request, response);
+		if (path.equals("/delete")) this.delete(request, response);
 	}
 	
 	
@@ -134,8 +135,31 @@ public class ArticleController extends HttpServlet {
 	
 	//update an article and redirect to index.jsp
 	public void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		reqArticle  = new RequestArticle();
+		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		
+		author		= request.getParameter("author");
+		title		= request.getParameter("title");
+		date		= (LocalDate.now().format(format));
+		content		= request.getParameter("content");
+		
+		article		= new Article(author, date, title, content);
+		
+		reqArticle.upDate(article);
+		
+		this.goIndex(request, response);
 		}
+	
+	//Delete an article
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		reqArticle 	= new RequestArticle();
+		System.out.println("Méthode delete===>request.getAttribute = " + request.getParameter("id"));
+
+//		System.out.println("methode delete :" + id);
+//		reqArticle.delete(id);
+					
+//		this.goIndex(request, response);
+	}
 	
 //	// Redirect into ArticleController
 //	public void goArticleManage (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

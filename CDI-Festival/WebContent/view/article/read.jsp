@@ -3,7 +3,7 @@
     
 <%@ page import="fr.cdiFestival.model.Article" %>
 <%Article article = (Article)request.getAttribute("article"); %>    
-
+<%request.setAttribute("id", 1); %>
 <!DOCTYPE html">
 
 <html lang="fr">
@@ -47,13 +47,12 @@
     	<div class="full_news"><p class="justify"><%= article.getContent() %></p></div>
 		</article>
 		<div id="btn">
-			<a href="<%=request.getContextPath()%>/article/updatepage?id=1"><button onsubmit="">Modifier</button></a>
-			<form onsubmit="" action=""> 
+			<a href="<%=request.getContextPath()%>/article/updatepage?id= <%= article.getId() %>"><button onsubmit="">Modifier</button></a>
+			<form onsubmit="" action="<%=request.getContextPath()%>/article/delete" method="post"> 
 				<button type="submit">Supprimer</button> 
 			</form>
 		</div>
 	</div>
-
 
 <!-- Footer with informations, partners and links -->
 	<footer class="footer_container">
