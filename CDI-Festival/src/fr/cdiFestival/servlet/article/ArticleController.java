@@ -26,11 +26,10 @@ public class ArticleController extends HttpServlet {
 	
 	private static final long 	serialVersionUID = 1L;
 	
-	private	RequestDispatcher	dispatcher;
+
 	private	String				path;
 	
 	private	Article				article;
-	private Articles			listArticle;
 	private	RequestArticle		reqArticle;
 	private	int					id;
 	private String				author;
@@ -57,7 +56,6 @@ public class ArticleController extends HttpServlet {
 		System.out.println("ArticleController doGet path=" + path );
 		System.out.println("ArticleController doGet path contexte =" + request.getContextPath() );
 		
-		if (path == null || path.equals("/")) this.goIndex(request, response);
 		if (path.equals("/read")) this.read(request, response);
 		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
 		if (path.equals("/addpage")) this.goAddPage(request, response);
@@ -78,17 +76,9 @@ public class ArticleController extends HttpServlet {
 	}
 	
 	
-	
-	
-	
-	// Public index page method to display all articles
-	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqArticle = new RequestArticle();
-		listArticle = null;
-		
-		request.setAttribute("articles", reqArticle.getArticles());
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	}
+	//*******************************************//
+	//					Méthods					 //
+	//*******************************************//
 	
 	//Get the article onClick and open a new page to read it
 	public void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -97,7 +87,7 @@ public class ArticleController extends HttpServlet {
 		article 	= reqArticle.getArticle(id);
 			
 		request.setAttribute( "article", article );
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/read.jsp" ).forward( request, response );	
+		this.getServletContext().getRequestDispatcher( "/view/article/read.jsp" ).forward( request, response );	
 	}
 	
 	//Open the article maker page
@@ -120,7 +110,7 @@ public class ArticleController extends HttpServlet {
 		
 		reqArticle.add(article);
 		
-		this.goIndex(request, response);
+
 	}
 	
 	//Open the update page
@@ -146,14 +136,12 @@ public class ArticleController extends HttpServlet {
 		article		= new Article(author, date, title, content);
 		
 		reqArticle.upDate(article);
-		
-		this.goIndex(request, response);
 		}
 	
 	//Delete an article
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		reqArticle 	= new RequestArticle();
-		System.out.println("Méthode delete===>request.getAttribute = " + request.getParameter("id"));
+		System.out.println("Méthode delete===>request.getAttribute = " + request.getAttribute("id"));
 
 //		System.out.println("methode delete :" + id);
 //		reqArticle.delete(id);
