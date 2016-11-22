@@ -44,7 +44,7 @@ public class ShowCase extends HttpServlet {
     }
     
     public void init() {
-    	url = "/WEB-INF/consult.jsp";
+    	url = "/WEB-INF/pass/consult.jsp";
     }
 
 	/**
@@ -110,7 +110,7 @@ public class ShowCase extends HttpServlet {
 			}
 			request.setAttribute("listAvail",listFull);
 			request.setAttribute("allPasses", lesStock);
-			url = "/WEB-INF/consult.jsp";
+			url = "/WEB-INF/pass/consult.jsp";
 		}
 		
 		
