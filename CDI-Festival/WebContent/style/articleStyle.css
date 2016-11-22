@@ -69,8 +69,17 @@ body {
 	/*background-color: rgba(0, 0, 0, 0.7);*/
 }
 
+.containercreate {
+	margin-top: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+	border: 1px solid black;
+	/*background-color: rgba(0, 0, 0, 0.7);*/
+}
+
 .summary_container {
-	display: inline-block;
+	margin: 10px;
 	border: 1px solid black;
 	width: 300px;
 	height: auto;
@@ -91,10 +100,32 @@ body {
 	font-size: 11;
 }
 
-.summary p {
+.justify {
 	text-align: justify;
 }
  
+input, textarea {
+    width: 150px;
+    padding: 4px;
+    vertical-align: top;
+}
+
+textarea {
+    width: 600px;
+    height: 20em;
+}
+.aligne {
+    display: inline-block;
+    width: 100px;
+    margin-right: 20px;
+    vertical-align: top;
+    text-align: right;
+}
+
+.btn {
+	margin-left: 125px; 
+}
+
  /********************************/ 
  /* 		Footer style		 */
  /********************************/ 
@@ -104,7 +135,7 @@ body {
 }
 
 .footer_container {
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	width: 100%;
 	background-color: black;
