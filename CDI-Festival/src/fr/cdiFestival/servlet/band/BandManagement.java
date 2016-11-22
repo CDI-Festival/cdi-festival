@@ -114,8 +114,7 @@ public class BandManagement extends HttpServlet {
 				
 				System.out.println("BandManagement, delete done: > BandController"); // TEST CODE
 				
-				dispatch = request.getRequestDispatcher("/admin/groupes/gerer");
-				dispatch.forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/admin/groupes/gerer");
 			}
 			break;
 			
@@ -202,26 +201,34 @@ public class BandManagement extends HttpServlet {
 			result = bandDAO.create(band);
 			
 			System.out.println("BandManagement: create, formulaire.jsp > dispatch to validation.jsp"); // TEST CODE
-	
-			// Set the validation type in validation.jsp
-			validationType = "créé";
 			
 			if (result != 0) {
+				
+				// Set the validation type in validation.jsp
+				validationType = "a bien été créé";
+				
 				request.setAttribute("name", name);
 				request.setAttribute("validationType", validationType);
 				dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
 				dispatch.forward(request, response);
 			}
 			else {
-				// TODO (Claire) error page
+				
+				// TODO erreur création
 			}
 		
 		}
 		
 		else {
-			// TODO send pop-up error, by JS?
+			
+			// Set the validation type in validation.jsp
+			validationType = "existe déjà";
+			
+			request.setAttribute("name", name);
+			request.setAttribute("validationType", validationType);
+			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
+			dispatch.forward(request, response);
 		}
-		
 	}
 	
 	/**
@@ -243,12 +250,16 @@ public class BandManagement extends HttpServlet {
 		bandDAO = new BandDAO();
 		result = bandDAO.update(band);
 		
+		System.out.println("BandManagement update : " + band.getName());
+		System.out.println("BandManagement result update : " + result);
+		
 		System.out.println("BandManagement: update, formulaire.jsp > dispatch to validation.jsp"); // TEST CODE
 		
-		// To let validation.jsp if it's a creation or an update
-		validationType = "mis à jour";
-		
 		if (result != 0) {
+			
+			// To let validation.jsp if it's a creation or an update
+			validationType = "a bien été mis à jour";
+			
 			request.setAttribute("name", name);
 			request.setAttribute("validationType", validationType);
 			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
@@ -264,17 +275,25 @@ public class BandManagement extends HttpServlet {
 	 * 
 	 * @author Claire
 	 * @param request
-	 * @return 
+	 * @return exists
 	 * @version 20161122
 	 */
 	private boolean checkDB(HttpServletRequest request) {
 		
+		boolean exists;
+		
 		// Get the name from form input
 		name = request.getParameter("bandname");
 		
+		bandDAO = new BandDAO();
+		exists = bandDAO.check(name);
 		
-		
-		return true;
+		if (exists) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**
