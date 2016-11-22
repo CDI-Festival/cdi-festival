@@ -59,7 +59,7 @@ body {
  /********************************/ 
  /*			Articles style		 */
  /********************************/ 
-.container {
+.container { 
 	text-align: center;
 	margin-top: 150px;
 	margin-left: auto;
@@ -79,7 +79,7 @@ body {
 }
 
 .summary_container {
-	margin: 10px;
+	margin-bottom: 10px;
 	border: 1px solid black;
 	width: 300px;
 	height: auto;
@@ -135,8 +135,6 @@ textarea {
 }
 
 .footer_container {
-	position: absolute;
-	bottom: 0;
 	width: 100%;
 	background-color: black;
 	display: flex;

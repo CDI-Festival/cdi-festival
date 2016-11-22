@@ -4,7 +4,7 @@
 <%@ page import="fr.cdiFestival.model.Article" %>
 <%Article article = (Article)request.getAttribute("article"); %>    
 
-<!DOCTYPE html">
+<!DOCTYPE html>
 
 <html lang="fr">
 
@@ -28,40 +28,36 @@
 <!-- Navigation menu bar -->
 	<nav id="menu">
 		<ul>
-			<li><a href="#">Accueil</a></li>
-			<li><a href="#">Groupes</a></li>
-			<li><a href="#">Programmation</a></li>
-			<li><a href="#">Billeterie</a></li>
+			<li><a href="">Accueil</a></li>
+			<li><a href="">Groupes</a></li>
+			<li><a href="">Programmation</a></li>
+			<li><a href="">Billeterie</a></li>
 		</ul>
 	</nav>
 
 
-<!-- News section -->
-	<div class="container">
-		<article class="fullnews_container" role="article">
-			<header>
-     			<h1> <%= article.getTitle() %> </h1>
-     			<time class="date" pubdate="pubdate">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></time>
-    		</header>   
-    		<br />           
-    	<div class="full_news"><p class="justify"><%= article.getContent() %></p></div>
-		</article>
-		
-		<a href="<%=request.getContextPath()%>/article/update?id=<%=article.getId()%>">Modifier</a>
-		
-		<form onsubmit="" action="">
-			<button type="submit">Supprimer</button>
-		</form>
-		
-	</div>
+<!-- News maker -->
 
+	<div class="containercreate">
+		<form onsubmit="A VENIR" name="btncreate" action="http://localhost:8085/CDI_Festival/article/update" method="post">
+			<p>	<label class="aligne" for="author">Auteur</label> <input type="text" id="author" name="author" value="<%=article.getAuthor() %>"></p>
+			<p> <label class="aligne" for="date">Date création</label> <label> <%= article.getDate() %> </label></p>
+   	 		<p> <label class="aligne" for="title">Titre</label> <input type="text" id="title" name="title" value="<%=article.getTitle()%>"> </p>
+   	 		<p> <label class="aligne" for="content">Article</label> <textarea id="content" name="content"><%= article.getContent() %></textarea> </p>
+   	 		<div class="btn">
+    			<button name="btnvalidate" type="submit">Valider</button>
+    			<button name="btncancel" type="button" onclick="back()">Annuler</button>
+    		</div> 
+		</form>
+	</div>
+   	
 <!-- Footer with informations, partners and links -->
 	<footer class="footer_container">
 			<ul class="footer_links, footer_list">
 				<li><a href="#">Contact</a></li>
 				<li><a href="#">Mentions légales</a></li>
 				<li><a href="#">Crédits</a></li>
-				<li><a href="#">Admin</a></li>
+				<li><a href="#">WebMaster</a></li>
 			</ul>
 			<ul class="footer_socials, footer_list">
 				<li><a href="#"><img id="logo_FB" class="icon" src="../../images/socials/logoFB.png"></a></li>

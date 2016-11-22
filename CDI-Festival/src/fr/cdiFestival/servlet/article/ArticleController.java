@@ -59,7 +59,7 @@ public class ArticleController extends HttpServlet {
 		
 		if (path == null || path.equals("/")) this.goIndex(request, response);
 		if (path.equals("/read")) this.read(request, response);
-		if (path.equals("/updatepage")) this.upDate(request, response);
+		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
 		if (path.equals("/addpage")) this.goAddPage(request, response);
 	}
 
@@ -87,8 +87,6 @@ public class ArticleController extends HttpServlet {
 		
 		request.setAttribute("articles", reqArticle.getArticles());
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	
-		System.out.println("Methode goIndex");
 	}
 	
 	//Get the article onClick and open a new page to read it
@@ -99,8 +97,6 @@ public class ArticleController extends HttpServlet {
 			
 		request.setAttribute( "article", article );
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/read.jsp" ).forward( request, response );	
-		
-		System.out.println("Methode Read");
 	}
 	
 	//Open the article maker page
@@ -109,7 +105,7 @@ public class ArticleController extends HttpServlet {
 		System.out.println("Methode goAddPage");
 	}
 	
-	//add a new article in the dataBase
+	//add a new article in the dataBase and redirect to index.jsp
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -124,13 +120,21 @@ public class ArticleController extends HttpServlet {
 		reqArticle.add(article);
 		
 		this.goIndex(request, response);
-		
-		System.out.println("Méthode add !!");
 	}
 	
-	//Open page to update an article
-		public void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+	//Open the update page
+	public void goUpDatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		reqArticle 	= new RequestArticle();
+		id 			= Integer.parseInt(request.getParameter("id").trim());
+		article 	= reqArticle.getArticle(id);
+				
+		request.setAttribute( "article", article );
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/update.jsp" ).forward( request, response );	
+	}
+	
+	//update an article and redirect to index.jsp
+	public void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		}
 	
 //	// Redirect into ArticleController
