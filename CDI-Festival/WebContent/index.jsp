@@ -80,6 +80,8 @@
 			<div id="login"><a href="#">Login</a></div>
 	</footer>
 	
+	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
+	
 </body>
 
 </html>
