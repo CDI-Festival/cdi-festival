@@ -53,7 +53,7 @@ function callBandController(name) {
 		var url = contextPath + "/admin/groupes/modifier?value=";
 		location.href = url + selectedValue;
 		break;
-
+		
 	// Click on 'Supprimer' button from band list page (liste-groupes.jsp)
 	case 'Supprimer':
 		
@@ -70,6 +70,7 @@ function callBandController(name) {
 			    var url = contextPath + "/admin/groupes/supprimer?value=";
 			    location.href = url + selectedValue;
 			    break;
+			    
 		} else {
 				  
 		   console.log('Non'); // TEST CODE    
