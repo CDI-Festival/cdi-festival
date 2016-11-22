@@ -81,9 +81,7 @@ public class RequestArticle {
 			prepStmt = connection.prepareStatement("select id, author, dateC, title, content from article where id = ?");
 			prepStmt.setInt(1,id); 
 			result = prepStmt.executeQuery();
-
-			System.out.println("avant le while : " + id);
-			
+	
 			while (result.next()) {
 				author		= result.getString("author");
 				date		= result.getString("dateC");
