@@ -11,7 +11,8 @@ public class ConnectionBdd {
 	
 	//Attributs
 	private static final	String 			NOM_DRIVER			= "oracle.jdbc.driver.OracleDriver";
-	private	static final	String 			DB_URL_JUNON 		= "jdbc:oracle:thin:stag09/stag09pw@junon:1521:afpa";
+//	private	static final	String 			DB_URL_JUNON 		= "jdbc:oracle:thin:stag09/stag09pw@junon:1521:afpa";
+	private static final	String			DB_URL_JUNON_ECFWEB = "jdbc:oracle:thin:cdifestival/stagpw@junon:1521:afpa";
 //	private static final	String 			DB_URL_LOCALHOST 	= "jdbc:oracle:thin:jonathan/pw@localhost:1521:xe";   
 	private					Connection		connection;
 	
@@ -23,7 +24,7 @@ public class ConnectionBdd {
 		if(connection == null|| connection.isClosed()){
 			try {
 				Class.forName(NOM_DRIVER);
-				connection = DriverManager.getConnection(DB_URL_JUNON);
+				connection = DriverManager.getConnection(DB_URL_JUNON_ECFWEB);
 				}
 				catch(ClassNotFoundException e){ // 1
 					System.err.println("Erreur Appel2Connexion1 : " + e);
