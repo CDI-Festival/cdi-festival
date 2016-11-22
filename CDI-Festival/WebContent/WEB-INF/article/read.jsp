@@ -3,7 +3,7 @@
     
 <%@ page import="fr.cdiFestival.model.Article" %>
 <%Article article = (Article)request.getAttribute("article"); %>    
-<%request.setAttribute("id", 1); %>
+
 <!DOCTYPE html">
 
 <html lang="fr">
@@ -35,7 +35,6 @@
 		</ul>
 	</nav>
 
-
 <!-- News section -->
 	<div class="container">
 		<article class="fullnews_container" role="article">
@@ -49,7 +48,8 @@
 		<div id="btn">
 			<a href="<%=request.getContextPath()%>/article/updatepage?id= <%= article.getId() %>"><button onsubmit="">Modifier</button></a>
 			<form onsubmit="" action="<%=request.getContextPath()%>/article/delete" method="post"> 
-				<button type="submit">Supprimer</button> 
+				<button type="submit">Supprimer</button>
+				<input type="hidden" name="hiddenid" value="<%= article.getId() %>"/>
 			</form>
 		</div>
 	</div>
@@ -68,5 +68,6 @@
 				<li><a href="#"><img id="logo_YT" class="icon" src="../../images/socials/logoYT.png"></a></li>
 			</ul>
 	</footer>
+	
 </body>
 </html>

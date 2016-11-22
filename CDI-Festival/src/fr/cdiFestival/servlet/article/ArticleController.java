@@ -87,7 +87,7 @@ public class ArticleController extends HttpServlet {
 		article 	= reqArticle.getArticle(id);
 			
 		request.setAttribute( "article", article );
-		this.getServletContext().getRequestDispatcher( "/view/article/read.jsp" ).forward( request, response );	
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/read.jsp" ).forward( request, response );	
 	}
 	
 	//Open the article maker page
@@ -109,8 +109,6 @@ public class ArticleController extends HttpServlet {
 		article		= new Article(author, date, title, content);
 		
 		reqArticle.add(article);
-		
-
 	}
 	
 	//Open the update page
@@ -141,18 +139,10 @@ public class ArticleController extends HttpServlet {
 	//Delete an article
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		reqArticle 	= new RequestArticle();
-		System.out.println("Méthode delete===>request.getAttribute = " + request.getAttribute("id"));
+		System.out.println("Méthode delete===>id = " + request.getParameter("hiddenid"));
 
-//		System.out.println("methode delete :" + id);
-//		reqArticle.delete(id);
-					
-//		this.goIndex(request, response);
+		System.out.println("methode delete :" + id);
+		reqArticle.delete(id);
 	}
 	
-//	// Redirect into ArticleController
-//	public void goArticleManage (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		dispatcher = request.getRequestDispatcher("/article/" + path);
-//		dispatcher.forward(request,response);	
-//		System.out.println("Methode goArticleController");
-//	}
 }
