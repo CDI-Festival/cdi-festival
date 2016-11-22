@@ -52,7 +52,7 @@ public class PassController extends HttpServlet {
 		
 		if (path == null || path.equals("/")) {
 			System.out.println("Redirect to main page");
-			url = "/main.jsp";
+			url = "/index.jsp";
 		} else if (path.equals("/show")) {
 			System.out.println("Redirect to the checkout page");
 			url = "/consult/ControlShowCase/ShowCase";
