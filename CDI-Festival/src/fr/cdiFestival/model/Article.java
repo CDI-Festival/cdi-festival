@@ -1,15 +1,27 @@
 package fr.cdiFestival.model;
 
+import fr.cdiFestival.dao.RequestId;
 
 public class Article {
 
-
+	//Class attributs
 	private int			id;
 	private String		author;
 	private String		date;
 	private	String		title; 
 	private String		content;
 
+	
+	//Constructor with auto generated ID (GUI)
+	public Article (String author, String date, String title, String content) {
+		this.idAuto();
+		this.author	 = author;
+		this.date 	 = date;
+		this.title	 = title;
+		this.content = content;
+	}
+	
+	//DAO constructor (ID already exists)
 	public Article (int id, String author, String date, String title, String content) {
 		this.id		 = id; 
 		this.author	 = author;
@@ -18,6 +30,13 @@ public class Article {
 		this.content = content;
 	}
 
+	
+	//Id maker
+	public void idAuto() {
+		RequestId requete = new RequestId();
+		id = requete.getRefId() + 1;
+	}
+	
 	//Getters and setters
 	public String getAuthor() {
 		return author;
