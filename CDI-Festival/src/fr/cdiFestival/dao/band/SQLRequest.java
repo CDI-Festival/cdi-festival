@@ -42,9 +42,7 @@ public class SQLRequest {
 	/**
 	 * UPDATE cdifestival_band SET band_biography = ?, band_website = ? WHERE band_name = ?
 	 */
-	public final static String UPDATE_BAND = "UPDATE cdifestival_band"
-			+ " SET band_biography = ?, band_website = ?"
-			+ " WHERE band_name = ?";
+	public final static String UPDATE_BAND = "UPDATE cdifestival_band SET band_biography = ?, band_website = ? WHERE band_name = ?";
 	
 	
 	// Delete request

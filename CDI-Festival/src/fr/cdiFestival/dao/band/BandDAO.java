@@ -28,6 +28,7 @@ public class BandDAO {
 	private PreparedStatement readAllBandName;
 	private PreparedStatement updateBand;
 	private PreparedStatement deleteBand;
+	private PreparedStatement checkBandName;
 	
 	// Attributes to handle Band object.
 	private Band band;
@@ -207,6 +208,8 @@ public class BandDAO {
 			
 			result = updateBand.executeUpdate();
 			
+			System.out.println("DAO result update : " + result);
+			
 		} catch (SQLException e) {
 			System.err.println("Erreur DAO - requête incorrecte : le groupe n'a pas pu être mis à jour.");
 			e.printStackTrace();
@@ -247,7 +250,7 @@ public class BandDAO {
 	}
 	
 	/**
-	 * This methods calls the readAllId method to return the bigger one.
+	 * This method calls the readAllId method to return the bigger one.
 	 * 
 	 * @author Claire
 	 * @return biggerId
@@ -266,6 +269,45 @@ public class BandDAO {
 	}
 	
 	/**
+	 * This method searches the name in parameter in database and return true if it exists.
+	 * 
+	 * @author Claire
+	 * @param name
+	 * @return exists
+	 * @version 20161122
+	 */
+	public boolean check(String name) {
+		
+		boolean exists = false;
+		
+		try {
+			checkBandName = connection.prepareStatement(SQLRequest.SELECT_BANDNAME_WHERE_BANDNAME);
+			checkBandName.setString(1, name);
+			
+			resultSet = checkBandName.executeQuery();
+			
+			while (resultSet.next()) {
+				bandName = resultSet.getString(1);
+			}
+			System.out.println("Retour nom demandé : " + bandName);
+			
+		} catch (SQLException e) {
+			System.err.println("Erreur DAO - requête incorrecte : la vérification du nom n'a pas pû être effectuée.");
+			e.printStackTrace();
+		}
+		
+		if (bandName == null) {
+			exists = true;
+		}
+		else {
+			exists = false;
+		}
+		
+		return exists;
+		
+	}
+	
+	/**
 	 * Closes request and automatically result of request if there's one.
 	 * 
 	 * @author Claire
@@ -273,6 +315,14 @@ public class BandDAO {
 	 * @version 20161116
 	 */
 	private void closeRequest(PreparedStatement prepStmt) {
+		
+		try {
+			connection.commit();
+		} catch (SQLException e1) {
+			System.err.println("Erreur DAO : le commit ne s'est pas exécuté.");
+			e1.printStackTrace();
+		}
+		
 		if (prepStmt != null) {
 			try {
 				prepStmt.close();
