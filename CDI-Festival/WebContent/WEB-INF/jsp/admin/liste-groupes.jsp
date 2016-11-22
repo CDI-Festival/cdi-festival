@@ -7,7 +7,6 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<!-- Essai avec EL -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bandstyle.css" />
 <title>CDI Festival 2017 - Gestion groupes</title>
 </head>
@@ -27,43 +26,44 @@
 
 		<div id="inner-container">
 			
-			<div class="list">				
+			<div id="main-content">				
 			
-			<jsp:scriptlet>
-			if (bandNameList.size() > 0) {
-			</jsp:scriptlet>
-			
-				<select multiple id="listband" name="band">
-			
-				<%-- If the bandNameList is not empty, displays the list --%>
 				<jsp:scriptlet>
-				
-					for (String bandName : bandNameList) {
+				if (bandNameList.size() > 0) {
 				</jsp:scriptlet>
-			
-					<option value="<jsp:expression>bandName</jsp:expression>"><jsp:expression>bandName</jsp:expression></option>
-
+				
+					<select multiple id="listband" name="band">
+				
+					<%-- If the bandNameList is not empty, displays the list --%>
 					<jsp:scriptlet>
-					; }
-					</jsp:scriptlet>
-				
-				</select>
-				
-				<jsp:scriptlet>
-				} else {
-				</jsp:scriptlet>	
 					
-				<p>Il n'y a aucun groupe enregistr&eacute;.</p>
-				
-					<jsp:scriptlet>
-					}
+						for (String bandName : bandNameList) {
 					</jsp:scriptlet>
 				
-				<br />
-				
-				<button type="button" onclick="callBandController('Creer')" value="Créer">Cr&eacute;er</button>
-				<button type="button" onclick="callBandController('Modifier')" value="Modifier">Modifier</button>
-				<button type="button" onclick="callBandController('Supprimer')" value="Supprimer">Supprimer</button>
+						<option value="<jsp:expression>bandName</jsp:expression>">
+						<jsp:expression>bandName</jsp:expression></option>
+	
+						<jsp:scriptlet>
+						; }
+						</jsp:scriptlet>
+					
+					</select>
+					
+					<jsp:scriptlet>
+					} else {
+					</jsp:scriptlet>	
+						
+					<p>Il n'y a aucun groupe enregistr&eacute;.</p>
+					
+						<jsp:scriptlet>
+						}
+						</jsp:scriptlet>
+					
+					<br />
+					
+					<button type="button" onclick="callBandController('Creer')" value="Créer">Cr&eacute;er</button>
+					<button type="button" onclick="callBandController('Modifier')" value="Modifier">Modifier</button>
+					<button type="button" onclick="callBandController('Supprimer')" value="Supprimer">Supprimer</button>
 			</div>
 		</div>
 
@@ -72,7 +72,7 @@
 	</div>
 
 	<%-- To handle calls to servlet from link and button. --%>
-	<script src="<jsp:expression>request.getContextPath()</jsp:expression>/js/bandscript.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
 
 </body>
 </html>
