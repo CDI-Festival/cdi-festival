@@ -6,6 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ *COnnectionBdd hundle the connection with the database.
+ *
+ * 
+ * @author Jonathan Fuentes
+ * @version 22/11/2012
+ */
 public class ConnectionBdd {
 
 	
@@ -20,6 +27,11 @@ public class ConnectionBdd {
 	}
 
 	//Méthode d'initialisation de la connection soit à la BDD AFPA soit sur mon PC en LocalHost
+	
+	/**
+	 *This method initiate a connection with the database, using URL
+	 * 
+	 */
 	public void initConnectionLocal() throws SQLException {
 		if(connection == null|| connection.isClosed()){
 			try {
@@ -38,6 +50,13 @@ public class ConnectionBdd {
 	}
 		
 	//Méthodes de fermeture de la connection et d'ouverture de Requete
+	/**
+	 *This method close the the connection with the database.
+	 * 
+	 * @param Article
+	 * @return void
+	 * 
+	 */
 	public void closeConnection() {
 		try {
 			connection.close();
@@ -46,11 +65,19 @@ public class ConnectionBdd {
 		}
 	}
 
+	/**
+	 *Used to initiate requests to the database
+	 * 
+	 */
 	public Statement createStatement() throws SQLException {
 		return connection.createStatement();
 		
 	}
 
+	/**
+	 *Used to initiate requests to the database (safer)
+	 * 
+	 */
 	public PreparedStatement prepareStatement(String sql) throws SQLException {
 		return connection.prepareStatement(sql);
 	}

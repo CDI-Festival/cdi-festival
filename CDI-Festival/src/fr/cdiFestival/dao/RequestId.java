@@ -4,6 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ *ResquestId is used to make some request into the id table in the database.
+ *The purpose is to have not two similar article id
+ * @see ConnectionBdd
+ * 
+ * @author Jonathan Fuentes
+ * @version 22/11/2012
+ */
 public class RequestId {
 
 	private ConnectionBdd		connection;
@@ -11,7 +19,12 @@ public class RequestId {
 	private ResultSet 			result;
 	private int					currentId;		
 	
-	
+	/**
+	 *Constructor
+	 *
+	 *Start an instance of ConnectionBdd
+	 * 
+	 */
 	//Constructeur
 	public RequestId(){
 		connection= new ConnectionBdd();
@@ -19,6 +32,13 @@ public class RequestId {
 	
 	
 	//Méthod DLM to update id reference in the table
+	/**
+	 *This method update the reference id
+	 * 
+	 * @param newId
+	 * @return void
+	 * 
+	 */
 	public void update(int newId) {
 		currentId = this.getRefId();
 		
@@ -37,6 +57,12 @@ public class RequestId {
 	}
 		
 	//Method to get the referencial id in the table ID
+	/**
+	 *This method update the reference id
+	 * 
+	 * @return Current id in the database
+	 * 
+	 */
 	public int getRefId() {
 		currentId = 0;
 			
