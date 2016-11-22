@@ -40,10 +40,10 @@
 
 	<div class="containercreate">
 		<form onsubmit="A VENIR" name="btncreate" action="http://localhost:8085/CDI_Festival/article/update" method="post">
-			<p>	<label class="aligne" for="author">Auteur :</label> <input type="text" id="author" name="author" value="<%=article.getAuthor() %>"></p>
-			<p> <label class="aligne" for="date">Date de création : <%= article.getDate() %></label></p>
-   	 		<p> <label class="aligne" for="title">Titre :</label> <input type="text" id="title" name="title" value="<%=article.getTitle()%>"> </p>
-   	 		<p> <label class="aligne" for="content">Article :</label> <textarea id="content" name="content"><%= article.getContent() %></textarea> </p>
+			<p>	<label class="aligne" for="author">Auteur</label> <input type="text" id="author" name="author" value="<%=article.getAuthor() %>"></p>
+			<p> <label class="aligne" for="date">Date création</label> <label> <%= article.getDate() %> </label></p>
+   	 		<p> <label class="aligne" for="title">Titre</label> <input type="text" id="title" name="title" value="<%=article.getTitle()%>"> </p>
+   	 		<p> <label class="aligne" for="content">Article</label> <textarea id="content" name="content"><%= article.getContent() %></textarea> </p>
    	 		<div class="btn">
     			<button name="btnvalidate" type="submit">Valider</button>
     			<button name="btncancel" type="button" onclick="back()">Annuler</button>

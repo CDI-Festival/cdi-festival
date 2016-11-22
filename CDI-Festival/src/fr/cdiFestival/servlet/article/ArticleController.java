@@ -124,13 +124,12 @@ public class ArticleController extends HttpServlet {
 	
 	//Open the update page
 	public void goUpDatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		reqArticle 	= new RequestArticle();
-//		id 			= Integer.parseInt(request.getParameter("id").trim());
-//		article 	= reqArticle.getArticle(id);
-//				
-//		request.setAttribute( "article", article );
-//		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/update.jsp" ).forward( request, response );	
-		System.out.println("update page");
+		reqArticle 	= new RequestArticle();
+		id 			= Integer.parseInt(request.getParameter("id").trim());
+		article 	= reqArticle.getArticle(id);
+				
+		request.setAttribute( "article", article );
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/update.jsp" ).forward( request, response );	
 	}
 	
 	//update an article and redirect to index.jsp

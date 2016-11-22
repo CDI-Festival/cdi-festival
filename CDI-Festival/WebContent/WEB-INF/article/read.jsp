@@ -46,13 +46,12 @@
     		<br />           
     	<div class="full_news"><p class="justify"><%= article.getContent() %></p></div>
 		</article>
-		
-		<form action="<%=request.getContextPath()%>/article/updatepage" method="get">
-			<button onsubmit="">Modifier</button> 
-		</form>
-		<form onsubmit="" action=""> 
-			<button type="submit">Supprimer</button> 
-		</form>
+		<div id="btn">
+			<a href="<%=request.getContextPath()%>/article/updatepage?id=1"><button onsubmit="">Modifier</button></a>
+			<form onsubmit="" action=""> 
+				<button type="submit">Supprimer</button> 
+			</form>
+		</div>
 	</div>
 
 
