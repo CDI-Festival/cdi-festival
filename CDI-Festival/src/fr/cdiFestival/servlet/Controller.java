@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.cdiFestival.dao.RequestArticle;
-import fr.cdiFestival.model.Article;
 import fr.cdiFestival.service.Articles;
 
 /**
@@ -19,7 +18,7 @@ import fr.cdiFestival.service.Articles;
 @WebServlet(
 		name = "Controleur", 
 		description = "Controleur General", 
-		urlPatterns = {"/festival/*"}
+		urlPatterns = {"/accueil/*"}
 		)
 
 public class Controller extends HttpServlet {
@@ -47,8 +46,10 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getPathInfo();
 		
-		System.out.println("================  dans Controleur path=" + path );
-		System.out.println("================  dans Controleur path contexte =" + request.getContextPath() );
+		System.out.println("Controller path=" + path );
+		System.out.println("Controller path2=" + path );
+		System.out.println("Controller path contexte =" + request.getContextPath() );
+		
 		
 		if (path == null || path.equals("/")) goIndex(request, response);
 	}
@@ -62,7 +63,7 @@ public class Controller extends HttpServlet {
 	}
 	
 	
-	// Public index page method to display all the articles
+	// Public index page method to display all articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle = new RequestArticle();
 		listArticle = null;
