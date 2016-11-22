@@ -1,0 +1,111 @@
+@charset "ISO-8859-1";
+
+/*
+Theme name: Band Theme
+Theme URL: http://cdifestival.fr
+Description: Theme for web site cdifestival.fr
+Version: 20161112
+License: GNU GPLv3
+*/
+
+
+/*--------------------------------------------------- Body*/
+body {
+	background: url("../images/bg.jpg");
+	background-size: cover;
+	font-family: Arial, Sans-Serif;
+	margin: 0px;
+}
+
+h1 {
+	margin: 0px;
+}
+
+h2 {
+	color: white;
+	background-color: #1c1c1c;
+	text-align : center;
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+h3 {
+	color: white;
+	background-color: #000;
+	margin: 0px;
+	padding-bottom: 15px;;
+}
+
+p {
+	color: white;
+	margin: 0px;
+	padding-bottom: 15px;
+}
+
+.row {
+	display: flex;
+	justify-content: space-around;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+
+hr {
+    margin-bottom: 15px;
+    border: 0;
+    border-top: 1px solid #777777;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FF7100
+}
+
+/*--------------------------------------------------- Navigation*/
+nav {
+	min-height: 45px;
+	background-color: #000;
+	margin-bottom: 20px;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav li {
+	display: block;
+	float: left;
+	padding: 10px 15px;
+}
+
+nav li a {
+	font-size: 20px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+/*------------------------------------------------- Header*/
+header {
+	display: flex;
+	justify-content: space-around;
+	background-color: black;
+}
+
+#logo {
+	width: 260px;
+	height: 120px;
+	margin-top: 15px;
+	margin-left: 20%;
+}
+
+.text {
+	width: 500px;
+	height: 120px;
+	margin-top: 15px;
+}
