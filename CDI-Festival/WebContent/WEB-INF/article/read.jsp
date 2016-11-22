@@ -47,10 +47,14 @@
     	<div class="full_news"><p class="justify"><%= article.getContent() %></p></div>
 		</article>
 		
-		<form action="<%=request.getContextPath()%>/article/update?id=<%=article.getId()%>"> </form>
-		<form onsubmit="" action=""> <button type="submit">Supprimer</button> </form>
-		
+		<form action="<%=request.getContextPath()%>/article/updatepage" method="get">
+			<button onsubmit="">Modifier</button> 
+		</form>
+		<form onsubmit="" action=""> 
+			<button type="submit">Supprimer</button> 
+		</form>
 	</div>
+
 
 <!-- Footer with informations, partners and links -->
 	<footer class="footer_container">

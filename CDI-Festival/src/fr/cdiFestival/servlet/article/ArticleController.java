@@ -59,7 +59,7 @@ public class ArticleController extends HttpServlet {
 		
 		if (path == null || path.equals("/")) this.goIndex(request, response);
 		if (path.equals("/read")) this.read(request, response);
-		if (path.equals("/updatepage")) this.upDate(request, response);
+		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
 		if (path.equals("/addpage")) this.goAddPage(request, response);
 	}
 
@@ -122,14 +122,20 @@ public class ArticleController extends HttpServlet {
 		this.goIndex(request, response);
 	}
 	
-	//Open page to update an article
+	//Open the update page
+	public void goUpDatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		reqArticle 	= new RequestArticle();
+//		id 			= Integer.parseInt(request.getParameter("id").trim());
+//		article 	= reqArticle.getArticle(id);
+//				
+//		request.setAttribute( "article", article );
+//		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/update.jsp" ).forward( request, response );	
+		System.out.println("update page");
+	}
+	
+	//update an article and redirect to index.jsp
 	public void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqArticle 	= new RequestArticle();
-		id 			= Integer.parseInt(request.getParameter("id").trim());
-		article 	= reqArticle.getArticle(id);
-				
-		request.setAttribute( "article", article );
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/read.jsp" ).forward( request, response );	
+		
 		}
 	
 //	// Redirect into ArticleController
