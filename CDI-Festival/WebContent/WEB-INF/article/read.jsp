@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ page import="fr.cdiFestival.model.Article" %>
+<%Article article = (Article)request.getAttribute("article"); %>    
+
 <!DOCTYPE html">
 
 <html lang="fr">
@@ -8,7 +11,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Accueil Festival</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/styleArticle.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
 </head>
 
 <body>
@@ -37,11 +40,19 @@
 	<div class="container">
 		<article class="fullnews_container" role="article">
 			<header>
-     			<h1>Le titre sera ici</h1>
-     			<time datetime="" pubdate="pubdate">La date et l'auteur ici</time>
-    		</header>              
-    	<div class="full_news">Le contenu ici</div>
+     			<h1> <%= article.getTitle() %> </h1>
+     			<time class="date" pubdate="pubdate">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></time>
+    		</header>   
+    		<br />           
+    	<div class="full_news"><p class="justify"><%= article.getContent() %></p></div>
 		</article>
+		
+		<a href="<%=request.getContextPath()%>/article/update?id=<%=article.getId()%>">Modifier</a>
+		
+		<form onsubmit="" action="">
+			<button type="submit">Supprimer</button>
+		</form>
+		
 	</div>
 
 <!-- Footer with informations, partners and links -->
@@ -50,7 +61,7 @@
 				<li><a href="#">Contact</a></li>
 				<li><a href="#">Mentions légales</a></li>
 				<li><a href="#">Crédits</a></li>
-				<li><a href="#">WebMaster</a></li>
+				<li><a href="#">Admin</a></li>
 			</ul>
 			<ul class="footer_socials, footer_list">
 				<li><a href="#"><img id="logo_FB" class="icon" src="../../images/socials/logoFB.png"></a></li>
