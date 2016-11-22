@@ -1,7 +1,6 @@
 package fr.cdiFestival.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import fr.cdiFestival.dao.BandDAO;
 
 /**
  * Class for band creation.
@@ -11,51 +10,46 @@ import java.time.LocalTime;
  */
 public class Band {
 	
+	private int idDB;
+	
+	// ECF : creation simple d'un objet groupe pour l'instant. La discographie et les liens avec le module Scene sont a venir.
+	private int id;
 	private String name;
 	private String biography;
-	private String discography;
+//	private String discography;
 	private String website;
-	private LocalDate date;
-	private LocalTime time;
-	private String stage;
+//	private LocalDate date;
+//	private LocalTime time;
+//	private String stage;
 	
 	/**
-	 * This constructor constructs a band object without date, time and stage parameters.
+	 * This constructor constructs a band object without id.
 	 * 
 	 * @param name
 	 * @param biography
-	 * @param discography
 	 * @param website
 	 */
-	public Band(String name, String biography, String discography, String website) {
+	public Band(String name, String biography, String website) {
+		setId();
 		setName(name);
 		setBiography(biography);
-		setDiscography(discography);
 		setWebsite(website);
 	}
-	
+		
 	/**
-	 * This constructor constructs a band object with all its parameters.
+	 * This constructor constructs a band with an id (to handle result from database).
 	 * 
+	 * @param id
 	 * @param name
 	 * @param biography
-	 * @param discography
 	 * @param website
-	 * @param date
-	 * @param time
-	 * @param stage
 	 */
-	public Band(String name, String biography, String discography, String website, LocalDate date, LocalTime time,
-			String stage) {
+	public Band(int id, String name, String biography, String website) {
+		this.id = id;
 		setName(name);
 		setBiography(biography);
-		setDiscography(discography);
 		setWebsite(website);
-		setDate(date);
-		setTime(time);
-		setStage(stage);
 	}
-
 
 
 	/* (non-Javadoc)
@@ -63,8 +57,25 @@ public class Band {
 	 */
 	@Override
 	public String toString() {
-		return "band [name=" + name + ", biography=" + biography + ", discography=" + discography + ", website="
-				+ website + "]";
+		return "band [name=" + name + ", biography=" + biography + ", website=" + website + "]";
+	}
+
+	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId() {
+		BandDAO bandDAO = new BandDAO();
+		idDB = bandDAO.getBiggerId();
+		idDB++;
+		this.id = idDB;
 	}
 
 	/**
@@ -95,19 +106,19 @@ public class Band {
 		this.biography = biography;
 	}
 
-	/**
-	 * @return the discography
-	 */
-	public String getDiscography() {
-		return discography;
-	}
-
-	/**
-	 * @param discography the discography to set
-	 */
-	public void setDiscography(String discography) {
-		this.discography = discography;
-	}
+//	/**
+//	 * @return the discography
+//	 */
+//	public String getDiscography() {
+//		return discography;
+//	}
+//
+//	/**
+//	 * @param discography the discography to set
+//	 */
+//	public void setDiscography(String discography) {
+//		this.discography = discography;
+//	}
 
 	/**
 	 * @return the website
@@ -123,46 +134,46 @@ public class Band {
 		this.website = website;
 	}
 
-	/**
-	 * @return the date
-	 */
-	public LocalDate getDate() {
-		return date;
-	}
-
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-	/**
-	 * @return the time
-	 */
-	public LocalTime getTime() {
-		return time;
-	}
-
-	/**
-	 * @param time the time to set
-	 */
-	public void setTime(LocalTime time) {
-		this.time = time;
-	}
-
-	/**
-	 * @return the stage
-	 */
-	public String getStage() {
-		return stage;
-	}
-
-	/**
-	 * @param stage the stage to set
-	 */
-	public void setStage(String stage) {
-		this.stage = stage;
-	}
+//	/**
+//	 * @return the date
+//	 */
+//	public LocalDate getDate() {
+//		return date;
+//	}
+//
+//	/**
+//	 * @param date the date to set
+//	 */
+//	public void setDate(LocalDate date) {
+//		this.date = date;
+//	}
+//
+//	/**
+//	 * @return the time
+//	 */
+//	public LocalTime getTime() {
+//		return time;
+//	}
+//
+//	/**
+//	 * @param time the time to set
+//	 */
+//	public void setTime(LocalTime time) {
+//		this.time = time;
+//	}
+//
+//	/**
+//	 * @return the stage
+//	 */
+//	public String getStage() {
+//		return stage;
+//	}
+//
+//	/**
+//	 * @param stage the stage to set
+//	 */
+//	public void setStage(String stage) {
+//		this.stage = stage;
+//	}
 
 }
