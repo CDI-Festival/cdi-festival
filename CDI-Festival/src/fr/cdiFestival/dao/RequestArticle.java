@@ -17,6 +17,7 @@ import fr.cdiFestival.service.Articles;
  */
 public class RequestArticle {
 
+	////Class attributes
 	private ConnectionBdd		connection;
 	private	PreparedStatement 	prepStmt;
 	private ResultSet 			result;
@@ -36,7 +37,7 @@ public class RequestArticle {
 	 *Start an instance of ConnectionBdd
 	 * 
 	 */
-	//Constructeur
+	//Constructor
 	public RequestArticle() {
 		connection= new ConnectionBdd();
 	}

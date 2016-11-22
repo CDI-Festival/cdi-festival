@@ -14,6 +14,7 @@ import java.sql.SQLException;
  */
 public class RequestId {
 
+	////Class attributes
 	private ConnectionBdd		connection;
 	private	PreparedStatement 	prepStmt;
 	private ResultSet 			result;

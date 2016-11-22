@@ -22,11 +22,19 @@ import fr.cdiFestival.service.Articles;
 			description = "Article controller", 
 			urlPatterns = {"/article/*"})
 
+/**
+ *ArticleCOntroller use to handle all the article actions in the webSite.
+ *centralized, and dispatch directly in the appropriated method and GUI
+ * @see Article
+ * 
+ * @author Jonathan Fuentes
+ * @version 22/11/2012
+ */
 public class ArticleController extends HttpServlet {
 	
+	//Class attributes
 	private static final long 	serialVersionUID = 1L;
 	
-
 	private	String				path;
 	
 	private	Article				article;
@@ -40,6 +48,7 @@ public class ArticleController extends HttpServlet {
 	private	DateTimeFormatter 	format;
        
     /**
+     * Constructor
      * @see HttpServlet#HttpServlet()
      */
     public ArticleController() {
@@ -48,6 +57,7 @@ public class ArticleController extends HttpServlet {
     }
 
 	/**
+	 * doGet method is use to handle all action without database manipulations
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,6 +73,7 @@ public class ArticleController extends HttpServlet {
 
 
 	/**
+	 * doPost method is safer. Used to handle all updating in database.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,6 +92,14 @@ public class ArticleController extends HttpServlet {
 	//*******************************************//
 	
 	//Get the article onClick and open a new page to read it
+	
+	/**
+	 * Open the reading page article
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		id 			= Integer.parseInt(request.getParameter("id").trim());
@@ -91,12 +110,26 @@ public class ArticleController extends HttpServlet {
 	}
 	
 	//Open the article maker page
+	/**
+	 * Open the adding page article
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void goAddPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("http://localhost:8085/CDI_Festival/view/article/createArticle.html");
 		System.out.println("Methode goAddPage");
 	}
 	
 	//add a new article in the dataBase and redirect to index.jsp
+	/**
+	 * Get all the form informations and add a new article in the database
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -112,6 +145,13 @@ public class ArticleController extends HttpServlet {
 	}
 	
 	//Open the update page
+	/**
+	 * Open the update page.
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void goUpDatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		id 			= Integer.parseInt(request.getParameter("id").trim());
@@ -122,6 +162,13 @@ public class ArticleController extends HttpServlet {
 	}
 	
 	//update an article and redirect to index.jsp
+	/**
+	 * Get all the form informations and update the article in the database
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -137,6 +184,13 @@ public class ArticleController extends HttpServlet {
 		}
 	
 	//Delete an article
+	/**
+	 * Get the id and resase the article in the database
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		reqArticle 	= new RequestArticle();
 		System.out.println("Méthode delete===>id = " + request.getParameter("hiddenid"));

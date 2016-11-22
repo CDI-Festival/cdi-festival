@@ -16,7 +16,7 @@ import java.sql.Statement;
 public class ConnectionBdd {
 
 	
-	//Attributs
+	//Class attributes
 	private static final	String 			NOM_DRIVER			= "oracle.jdbc.driver.OracleDriver";
 //	private	static final	String 			DB_URL_JUNON 		= "jdbc:oracle:thin:stag09/stag09pw@junon:1521:afpa";
 	private static final	String			DB_URL_JUNON_ECFWEB = "jdbc:oracle:thin:cdifestival/stagpw@junon:1521:afpa";
