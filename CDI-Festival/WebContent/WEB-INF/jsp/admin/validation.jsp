@@ -5,7 +5,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bandstyle.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bandstyle.css" />
 <title>CDI Festival 2017 - Validation</title>
 </head>
 <body>
@@ -21,11 +21,16 @@
 		
 		<div id="inner-container">
 			
-			<p>Le groupe <jsp:expression>request.getAttribute("name")</jsp:expression>
-				a bien été <jsp:expression>request.getAttribute("validationType")</jsp:expression>.</p>
-			<p>Que souhaitez-vous faire ?</p>
-			<a href="#" onclick="callBandController('Groupe')">Voir la liste des groupes.</a>
-			<a href="#" onclick="callBandController('Creer')">Cr&eacute;er une nouvelle fiche groupe.</a>
+			<div id="main-content">
+			
+				<p>Le groupe <jsp:expression>request.getAttribute("name")</jsp:expression>
+					 <jsp:expression>request.getAttribute("validationType")</jsp:expression>.</p>
+				<p>Que souhaitez-vous faire ?</p>
+				<a href="#" onclick="callBandController('Groupe')">> Voir la liste des groupes</a>
+				<br />
+				<a href="#" onclick="callBandController('Creer')">> Cr&eacute;er une nouvelle fiche groupe</a>
+				
+			</div>
 			
 		</div>
 		
@@ -34,7 +39,7 @@
 	</div>
 
 	<%-- To handle calls to servlet from link and button. --%>
-	<script src="<%=request.getContextPath()%>/js/bandscript.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
 	
 </body>
 </html>
