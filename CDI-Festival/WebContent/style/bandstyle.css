@@ -30,6 +30,12 @@ body {
 	background-color: #000;	
 }
 
+#main-content {
+	width: 320px;
+	margin: 0px auto;
+	padding: 20px;
+}
+
 h1 {
 	margin: 0px;
 }
@@ -71,6 +77,15 @@ hr {
     border-top: 1px solid #777777;
 }
 
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FF7100
+}
+
 /*--------------------------------------------------- Navigation*/
 nav {
 	min-height: 45px;
@@ -88,15 +103,9 @@ nav li {
 }
 
 nav li a {
-	color: white;
 	font-size: 20px;
 	letter-spacing: 2px;
 	text-transform: uppercase;
-	text-decoration: none;
-}
-
-nav li a:hover {
-	text-decoration: underline;
 }
 
 /*------------------------------------------------- Header*/
@@ -119,12 +128,6 @@ header {
 
 /*--------------------------------------------------------- Administration*/
 /*-------------------------------------------------- Form*/
-form {
-	width: 310px;
-	margin: 0px auto;
-	padding: 20px;
-}
-
 label {
 	display: inline-block;
 	width: 150px;
@@ -132,12 +135,6 @@ label {
 }
 
 /*-------------------------------------------------- Lists*/
-.list {
-	width: 310px;
-	margin: 0px auto;
-	padding: 20px;
-}
-
 select {
 	margin-bottom: 20px;
 }
