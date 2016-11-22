@@ -12,7 +12,7 @@ License: GNU GPLv3
 
 /*--------------------------------------------------- Body*/
 body {
-	background: url("../images/bg.jpg");
+	background: url("../img/bg.jpg");
 	background-size: cover;
 	font-family: Arial, Sans-Serif;
 	margin: 0px;
@@ -178,6 +178,7 @@ footer {
 	display: flex;
 	justify-content: space-around;
 	background-color: #1c1c1c;
+	margin-bottom: 20px;
 }
 
 footer p {
