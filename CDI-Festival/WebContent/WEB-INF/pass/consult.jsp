@@ -10,7 +10,7 @@
     <head>
 
         <title>Festival HELLFEST 2017</title>
-        <link rel="stylesheet" href="../styles/main.css">
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
     </head>
@@ -37,7 +37,7 @@
 
         <div class="container">
             <H1>Billet Festival</H1>
-            <a href="<%= request.getContextPath() %>/main.jsp" title=""><img src="images/ios7-home.png" alt="Home" style="width: 24px; height: 24px;" /></a>
+            <a href="<%= request.getContextPath() %>/" title=""><img src="images/ios7-home.png" alt="Home" style="width: 24px; height: 24px;" /></a>
 
             <%
 			boolean list = (boolean) request.getAttribute("listAvail");
