@@ -57,33 +57,33 @@ public class ManagePass extends HttpServlet {
 		Passes lesStock = null;
 		try {
 			lesStock = stock.getAllDBPass();
+			System.out.println("prepare to display on html..." + lesStock);
+
+			int nombre = 5;
+			request.setAttribute("day", nombre);
+
+			request.setAttribute("day1", lesStock.getAPass(0).getNombre());
+			request.setAttribute("day2", lesStock.getAPass(1).getNombre());
+			request.setAttribute("day3", lesStock.getAPass(2).getNombre());
+			request.setAttribute("day12", lesStock.getAPass(3).getNombre());
+			request.setAttribute("day23", lesStock.getAPass(5).getNombre());
+			request.setAttribute("day123", lesStock.getAPass(6).getNombre());
+
+			System.out.println(lesStock.getAPass(6).toString());
+
+			request.setAttribute("price1", lesStock.getAPass(0).getPrice());
+			request.setAttribute("price23", lesStock.getAPass(3).getPrice());
+			request.setAttribute("price123", lesStock.getAPass(6).getPrice());
+
+			request.setAttribute("allRow", lesStock);
+			response.setContentType("text/html");
+			response.setHeader("Cache-Control", "no-cache");
 
 		} catch (Exception e) {
-			reportProblem(response, "Probleme SQL " + e.getMessage());
-			e.printStackTrace();
+			request.setAttribute("error", e.getMessage());
+			url = "/gestionErreur/sql";
+			
 		}
-
-		System.out.println("prepare to display on html..." + lesStock);
-
-		int nombre = 5;
-		request.setAttribute("day", nombre);
-
-		request.setAttribute("day1", lesStock.getAPass(0).getNombre());
-		request.setAttribute("day2", lesStock.getAPass(1).getNombre());
-		request.setAttribute("day3", lesStock.getAPass(2).getNombre());
-		request.setAttribute("day12", lesStock.getAPass(3).getNombre());
-		request.setAttribute("day23", lesStock.getAPass(5).getNombre());
-		request.setAttribute("day123", lesStock.getAPass(6).getNombre());
-
-		System.out.println(lesStock.getAPass(6).toString());
-
-		request.setAttribute("price1", lesStock.getAPass(0).getPrice());
-		request.setAttribute("price23", lesStock.getAPass(3).getPrice());
-		request.setAttribute("price123", lesStock.getAPass(6).getPrice());
-
-		request.setAttribute("allRow", lesStock);
-		response.setContentType("text/html");
-		response.setHeader("Cache-Control", "no-cache");
 
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
@@ -197,7 +197,7 @@ public class ManagePass extends HttpServlet {
 			url = "/WEB-INF/pass/gestion.jsp";
 		}else {
 			System.out.println("there is an issue in the form...");
-			url = "/WEB-INF/pass/gestion.jsp";
+			url = "/WEB-INF/gestion.jsp";
 			stockPack = new StockPass();
 
 			

@@ -72,7 +72,10 @@ public class ShowCase extends HttpServlet {
 			try {
 				identifier = Integer.parseInt(id);
 			}catch (NumberFormatException e) {
-				url = "gestionErreur/error";
+				System.out.println("erreur dans conversion String to Int");
+				request.setAttribute("error", "[ShowCase]" + e.getMessage());
+				url = "/gestionErreur/error";
+
 				
 				//reportProblem(response, "incorrect parameters, please insert digit");
 				//return;
@@ -89,7 +92,9 @@ public class ShowCase extends HttpServlet {
 				// TODO (nicolas) stoocker url aux meme endroit class propriete static...?
 				url = "/consult/ControlShowCase/checkout/Checkout";
 			}else {
-				url = "gestionErreur/error";
+				System.out.println("erreur mauvais pass identifier ");
+				request.setAttribute("error", "[ShowCase] - mauvais pass identifier");
+				url = "/gestionErreur/error";
 				//reportProblem(response, "incorrect parameters, doit etre compris entre 0 et 6");
 				//return;
 			}
@@ -100,11 +105,7 @@ public class ShowCase extends HttpServlet {
 			try {
 				lesStock = stock.getAllDBPass();
 				System.out.println("taille les stock "+ lesStock.size());
-			} catch (SQLException | DaoException e) {
-				System.out.println("erreur sql "+e.getMessage());
-				url = "gestionErreur/error";
-				//reportProblem(response, "Erreur de connection à la base de donnée.");
-			}
+
 			if(lesStock.isEmpty()) {
 				System.out.println("il n'y a pas de ticket en vente pour le moment.");
 				listFull = false;
@@ -118,6 +119,13 @@ public class ShowCase extends HttpServlet {
 			request.setAttribute("listAvail",listFull);
 			request.setAttribute("allPasses", lesStock);
 			url = "/WEB-INF/pass/consult.jsp";
+			} catch (SQLException | DaoException e) {
+				System.out.println("erreur sql "+e.getMessage());
+				request.setAttribute("error", "[ShowCase]" + e.getMessage());
+				url = "/gestionErreur/error";
+				//url = "pass/gestionErreur/error";
+				//reportProblem(response, "Erreur de connection à la base de donnée.");
+			}
 		}
 		
 		
