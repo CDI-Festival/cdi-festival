@@ -32,7 +32,7 @@ public class ConnectionBdd {
 	 * 
 	 */
 	public void initConnection() throws SQLException {
-		if(connection == null|| connection.isClosed()){
+		if(connection == null || connection.isClosed()){
 			try {
 				Class.forName(NOM_DRIVER);
 				connection = DriverManager.getConnection(DB_URL_LOCALHOST);

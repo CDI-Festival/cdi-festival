@@ -90,7 +90,7 @@ public class RequestArticle {
 	}
 	
 	/**
-	 *This method delete an article in the database, with an reference ID
+	 *This method delete an article in the database, with a reference ID
 	 * 
 	 * @param Article id
 	 * @return 
@@ -102,7 +102,7 @@ public class RequestArticle {
 		if (id != 0) {
 			article = this.getArticle(id);
 		
-				//Checking the article value (if it's exist in the database
+				//Checking the article value (if it does exist in the database)
 				if (article != null) {
 					
 					//starting connection
@@ -173,7 +173,7 @@ public class RequestArticle {
 	}	
 
 	/**
-	 *This method get all Article in the table
+	 *This method get all Article in the database table
 	 * @see Article, Articles
 	 * @return Articles (Article arrayList)
 	 * 
@@ -227,39 +227,45 @@ public class RequestArticle {
 	 * 
 	 */
 	public boolean upDate (Article article) {	
-		//Checking article value and article attributes values
+		//Checking article value and creating a difference Article instance (I need to keep the sent one) to look for if it exist
 		if (article != null) {
-			if ((article.getId() != 0) && (article.getAuthor() != null) && (article.getDate() != null) && (article.getTitle() != null) && (article.getContent() != null)) {
-				id 		= article.getId();
-				author 	= article.getAuthor().trim();
-				date 	= article.getDate().trim();
-				title 	= article.getTitle().trim();
-				content = article.getContent().trim();
+			Article articleTest = this.getArticle(article.getId());
+			
+			if (articleTest != null) {
+				if ((article.getId() != 0) && (article.getAuthor() != null) && (article.getDate() != null) && (article.getTitle() != null) && (article.getContent() != null)) {
+					id 		= article.getId();
+					author 	= article.getAuthor().trim();
+					date 	= article.getDate().trim();
+					title 	= article.getTitle().trim();
+					content = article.getContent().trim();
 				
-				//Starting connection
-				try {
-					connection.initConnection();
+					//Starting connection
+					try {
+						connection.initConnection();
 					
-					//Making request
-					prepStmt = connection.prepareStatement("UPDATE article set author = ?, dateC = ?, title = ?, content = ? where id = ?"); 
-					prepStmt.setString(1, author); 
-					prepStmt.setString(2, date);
-					prepStmt.setString(3,title); 
-					prepStmt.setString(4, content);
-					prepStmt.setInt(5,id);
-					prepStmt.executeUpdate();
+						//Making request
+						prepStmt = connection.prepareStatement("UPDATE article set author = ?, dateC = ?, title = ?, content = ? where id = ?"); 
+						prepStmt.setString(1, author); 
+						prepStmt.setString(2, date);
+						prepStmt.setString(3,title); 
+						prepStmt.setString(4, content);
+						prepStmt.setInt(5,id);
+						prepStmt.executeUpdate();
 
-					//Request and connection closure
-					if (prepStmt != null)	prepStmt.close();
-					if (connection != null)	connection.closeConnection();
+						//Request and connection closure
+						if (prepStmt != null)	prepStmt.close();
+						if (connection != null)	connection.closeConnection();
 
-				} catch (SQLException e) {
-					e.printStackTrace();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					return true;
+				
 				}
-				return true;
-			}
-		}	
-		return false;		
+			}	
+					
+		}
+		return false;
 	}
 
 }

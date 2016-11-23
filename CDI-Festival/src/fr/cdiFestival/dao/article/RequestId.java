@@ -28,13 +28,11 @@ public class RequestId {
 	 *Start an instance of ConnectionBdd
 	 * 
 	 */
-	//Constructeur
 	public RequestId(){
 		connection= new ConnectionBdd();
 	}
 	
 	
-	//Méthod DLM to update id reference in the table
 	/**
 	 *This method update the reference id
 	 * 
@@ -59,7 +57,7 @@ public class RequestId {
 		}
 	}
 		
-	//Method to get the referencial id in the table ID
+	//Method to get the reference id in the table ID
 	/**
 	 *This method update the reference id
 	 * 
