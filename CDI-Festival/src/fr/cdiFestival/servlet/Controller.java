@@ -84,7 +84,7 @@ public class Controller extends HttpServlet {
 	// Public index page method to display all articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle = new RequestArticle();
-		listArticle = null;
+//		listArticle = null;
 		
 		request.setAttribute("articles", reqArticle.getArticles());
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
