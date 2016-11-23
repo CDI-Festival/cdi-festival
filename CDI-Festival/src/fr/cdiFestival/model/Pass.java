@@ -110,6 +110,28 @@ public class Pass {
 	public String getDayType() {
 		return dayType;
 	}
+	
+	/**
+	 * 
+	 * @param type
+	 */
+	public void setType(int type) {
+		this.type = type;
+	}
+
+
+
+	public void setDates(ArrayList<LocalDate> dates) {
+		this.dates = dates;
+	}
+
+
+
+	public void setDayType(String dayType) {
+		this.dayType = dayType;
+	}
+
+
 
 	@Override
 	public String toString() {
