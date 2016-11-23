@@ -18,7 +18,7 @@ import fr.cdiFestival.service.Passes;
 
 
 /**
- * Class which is going to manipulate data with the database, it is going to implement all CREUD methods.
+ * Class which is going to manipulate data with the database, it is going to implement all CRUD methods.
  * @author 	nicolas Tarral
  * @version 2016-11-21
  *
@@ -36,6 +36,12 @@ public class PassDB {
 
 	// TODO (nicolas) verifier si object en entree son null, si nulle throw
 	// exception 5own except)
+	
+	
+	/**
+	 *  Method used to insert a Pass in the BDD
+	 * @param passToInsert
+	 */
 	public static void insertPass(Pass passToInsert) {
 
 		if(passToInsert != null) {
@@ -86,14 +92,16 @@ public class PassDB {
 				// e.printStackTrace();
 
 			}
+		}else {
+			
 		}
 		
 	}
 
 	/**
-	 * This method is going to return all the passes.
+	 * This method is going to return all the passes stored in Database.
 	 * 
-	 * @return
+	 * @return an ArrayList of Passes
 	 * @throws SQLException
 	 * @throws DaoException
 	 */
@@ -136,11 +144,11 @@ public class PassDB {
 				daysLocal.add(StringToLocalDate(current));
 			}
 
-			monPass.settype(typePass);
+			monPass.setType(typePass);
 			monPass.setNombre(numbers);
 			monPass.setPrice(price);
 			monPass.setDayType(dayDesc);
-			monPass.setDate(daysLocal);
+			monPass.setDates(daysLocal);
 			myPasses.add(monPass);
 		}
 
@@ -151,9 +159,8 @@ public class PassDB {
 	/**
 	 * this method will return a pass by its Type Id
 	 * 
-	 * @param the
-	 *            type (int) of the Pass to look for.
-	 * @return a pass object.
+	 * @param the type (int) of the Pass to look for.
+	 * @return a Pass object.
 	 */
 	public static Pass getPAss(int type) {
 
@@ -162,11 +169,8 @@ public class PassDB {
 		ResultSet rs 				= null;
 		Pass monPass 				= null;
 		ArrayList<LocalDate> daysLocal = new ArrayList<LocalDate>();
-		
-
 		try {
 			connection = DBConnection.getConnect();
-
 			String query = "SELECT type, numbers, price, day_description, day from pass WHERE type = ?";
 			statement 			  = connection.prepareStatement(query);
 
@@ -190,11 +194,11 @@ public class PassDB {
 					daysLocal.add(StringToLocalDate(current));
 				}
 				
-				monPass.settype(typePass);
+				monPass.setType(typePass);
 				monPass.setNombre(numbers);
 				monPass.setPrice(price);
 				monPass.setDayType(dayDesc);
-				monPass.setDate(daysLocal);
+				monPass.setDates(daysLocal);
 
 			}
 
@@ -268,7 +272,7 @@ public class PassDB {
 
 	}
 
-	/***
+	/**
 	 * Delete all passes from database.
 	 */
 	public static void deleteAllPAss() {

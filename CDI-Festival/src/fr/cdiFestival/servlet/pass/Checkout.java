@@ -16,7 +16,11 @@ import fr.cdiFestival.technic.StockPass;
 
 
 /**
- * Servlet implementation class Checkout
+ * Ce servlet va afficher le pass sélectionné par l'utilisateur, en le renvoyant vers cart.jsp
+ * 
+ * 
+ * en POST le servlet va vérifier si les places sont disponible et mettre a jour dans la base de données les places disponibles.
+ * dans le cas contraire il renverra vers cartVoid.html.
  */
 
 @WebServlet(
