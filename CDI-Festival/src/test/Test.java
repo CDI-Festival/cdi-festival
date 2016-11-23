@@ -1,7 +1,7 @@
 package test;
 
-import fr.cdiFestival.dao.RequestArticle;
-import fr.cdiFestival.dao.RequestId;
+import fr.cdiFestival.dao.article.RequestArticle;
+import fr.cdiFestival.dao.article.RequestId;
 import fr.cdiFestival.model.Article;
 import fr.cdiFestival.service.Articles;
 

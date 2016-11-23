@@ -1,6 +1,6 @@
 package fr.cdiFestival.model;
 
-import fr.cdiFestival.dao.RequestId;
+import fr.cdiFestival.dao.article.RequestId;
 
 /**
  * Article is the article fonctionality main class

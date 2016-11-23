@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.cdiFestival.dao.RequestArticle;
-import fr.cdiFestival.dao.RequestId;
+import fr.cdiFestival.dao.article.RequestArticle;
+import fr.cdiFestival.dao.article.RequestId;
 import fr.cdiFestival.model.Article;
 import fr.cdiFestival.service.Articles;
 

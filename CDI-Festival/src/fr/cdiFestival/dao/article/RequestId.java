@@ -1,8 +1,10 @@
-package fr.cdiFestival.dao;
+package fr.cdiFestival.dao.article;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import fr.cdiFestival.dao.ConnectionBdd;
 
 /**
  *ResquestId is used to make some request into the id table in the database.
