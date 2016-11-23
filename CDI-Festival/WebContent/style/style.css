@@ -52,6 +52,23 @@ p {
 	padding-top: 15px;
 }
 
+.dropsub {
+	display: none;
+	position: absolute;
+	background-color: black;
+	border: 1px solid black;
+
+}
+
+.dropdown:hover .dropsub {
+	display: block;
+}
+
+.dropsub a {
+	display: block;
+	padding: 
+}
+
 hr {
     margin-bottom: 15px;
     border: 0;
