@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.cdiFestival.dao.RequestArticle;
+import fr.cdiFestival.dao.RequestId;
 import fr.cdiFestival.model.Article;
 import fr.cdiFestival.service.Articles;
 
@@ -22,25 +23,34 @@ import fr.cdiFestival.service.Articles;
 			description = "Article controller", 
 			urlPatterns = {"/article/*"})
 
+/**
+ *ArticleCOntroller use to handle all the article actions in the webSite.
+ *centralized, and dispatch directly in the appropriated method and GUI
+ * @see Article
+ * 
+ * @author Jonathan Fuentes
+ * @version 22/11/2012
+ */
 public class ArticleController extends HttpServlet {
 	
+	//Class attributes
 	private static final long 	serialVersionUID = 1L;
 	
-	private	RequestDispatcher	dispatcher;
 	private	String				path;
 	
 	private	Article				article;
-	private Articles			listArticle;
-	private	RequestArticle		reqArticle;
 	private	int					id;
 	private String				author;
 	private String				date;
 	private	String				title; 
 	private String				content;
+	private	RequestArticle		reqArticle;
+	private RequestId			reqId;
 	
 	private	DateTimeFormatter 	format;
        
     /**
+     * Constructor
      * @see HttpServlet#HttpServlet()
      */
     public ArticleController() {
@@ -49,6 +59,7 @@ public class ArticleController extends HttpServlet {
     }
 
 	/**
+	 * doGet method is use to handle all action without database manipulations
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,7 +68,6 @@ public class ArticleController extends HttpServlet {
 		System.out.println("ArticleController doGet path=" + path );
 		System.out.println("ArticleController doGet path contexte =" + request.getContextPath() );
 		
-		if (path == null || path.equals("/")) this.goIndex(request, response);
 		if (path.equals("/read")) this.read(request, response);
 		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
 		if (path.equals("/addpage")) this.goAddPage(request, response);
@@ -65,6 +75,7 @@ public class ArticleController extends HttpServlet {
 
 
 	/**
+	 * doPost method is safer. Used to handle all updating in database.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,19 +89,17 @@ public class ArticleController extends HttpServlet {
 	}
 	
 	
+	//*******************************************//
+	//					Méthods					 //
+	//*******************************************//
 	
-	
-	
-	// Public index page method to display all articles
-	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqArticle = new RequestArticle();
-		listArticle = null;
-		
-		request.setAttribute("articles", reqArticle.getArticles());
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	}
-	
-	//Get the article onClick and open a new page to read it
+	/**
+	 * Open the reading page article
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		id 			= Integer.parseInt(request.getParameter("id").trim());
@@ -100,15 +109,28 @@ public class ArticleController extends HttpServlet {
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/read.jsp" ).forward( request, response );	
 	}
 	
-	//Open the article maker page
+	/**
+	 * Open the adding page article
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void goAddPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("http://localhost:8085/CDI_Festival/view/article/createArticle.html");
 		System.out.println("Methode goAddPage");
 	}
 	
-	//add a new article in the dataBase and redirect to index.jsp
+	/**
+	 * Get all the form informations and add a new article in the database
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle  = new RequestArticle();
+		reqId		= new RequestId();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		
 		author		= request.getParameter("author");
@@ -120,10 +142,18 @@ public class ArticleController extends HttpServlet {
 		
 		reqArticle.add(article);
 		
-		this.goIndex(request, response);
+		reqId.update(article.getId());
+		
+		this.goAccueil(request, response);
 	}
 	
-	//Open the update page
+	/**
+	 * Open the update page.
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void goUpDatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		id 			= Integer.parseInt(request.getParameter("id").trim());
@@ -133,7 +163,13 @@ public class ArticleController extends HttpServlet {
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/update.jsp" ).forward( request, response );	
 	}
 	
-	//update an article and redirect to index.jsp
+	/**
+	 * Get all the form informations and update the article in the database
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -144,27 +180,25 @@ public class ArticleController extends HttpServlet {
 		content		= request.getParameter("content");
 		
 		article		= new Article(author, date, title, content);
-		
-		reqArticle.upDate(article);
-		
-		this.goIndex(request, response);
 		}
 	
-	//Delete an article
-	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		reqArticle 	= new RequestArticle();
-		System.out.println("Méthode delete===>request.getAttribute = " + request.getParameter("id"));
 
-//		System.out.println("methode delete :" + id);
-//		reqArticle.delete(id);
-					
-//		this.goIndex(request, response);
+	/**
+	 * Get the id and erase the article in the database
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		reqArticle 	= new RequestArticle();
+		id = Integer.parseInt(request.getParameter("hiddenid"));
+
+		reqArticle.delete(id);
 	}
 	
-//	// Redirect into ArticleController
-//	public void goArticleManage (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		dispatcher = request.getRequestDispatcher("/article/" + path);
-//		dispatcher.forward(request,response);	
-//		System.out.println("Methode goArticleController");
-//	}
+	public void goAccueil (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect(request.getContextPath() + "/accueil");
+	}
+	
 }

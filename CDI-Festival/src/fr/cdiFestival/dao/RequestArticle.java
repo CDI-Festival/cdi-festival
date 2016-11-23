@@ -7,8 +7,17 @@ import java.sql.SQLException;
 import fr.cdiFestival.model.Article;
 import fr.cdiFestival.service.Articles;
 
+/**
+ *ResquestArticle is used to make some request into the article table in the database.
+ *The connection is already in there.
+ * @see ConnectionBdd
+ * 
+ * @author Jonathan Fuentes
+ * @version 22/11/2012
+ */
 public class RequestArticle {
 
+	////Class attributes
 	private ConnectionBdd		connection;
 	private	PreparedStatement 	prepStmt;
 	private ResultSet 			result;
@@ -22,12 +31,26 @@ public class RequestArticle {
 	private Article		article;
 	private Articles	listArticle;
 	
-	//Constructeur
+	/**
+	 *Constructor
+	 *
+	 *Start an instance of ConnectionBdd
+	 * 
+	 */
+	//Constructor
 	public RequestArticle() {
 		connection= new ConnectionBdd();
 	}
 	
 	//Méthodes DLM
+	
+	/**
+	 *This method add a new article in the database.
+	 * 
+	 * @param Article
+	 * @return void
+	 * 
+	 */
 	public void add(Article article) {
 		id 		= article.getId();
 		author 	= article.getAuthor();
@@ -54,7 +77,13 @@ public class RequestArticle {
 		}
 	}
 	
-	
+	/**
+	 *This method delete an article, with an id, from database.
+	 * 
+	 * @param Article id
+	 * @return void
+	 * 
+	 */
 	public void delete(int id) {
 		try {
 			connection.initConnectionLocal();
@@ -71,7 +100,13 @@ public class RequestArticle {
 		}
 	}
 	
-	
+	/**
+	 *This method get an article, with an id, from database.
+	 * 
+	 * @param Article id
+	 * @return Article
+	 * 
+	 */
 	public Article getArticle(int id) {
 		article	= null;
 		
@@ -102,7 +137,12 @@ public class RequestArticle {
 		return article;
 	}	
 
-
+	/**
+	 *This method get all Article in the table (list of article)
+	 * 
+	 * @return Articles
+	 * 
+	 */
 	public Articles getArticles() {
 		listArticle = new Articles();
 		article 	= null;
@@ -139,6 +179,13 @@ public class RequestArticle {
 		return listArticle;
 	}
 	
+	/**
+	 *This method update an article, with another one, from database.
+	 * 
+	 * @param Article id
+	 * @return Article
+	 * 
+	 */
 	public void upDate (Article article) {
 		id 		= article.getId();
 		author 	= article.getAuthor();

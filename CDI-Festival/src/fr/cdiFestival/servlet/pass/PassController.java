@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
- * Main controller for pass managment. 
+ * Main controller for pass managment, it is going to dispatch user to  ShowCase servlet to displqy pass, or ManagePass servlet to manage all the pass. 
+ * or to the index.jsp if 
  * 
  * @author Nicolas Tarral
  * @version 2016-11-22
@@ -60,9 +61,9 @@ public class PassController extends HttpServlet {
 			System.out.println("Redirect to passes managment");
 			url = "/ControlManager/ManagePass";
 		} else {
-			System.out.println("SendRedirect to the main "+request.getContextPath() + "/index.jsp");
+			System.out.println("SendRedirect to the main "+request.getContextPath() + "/");
 			//response.sendRedirect(request.getContextPath() + "/main.html");
-			url = "/main.jsp";
+			url = "/";
 			//response.encodeRedirectURL(request.getContextPath() + "/main.html");
 		}
 		
