@@ -51,12 +51,11 @@ public class Article {
 	 *and give it to the new Article instance.
 	 *Update directly the database after the operation.
 	 *@param RequestId
-	 *
-	 * 
 	 */
 	public void idAuto() {
 		RequestId requete = new RequestId();
 		id = requete.getRefId() + 1;
+		requete.update(id);
 	}
 	
 	//Getters and setters

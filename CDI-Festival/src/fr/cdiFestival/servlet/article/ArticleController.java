@@ -180,8 +180,6 @@ public class ArticleController extends HttpServlet {
 		content		= request.getParameter("content");
 		
 		article		= new Article(author, date, title, content);
-		
-		reqArticle.upDate(article);
 		}
 	
 
