@@ -2,7 +2,6 @@ package fr.cdiFestival.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,14 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.cdiFestival.dao.article.RequestArticle;
-import fr.cdiFestival.service.Articles;
 
 /**
+ * Main controller
  * Servlet implementation class Controller
+ * 
+ * @author Jonathan, Claire, Nicolas, Jean-Luc
  */
 @WebServlet(
-		name = "Controleur", 
-		description = "Controleur General", 
+		name = "Controller", 
+		description = "Main controller", 
 		urlPatterns = {"/accueil/*"}
 		)
 
@@ -25,11 +26,9 @@ public class Controller extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private	RequestDispatcher dispatcher;
-	private	String			  path;
-	
-	private Articles		listArticle;
-	private	RequestArticle	reqArticle;
+
+	private	String			  path;	
+	private	RequestArticle	  reqArticle;
 
 	
     /**
@@ -37,6 +36,7 @@ public class Controller extends HttpServlet {
      */
     public Controller() {
         super();
+        System.out.println(" Main Controller");
     }
 
 
@@ -45,10 +45,6 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getPathInfo();
-		
-		System.out.println("Controller path=" + path );
-		System.out.println("Controller path2=" + path );
-		System.out.println("Controller path contexte =" + request.getContextPath() );
 		
 		if (path == null) {
 			goIndex(request, response);
@@ -77,14 +73,21 @@ public class Controller extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Méthode doPost");
+		System.out.println("Tentative de modification d'URL côté client");
 	}
 	
-	
-	// Public index page method to display all articles
+
+	/**
+	 * Open index page with article listing
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 * @author Jonathan Fuentes
+	 */
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle = new RequestArticle();
-//		listArticle = null;
 		
 		request.setAttribute("articles", reqArticle.getArticles());
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
