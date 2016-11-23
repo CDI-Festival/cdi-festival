@@ -8,16 +8,18 @@
 
 <title>Festival HELLFEST 2017</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/style/grid.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
+<script src="${pageContext.request.contextPath}/js/cart.js"></script>
 
 </head>
 
 <body>
 
-	<header>
-		<div></div>
+	    	<%-- Include banner --%>
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 
-	</header>
+	<!-- Include main menu -->
+	<jsp:include page="/WEB-INF/include/menu.jsp" />
 
 
 
@@ -26,13 +28,7 @@
 		<H1>Billet Festival</H1>
 	</div>
 
-	<div>
 
-		<a href="<%= request.getContextPath() %>/" title="home"><img src="images/ios7-home.png"
-			alt="Home" style="width: 24px; height: 24px;" /></a>
-
-
-	</div>
 
 	<hr>
 	<section class="section-pass">
@@ -46,7 +42,7 @@
 		
 		<div class="section group">
 	<div class="col span_1_of_2"> 
-    <img src="https://wzeweb-p-visuelorga-evn-affiche-thumb.s3-eu-west-1.amazonaws.com/affiche_161344.thumb53700.1457545074.jpg"
+    <img class="pass" src="${pageContext.request.contextPath}/images/pass.png"
 	alt="pass">
 	</div>
 	<div class="col span_1_of_2">
@@ -56,14 +52,15 @@
         <p class="align-right">Selectionnez vos places</p>
         <hr>
         <span class="checkout"><%=request.getAttribute("description")%>
-        <%=request.getAttribute("price")%><%=request.getAttribute("date")%>
+        <p id="pricing"><%=request.getAttribute("price")%></p>
+        <p><%=request.getAttribute("date")%></p>
          
-            
+        <p class="checkout">Quantité :</p>  
             
             <form name="quantity" method="post" action="checkout/Checkout"
 							id="tikcetform">
 
-							<select name="ticketQuantity" form="tikcetform">
+							<select id="mySelect" name="ticketQuantity" form="tikcetform" onchange="calculTotal()">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -78,7 +75,12 @@
 							</select> <input type="submit">
 						</form>
 					</span>
+					
+					
+					<div id=result>
+						
+					</div>
 	</section>
-	<hr>
+<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

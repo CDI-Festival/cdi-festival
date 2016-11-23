@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*" %>
+<%@ page import="fr.cdiFestival.service.Passes, java.time.LocalDate" %>
 <%@ page import="fr.cdiFestival.model.*" %>
 
 
@@ -11,6 +11,7 @@
 
         <title>Festival HELLFEST 2017</title>
         <link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
     </head>
@@ -18,17 +19,16 @@
     <body>
     
     	<%-- Include banner --%>
-	<jsp:include page="../include/header.jsp" />
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<!-- Include main menu -->
-	<jsp:include page="../include/menu.jsp" />
+	<jsp:include page="/WEB-INF/include/menu.jsp" />
 
 
 
         <div class="container">
             <H1>Billet Festival</H1>
-            <a href="<%= request.getContextPath() %>/" title="home"><img class="pass" src="images/ios7-home.png" alt="Home" style="width: 24px; height: 24px;" /></a>
-
+       
             <%
 			boolean list = (boolean) request.getAttribute("listAvail");
 			if (list == false) {
@@ -46,47 +46,43 @@
                         <div class="row">
                             <h2>les pass disponibles</h2>
                         </div>
+                        
+                        <section class="section-pass">
 
-<% ArrayList<Pass> pass = (ArrayList<Pass>) request.getAttribute("allPasses");  
+						 <% Passes pass = (Passes) request.getAttribute("allPasses");  
 						 for(int i = 0; i < pass.size(); i++) {
 						 	if(i%2 == 0) { %>
 						 	<div class="section group">
 								<div class="col span_1_of_2">
 								<a href="../consult/ControlShowCase/ShowCase?id=<%=pass.get(i).gettype()%>"/>
-								<img class="pass" src="http://static2.digitick.com/commun/images/upload/evenements/300x30012_300.jpg" alt="Pass Festival">
+								<img class="pass" src="${pageContext.request.contextPath}/images/pass.png" alt="Pass Festival">
 								</a>
+								
+								<h3><%=pass.get(i).getDayType()%></h3>
+								<%for(LocalDate current : pass.get(i).getDate()) { %>
+									<p class="checkout"> <%=current.toString()%> </p>
+								<% } %>
                           		</div> 
                           	<% }else { %>
                           	<div class="col span_1_of_2">
                           	<a href="../consult/ControlShowCase/ShowCase?id=<%=pass.get(i).gettype()%>"/>
-        					<img class="pass" src="http://static2.digitick.com/commun/images/upload/evenements/300x30012_300.jpg" alt="Pass Festival">
+        					<img class="pass" src="${pageContext.request.contextPath}/images/pass.png" alt="Pass Festival">
         					</a>
+        					<h3><%=pass.get(i).getDayType()%></h3>
+								<%for(LocalDate current : pass.get(i).getDate()) { 
+								%>
+									<p class="checkout"> <%=current.toString()%> </p>
+								<% } %>
+								
 							</div>
 							</div>
 							<% } %>
 							
 							<% } %>
 
-
-						
-							
-						 	
-						 
-						 
-						 
-						 <c:forEach items="${requestScope.allPasses}" var="name">                    	
-                            <div class="section group">
-                                <div class="col span_1_of_2">
-                                    <a href="../consult/ControlShowCase/ShowCase?id=<c:out value=" ${name.type} "/>">${name.type}</a>
-                                  <div class="pass-feature">
-                                        <c:out value="${name.dayType}" />
-                                        <c:out value="${name.price}" /> Euros
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
+                        </section>
                         
-                           <jsp:include page="../include/footer.jsp" /> 
+             <jsp:include page="/WEB-INF/include/footer.jsp" /> 
 
     </body>
 

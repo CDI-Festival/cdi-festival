@@ -112,7 +112,7 @@ public class PassDB {
 		ResultSet rs 				= null;
 		Pass monPass 				= null;
 		Passes myPasses 			= new Passes();
-		ArrayList<LocalDate> daysLocal = new ArrayList<LocalDate>();
+		ArrayList<LocalDate> daysLocal = null;
 		connection 					= DBConnection.getConnect();
 		
 		if (connection == null) {
@@ -137,10 +137,13 @@ public class PassDB {
 			String dayDesc 	= rs.getString("DAY_DESCRIPTION");
 			String date 	= rs.getString("DAY");
 
-			String[] allDays= date.split(",");
+			String[] allDays = date.split(",");
+			daysLocal = new ArrayList<LocalDate>();
+			System.out.println("taille allDays "+ allDays.length);
 			ArrayList<String> days = new ArrayList<String>(Arrays.asList(allDays));
 
 			for (String current : days) {
+				System.out.println(current);
 				daysLocal.add(StringToLocalDate(current));
 			}
 
