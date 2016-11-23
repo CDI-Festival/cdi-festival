@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.cdiFestival.dao.RequestArticle;
+import fr.cdiFestival.dao.RequestId;
 import fr.cdiFestival.model.Article;
 import fr.cdiFestival.service.Articles;
 
@@ -38,12 +39,13 @@ public class ArticleController extends HttpServlet {
 	private	String				path;
 	
 	private	Article				article;
-	private	RequestArticle		reqArticle;
 	private	int					id;
 	private String				author;
 	private String				date;
 	private	String				title; 
 	private String				content;
+	private	RequestArticle		reqArticle;
+	private RequestId			reqId;
 	
 	private	DateTimeFormatter 	format;
        
@@ -91,8 +93,6 @@ public class ArticleController extends HttpServlet {
 	//					Méthods					 //
 	//*******************************************//
 	
-	//Get the article onClick and open a new page to read it
-	
 	/**
 	 * Open the reading page article
 	 * @param request
@@ -109,7 +109,6 @@ public class ArticleController extends HttpServlet {
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/read.jsp" ).forward( request, response );	
 	}
 	
-	//Open the article maker page
 	/**
 	 * Open the adding page article
 	 * @param request
@@ -122,7 +121,6 @@ public class ArticleController extends HttpServlet {
 		System.out.println("Methode goAddPage");
 	}
 	
-	//add a new article in the dataBase and redirect to index.jsp
 	/**
 	 * Get all the form informations and add a new article in the database
 	 * @param request
@@ -132,6 +130,7 @@ public class ArticleController extends HttpServlet {
 	 */
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle  = new RequestArticle();
+		reqId		= new RequestId();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		
 		author		= request.getParameter("author");
@@ -142,9 +141,12 @@ public class ArticleController extends HttpServlet {
 		article		= new Article(author, date, title, content);
 		
 		reqArticle.add(article);
+		
+		reqId.update(article.getId());
+		
+		this.goAccueil(request, response);
 	}
 	
-	//Open the update page
 	/**
 	 * Open the update page.
 	 * @param request
@@ -161,7 +163,6 @@ public class ArticleController extends HttpServlet {
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/article/update.jsp" ).forward( request, response );	
 	}
 	
-	//update an article and redirect to index.jsp
 	/**
 	 * Get all the form informations and update the article in the database
 	 * @param request
@@ -179,24 +180,25 @@ public class ArticleController extends HttpServlet {
 		content		= request.getParameter("content");
 		
 		article		= new Article(author, date, title, content);
-		
-		reqArticle.upDate(article);
 		}
 	
-	//Delete an article
+
 	/**
-	 * Get the id and resase the article in the database
+	 * Get the id and erase the article in the database
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		reqArticle 	= new RequestArticle();
-		System.out.println("Méthode delete===>id = " + request.getParameter("hiddenid"));
+		reqArticle 	= new RequestArticle();
+		id = Integer.parseInt(request.getParameter("hiddenid"));
 
-		System.out.println("methode delete :" + id);
 		reqArticle.delete(id);
+	}
+	
+	public void goAccueil (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect(request.getContextPath() + "/accueil");
 	}
 	
 }

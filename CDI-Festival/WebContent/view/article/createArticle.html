@@ -6,6 +6,7 @@
 <meta charset="utf-8" />
 <title>Accueil Festival</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/style.css" />
 </head>
 
 <body>
@@ -13,19 +14,23 @@
 
 <!--  Banner with logo and text -->
 	<header class="banner">
-		<img id="banner_logo" src="../../images//banner/logo.png">
-		<h1 id="slogan">More code, more ROCK !!</h1>
-		<img id="banner_dates" src="../../images/banner/dates.png">
+		<div class="row">
+			<h1>
+				<img id="logo" src="http://localhost:8085/CDI_Festival/images/banner/logo.png" alt="CDI Festival" />
+			</h1>
+			<img class="text" src="http://localhost:8085/CDI_Festival/images/banner/headline.png" alt="More code, more rock!" />
+			<img class="text" src="http://localhost:8085/CDI_Festival/images/banner/dates.png" alt="Du 23 au 25 juin 2017" />
+		</div>
 	</header>
 
 
 <!-- Navigation menu bar -->
-	<nav id="menu">
+	<nav>
 		<ul>
-			<li><a href="">Accueil</a></li>
-			<li><a href="">Groupes</a></li>
-			<li><a href="">Programmation</a></li>
-			<li><a href="">Billeterie</a></li>
+			<li><a href="http://localhost:8085/CDI_Festival/accueil">Accueil</a></li>
+			<li><a href="#" onclick="callBandController('Groupe')">Groupe</a></li>
+			<li><a href="#">Sc&egrave;nes</a></li>
+			<li><a href="pass/show">Billetterie</a></li>
 		</ul>
 	</nav>
 
@@ -33,7 +38,7 @@
 <!-- News maker -->
 
 	<div class="containercreate">
-		<form onsubmit="A VENIR" name="btncreate" action="http://localhost:8085/CDI_Festival/article/add" method="post">
+		<form onsubmit="return isEmpty()" name="creation" action="http://localhost:8085/CDI_Festival/article/add" method="post">
 			<p>	<label class="aligne" for="author">Auteur :</label> <input type="text" id="author" name="author" placeholder="Auteur"></p>
    	 		<p> <label class="aligne" for="title">Titre :</label> <input type="text" id="title" name="title" placeholder="Titre (mini 5 caractères)"> </p>
    	 		<p> <label class="aligne" for="content">Article :</label> <textarea id="content" name="content" placeholder="Article (mini 150 caractères / max 4000 caractères)"></textarea> </p>
@@ -58,5 +63,7 @@
 				<li><a href="#"><img id="logo_YT" class="icon" src="../../images/socials/logoYT.png"></a></li>
 			</ul>
 	</footer>
+	
+<script src="http://localhost:8085/CDI_Festival/js/article.js"></script>
 </body>
 </html>

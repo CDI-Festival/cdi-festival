@@ -46,7 +46,7 @@ public class RequestId {
 		try {
 			connection.initConnectionLocal();
 			
-			prepStmt = connection.prepareStatement("UPDATE ID SET current_Id = ?");
+			prepStmt = connection.prepareStatement("UPDATE IDARTICLE SET Id = ?");
 			prepStmt.setInt(1,newId); 
 			prepStmt.executeUpdate();
 
@@ -70,11 +70,11 @@ public class RequestId {
 			try {
 				connection.initConnectionLocal();
 				
-				prepStmt = connection.prepareStatement("select current_Id from ID");
+				prepStmt = connection.prepareStatement("SELECT id from IDARTICLE");
 				result = prepStmt.executeQuery();
 				
 				while (result.next()) {
-					int	id		= result.getInt("current_Id");
+					int	id		= result.getInt("Id");
 					currentId	= id;			
 				}
 				

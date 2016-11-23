@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="utf-8"%>
 
 <%@ page import="fr.cdiFestival.model.Article" %>
 <%@ page import="fr.cdiFestival.service.Articles" %>
@@ -11,23 +11,23 @@
 <html lang="fr">
 
 <head>
-<meta charset="utf-8" />
-<title>Accueil Festival</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/articleStyle.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
+	<meta charset="utf-8" />
+	<title>CDI-Festival index</title>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/articleStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 </head>
 
 <body>
 
 	<%-- Include banner --%>
-	<jsp:include page="WEB-INF/include/header.jsp" />
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<!-- Include main menu -->
 	<jsp:include page="/WEB-INF/include/menu.jsp" />
 
 
 <!-- Creation button -->
-	<form action="<%=request.getContextPath()%>/article/addpage">
+	<form id="btncreate" action="<%=request.getContextPath()%>/article/addpage">
 		<button onclick="back()">Créer un nouvel article</button>
 	</form>
 	
@@ -39,9 +39,9 @@
 		<% for (Article article : listArticle) { %>
 		
 			<article id="<%=article.getId()%>" class="summary_container" role="article">
-				<header>
+				<header id="context">
 					<h3><a href="<%=request.getContextPath()%>/article/read?id=<%=article.getId()%>"> <%= article.getTitle() %></a></h3>
-					<time class="date" pubdate="pubdate">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></time> 
+					<time class="date" pubdate="pubdate">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></time>
 				</header>
 				<div class="summary"><p class="justify">
 				<%if (article.getContent().length() >= 149) { %>
