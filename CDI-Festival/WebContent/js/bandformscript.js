@@ -1,4 +1,4 @@
-/**
+/*
  * Script name: Band form script
  * Description: Script with input control for the creation of a new band form
  * Author: Claire
@@ -7,7 +7,7 @@
 
 // TODO erase console.log()
 
-/**
+/*
  * This function checks all the form fields.
  * 
  * @param form
@@ -20,7 +20,7 @@ function validate(form) {
 	var bandDisco = form.banddisco;
 	var bandWebsite = form.bandwebsite;
 	
-	var nameOK = checkName(bandName);
+	var nameOK = isNameOK(bandName);
 	var bioOK = checkBio(bandBio);
 	var discoOK = checkDisco(bandDisco);
 	// TODO check URL (regex?)
@@ -35,7 +35,7 @@ function validate(form) {
 	}
 }
 
-/**
+/*
  * This function checks the band name field.
  * 
  * It calls the emptyString() and fiftyChar() functions.
@@ -43,12 +43,16 @@ function validate(form) {
  * @param field
  * @returns boolean
  */
-function checkName(field) {
-	if (emptyString(field.value)) {
+function isNameOK(field) {
+	
+	var name = field.value.trim();
+	console.log(name); // TEST CODE
+	
+	if (emptyString(name)) {
 		alert('Le nom du groupe doit être renseigné.');
 		return false;
 	}
-	else if (fiftyChar(field.value)) {
+	else if (fiftyChar(name)) {
 		alert('Le nom du groupe ne peut pas dépasser cinquante caractères.');
 		return false;
 	}
@@ -57,7 +61,7 @@ function checkName(field) {
 	}
 }
 
-/**
+/*
  * This function checks the band biography field.
  * 
  * It calls the fiveHundredChar() function.
@@ -90,7 +94,7 @@ function checkWebsite(field) {
 	}
 }
 
-/**
+/*
  * This function checks if a value is null or empty.
  * 
  * It returns true if it is.
@@ -109,7 +113,7 @@ function emptyString(attribute) {
 	}
 }
 
-/**
+/*
  * This function checks if a String is more than fifty characters.
  * 
  * It returns true if it is.
@@ -128,7 +132,7 @@ function fiftyChar(attribute) {
 	}
 }
 
-/**
+/*
  * This function checks if a text is more than five hundred characters.
  * 
  * It returns true if it is.
@@ -147,7 +151,7 @@ function fiveHundredChar(attribute) {
 	}
 }
 
-/**
+/*
  * This function checks an URL field.
  * 
  * @param attribute
