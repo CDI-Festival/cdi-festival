@@ -53,7 +53,7 @@ public class Checkout extends HttpServlet {
 		
 		response.setContentType("text/html");
 		response.setHeader("Cache-Control","no-cache");
-		RequestDispatcher passDispatch =request.getRequestDispatcher("/WEB-INF/cart.jsp");  
+		RequestDispatcher passDispatch =request.getRequestDispatcher("/WEB-INF/pass/cart.jsp");  
 		passDispatch.forward(request, response);
         return;
 		
@@ -91,13 +91,13 @@ public class Checkout extends HttpServlet {
 			System.out.println(request.getServletContext());
 			System.out.println(request.getContextPath());
 			System.out.println(request.getServletPath());
-			response.sendRedirect(request.getContextPath() + "/main.jsp");
+			response.sendRedirect(request.getContextPath() + "/");
 		}else {
 			System.out.println("not enough tickets");
 			System.out.println(request.getServletContext());
 			System.out.println(request.getContextPath());
 			System.out.println(request.getServletPath());
-			RequestDispatcher passDispatch =request.getRequestDispatcher("/WEB-INF/cartOk.html");  
+			RequestDispatcher passDispatch =request.getRequestDispatcher("/WEB-INF/pass/cartOk.html");  
 			passDispatch.forward(request, response);
 
 		}

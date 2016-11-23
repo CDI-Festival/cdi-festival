@@ -33,10 +33,7 @@ public class StockPass {
 	private static final int DAY_2 = 24;
 	private static final int DAY_3 = 25;
 
-	private float twoDaysPassPercent;
-	private float threeDaysPassPercent;
-	private int twoDaysPrice;
-	private int threeDaysPrice;
+
 
 	private ArrayList<LocalDate> dates1;
 	private ArrayList<LocalDate> dates2;

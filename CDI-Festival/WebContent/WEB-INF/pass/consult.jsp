@@ -16,28 +16,18 @@
     </head>
 
     <body>
+    
+    	<%-- Include banner --%>
+	<jsp:include page="../include/header.jsp" />
 
-
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="<%= request.getContextPath() %>/pass/show">Achat de billet</a></li>
-                    <li><a href="<%= request.getContextPath() %>/pass/manage">Gestionnaire de billet</a></li>
-
-                </ul>
-            </nav>
-
-
-
-        </header>
-
-
+	<!-- Include main menu -->
+	<jsp:include page="../include/menu.jsp" />
 
 
 
         <div class="container">
             <H1>Billet Festival</H1>
-            <a href="<%= request.getContextPath() %>/" title=""><img src="images/ios7-home.png" alt="Home" style="width: 24px; height: 24px;" /></a>
+            <a href="<%= request.getContextPath() %>/" title="home"><img class="pass" src="images/ios7-home.png" alt="Home" style="width: 24px; height: 24px;" /></a>
 
             <%
 			boolean list = (boolean) request.getAttribute("listAvail");
@@ -63,13 +53,13 @@
 						 	<div class="section group">
 								<div class="col span_1_of_2">
 								<a href="../consult/ControlShowCase/ShowCase?id=<%=pass.get(i).gettype()%>"/>
-								<img src="http://static2.digitick.com/commun/images/upload/evenements/300x30012_300.jpg" alt="Pass Festival">
+								<img class="pass" src="http://static2.digitick.com/commun/images/upload/evenements/300x30012_300.jpg" alt="Pass Festival">
 								</a>
                           		</div> 
                           	<% }else { %>
                           	<div class="col span_1_of_2">
                           	<a href="../consult/ControlShowCase/ShowCase?id=<%=pass.get(i).gettype()%>"/>
-        					<img src="http://static2.digitick.com/commun/images/upload/evenements/300x30012_300.jpg" alt="Pass Festival">
+        					<img class="pass" src="http://static2.digitick.com/commun/images/upload/evenements/300x30012_300.jpg" alt="Pass Festival">
         					</a>
 							</div>
 							</div>
@@ -95,6 +85,8 @@
                                 </div>
                             </div>
                         </c:forEach>
+                        
+                           <jsp:include page="../include/footer.jsp" /> 
 
     </body>
 
