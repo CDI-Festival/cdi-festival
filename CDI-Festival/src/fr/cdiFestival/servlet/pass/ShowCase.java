@@ -22,8 +22,11 @@ import fr.cdiFestival.technic.StockPass;
 /**
  * This Servlet is going to displqy all the created pass that need to be displayed to the user.
  * 
+ * Get : is going to dispatch to the consult.jsp view (defaut behavior)
+ * when user select a pass it is going to dispatch to the Checkout servlet.
+ * 
  * @author Nicolas Tarral
- * @version 2016-11-22
+ * @version 2016-11-23
  */
 @WebServlet(
 		name = "ShowCase", 
@@ -47,9 +50,12 @@ public class ShowCase extends HttpServlet {
     	url = "/WEB-INF/pass/consult.jsp";
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
+    
+    /*
+     * (non-Javadoc)
+     * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(" -- ShowCase -- in the GET method");
 		
@@ -126,8 +132,6 @@ public class ShowCase extends HttpServlet {
 	
 
 
-	private void reportProblem(HttpServletResponse response, String message) throws IOException {
-		response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
-	}
+
 
 }
