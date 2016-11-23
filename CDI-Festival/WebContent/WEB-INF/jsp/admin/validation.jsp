@@ -11,10 +11,11 @@
 </head>
 <body>
 
-	<%--Include the main administration menu --%>
-	<jsp:include page="/WEB-INF/include/menu-admin.jsp" />
-
+	<%-- Include banner --%>
 	<jsp:include page="/WEB-INF/include/header.jsp" />
+
+	<!-- Include main menu -->
+	<jsp:include page="/WEB-INF/include/menu-admin.jsp" />
 
 	<div id="container">
 
