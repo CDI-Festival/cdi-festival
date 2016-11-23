@@ -55,7 +55,6 @@ public class ArticleController extends HttpServlet {
      */
     public ArticleController() {
         super();
-
     }
 
 	/**
@@ -89,9 +88,7 @@ public class ArticleController extends HttpServlet {
 	}
 	
 	
-	//*******************************************//
-	//					Méthods					 //
-	//*******************************************//
+	//Methods to handle article actions
 	
 	/**
 	 * Open the reading page article
@@ -140,11 +137,12 @@ public class ArticleController extends HttpServlet {
 		
 		article		= new Article(author, date, title, content);
 		
-		reqArticle.add(article);
+		System.out.println(article);
 		
-		reqId.update(article.getId());
+//		reqArticle.add(article);
 		
-		this.goAccueil(request, response);
+		//Send to index page
+		this.redirIndex(request, response);
 	}
 	
 	/**
@@ -180,6 +178,9 @@ public class ArticleController extends HttpServlet {
 		content		= request.getParameter("content");
 		
 		article		= new Article(author, date, title, content);
+		
+		//Send to index page
+		this.redirIndex(request, response);
 		}
 	
 
@@ -197,7 +198,14 @@ public class ArticleController extends HttpServlet {
 		reqArticle.delete(id);
 	}
 	
-	public void goAccueil (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * Redirect to index page
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void redirIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect(request.getContextPath() + "/accueil");
 	}
 	
