@@ -1,6 +1,9 @@
 package fr.cdiFestival.model;
 
 import fr.cdiFestival.dao.band.BandDAO;
+import fr.cdiFestival.exceptions.EmptyStringException;
+import fr.cdiFestival.exceptions.FiftyCharException;
+import fr.cdiFestival.util.ControlMethod;
 
 /**
  * Class for band creation.
@@ -29,7 +32,8 @@ public class Band {
 	 * @param biography
 	 * @param website
 	 */
-	public Band(String name, String biography, String website) {
+	public Band(String name, String biography, String website) throws EmptyStringException, FiftyCharException {
+		
 		setId();
 		setName(name);
 		setBiography(biography);
@@ -44,7 +48,8 @@ public class Band {
 	 * @param biography
 	 * @param website
 	 */
-	public Band(int id, String name, String biography, String website) {
+	public Band(int id, String name, String biography, String website) throws EmptyStringException, FiftyCharException {
+		
 		this.id = id;
 		setName(name);
 		setBiography(biography);
@@ -87,9 +92,25 @@ public class Band {
 
 	/**
 	 * @param name the name to set
+	 * @throws EmptyStringException 
+	 * @throws FiftyCharException 
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String name) throws EmptyStringException, FiftyCharException {
+		
+		String bandName;
+		bandName = name.trim();	
+		
+		if (ControlMethod.isEmptyOrNull(bandName)) {
+			System.out.println("Band, setName : empty."); // TEST CODE
+			throw new EmptyStringException("Le nom du groupe doit être renseigné.");
+		}
+		else if (ControlMethod.isSup50(bandName)) {
+			System.out.println("Band, setName : too long."); // TEST CODE
+			throw new FiftyCharException("Le nom du groupe ne peut pas dépasser cinquante caractères.");
+		}
+		else {
+			this.name = bandName;
+		}	
 	}
 
 	/**

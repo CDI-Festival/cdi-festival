@@ -1,6 +1,7 @@
 package fr.cdiFestival.servlet.band;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,13 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.cdiFestival.dao.band.BandDAO;
+import fr.cdiFestival.exceptions.EmptyStringException;
+import fr.cdiFestival.exceptions.FiftyCharException;
 import fr.cdiFestival.model.Band;
+import fr.cdiFestival.util.ControlMethod;
 
 /**
  * Servlet to manage DAO calls for band pages.
  * 
  * @author Claire
- * @version 20161120
+ * @version 20161123
  */
 @WebServlet(name = "BandManagement",
 description = "Servlet to manage DAO calls for band.",
@@ -31,7 +35,8 @@ public class BandManagement extends HttpServlet {
 	private String pathInfo;
 	private String servletPath;
 	private RequestDispatcher dispatch;
-	
+
+	private String error;
 	private String validationType;
 
 	// Attributes for DB
@@ -43,7 +48,7 @@ public class BandManagement extends HttpServlet {
 
 	// Attributes to handle band object
 	private Band band;
-	private String name;
+	private String bandName;
 	private String biography;
 	private String website;
 
@@ -84,11 +89,11 @@ public class BandManagement extends HttpServlet {
 
 		case "/modifiergrp":
 			
-			name = request.getParameter("value");
+			bandName = request.getParameter("value");
 			
 			// Asks BandDAO the DB informations of the band sent in parameter
 			bandDAO = new BandDAO();
-			band = bandDAO.search(name);
+			band = bandDAO.search(bandName);
 			
 			System.out.println(band); // TEST CODE
 			
@@ -100,13 +105,14 @@ public class BandManagement extends HttpServlet {
 			dispatch.forward(request, response);
 			break;
 			
+		// TODO (Claire) a effectuer en doPost
 		case "/supprimergrp":
 			
-			name = request.getParameter("value");
+			bandName = request.getParameter("value");
 			
 			// Asks BandDAO to delete the band which name is sent in parameter
 			bandDAO = new BandDAO();
-			result = bandDAO.delete(name);
+			result = bandDAO.delete(bandName);
 			
 			System.out.println(result); // TEST CODE
 			
@@ -116,10 +122,17 @@ public class BandManagement extends HttpServlet {
 				
 				response.sendRedirect(request.getContextPath() + "/admin/groupes/gerer");
 			}
+			else {
+				error = "la suppression";
+				request.setAttribute("erreur", error);
+				dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur.jsp");
+				dispatch.forward(request, response);
+			}
 			break;
 			
 		default:
-			// TODO (Claire) error page
+			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur404.jsp");
+			dispatch.forward(request, response);
 			System.out.println("BandManagement: page 404.");
 			break;
 		}
@@ -148,12 +161,18 @@ public class BandManagement extends HttpServlet {
 				updateBand(request, response);
 				break;
 			default:
-				// TODO (Claire) default switch enregistrer
+				error = "l'enregistrement";
+				request.setAttribute("erreur", error);
+				dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur.jsp");
+				dispatch.forward(request, response);
 				break;
 			}
-			
-			// TODO (Claire) controls data + error display or use JS?
 
+		}
+		else {
+			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur404.jsp");
+			dispatch.forward(request, response);
+			System.out.println("BandManagement : page 404."); // TEST CODE
 		}
 
 	}
@@ -184,52 +203,73 @@ public class BandManagement extends HttpServlet {
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
-	 * @version 20161120
+	 * @version 20161123
 	 */
 	private void createBand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// TODO (Claire) check Exception
+		String name;
+		// TODO (Claire) change boolean with exception in method checkDB
+		boolean checkOK;
 		
-		// If band doesn't exist already
-		if (checkDB(request)) {
+		// Get the name from form input
+		name = request.getParameter("bandname");
+		// Trims name
+		bandName = name.trim();	
+		System.out.println("BandManagement, trim nom checkDB : " + bandName); // TEST CODE
 		
-			// Creates a new band object
-			band = createObjectBand(request);
-			
-			// Asks BandDAO to insert the new band in DB
-			bandDAO = new BandDAO();
-			result = bandDAO.create(band);
-			
-			System.out.println("BandManagement: create, formulaire.jsp > dispatch to validation.jsp"); // TEST CODE
-			
-			if (result != 0) {
+		try {
+			// Checks if bandName isn't empty or too long, can throw exception
+			isNameOK(bandName);
+			// Checks if bandName doesn't already exist
+			checkOK = checkDB(bandName);
+		
+				if (checkOK) {
 				
-				// Set the validation type in validation.jsp
-				validationType = "a bien été créé";
+					// Creates a new band object, can throw an exception
+					band = createObjectBand(request);
 				
-				request.setAttribute("name", name);
-				request.setAttribute("validationType", validationType);
-				dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
-				dispatch.forward(request, response);
-			}
-			else {
+					// Asks BandDAO to insert the new band in DB
+					bandDAO = new BandDAO();
+					result = bandDAO.create(band);
+					
+					System.out.println("BandManagement: create, formulaire.jsp > dispatch to validation.jsp"); // TEST CODE
+					
+					if (result != 0) {
+						
+						// Set the validation type in validation.jsp
+						validationType = "a bien été créé";
+						
+						request.setAttribute("name", bandName);
+						request.setAttribute("validationType", validationType);
+						dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
+						dispatch.forward(request, response);
+					}
 				
-				// TODO erreur création
-			}
+				}
+				// If checkDB not OK
+				else {
+				
+					// Set the validation type in validation.jsp
+					validationType = "existe déjà";
+					
+					request.setAttribute("name", bandName);
+					request.setAttribute("validationType", validationType);
+					dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
+					dispatch.forward(request, response);
+				}
 		
-		}
-		
-		else {
+		// If exceptions
+		} catch (EmptyStringException | FiftyCharException | SQLException e) {
+			System.out.println("BandManagement, createBand : " + e.getMessage()); // TEST CODE
 			
-			// Set the validation type in validation.jsp
-			validationType = "existe déjà";
-			
-			request.setAttribute("name", name);
-			request.setAttribute("validationType", validationType);
-			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
+			error = "la création";
+			String errorInfo = e.getMessage();
+			request.setAttribute("erreur", error);
+			request.setAttribute("erreurInfo", errorInfo);
+			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur.jsp");
 			dispatch.forward(request, response);
 		}
-	}
+}
 	
 	/**
 	 * This method create a new band object and calls DAO class to do an update in database.
@@ -243,8 +283,15 @@ public class BandManagement extends HttpServlet {
 	 */
 	private void updateBand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Creates a new band object.
-		band = createObjectBand(request);
+		// TODO (Claire) handle exception
+		
+		// Creates a new band object
+		try {
+			band = createObjectBand(request);
+		} catch (EmptyStringException | FiftyCharException e) {
+			System.out.println("BandManagement, createObjectBand : " + e);
+			e.printStackTrace();
+		}
 		
 		// Asks BandDAO to update the band in DB.
 		bandDAO = new BandDAO();
@@ -260,33 +307,62 @@ public class BandManagement extends HttpServlet {
 			// To let validation.jsp if it's a creation or an update
 			validationType = "a bien été mis à jour";
 			
-			request.setAttribute("name", name);
+			request.setAttribute("name", bandName);
 			request.setAttribute("validationType", validationType);
 			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/admin/validation.jsp");
 			dispatch.forward(request, response);
 		}
 		else {
-			// TODO (Claire) error page
+			error = "la modification";
+			request.setAttribute("erreur", error);
+			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur.jsp");
+			dispatch.forward(request, response);
 		}
 		
 	}
 	
-	/** This method check if the name choose to create a new band already exist in DB.
+	/**
+	 * This method checks the band name field.
+	 * 
+	 * @author Claire
+	 * @param bandName
+	 * @returns nameOK
+	 * @version 20161123
+	 * @throws EmptyStringException 
+	 * @throws FiftyCharException 
+	 */
+	private boolean isNameOK(String bandName) throws EmptyStringException, FiftyCharException {
+		
+		boolean nameOK = false;
+		
+		if (ControlMethod.isEmptyOrNull(bandName)) {
+			System.out.println("BandManagement, isNameOK : empty."); // TEST CODE
+			throw new EmptyStringException("Le nom du groupe doit être renseigné.");
+		}
+		else if (ControlMethod.isSup50(bandName)) {
+			System.out.println("BandManagement, isNameOK : too long."); // TEST CODE
+			throw new FiftyCharException("Le nom du groupe ne peut pas dépasser cinquante caractères.");
+		}
+		else {
+			nameOK = true;
+			return nameOK;
+		}
+		
+	}
+	
+	/** This method check if the name choose to create a new band already exists in DB.
 	 * 
 	 * @author Claire
 	 * @param request
 	 * @return exists
 	 * @version 20161122
 	 */
-	private boolean checkDB(HttpServletRequest request) {
+	private boolean checkDB(String bandName) {
 		
 		boolean exists;
 		
-		// Get the name from form input
-		name = request.getParameter("bandname");
-		
 		bandDAO = new BandDAO();
-		exists = bandDAO.check(name);
+		exists = bandDAO.check(bandName);
 		
 		if (exists) {
 			return true;
@@ -304,15 +380,18 @@ public class BandManagement extends HttpServlet {
 	 * @return band
 	 * @version 20161120
 	 */
-	private Band createObjectBand(HttpServletRequest request) {
+	private Band createObjectBand(HttpServletRequest request) throws EmptyStringException, FiftyCharException {
 
+		Band band;
+		band = null;
+		
 		// Get the form inputs
-		name = request.getParameter("bandname");
+		bandName = request.getParameter("bandname");
 		biography = request.getParameter("bandbio");
 		website = request.getParameter("bandwebsite");
 		
-		Band band;
-		band = new Band(name, biography, website);
+		band = new Band(bandName, biography, website);
+		
 		return band;
 	}
 
