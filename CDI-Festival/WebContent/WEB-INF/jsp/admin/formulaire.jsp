@@ -7,6 +7,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/bandstyle.css" />
 <title>CDI Festival 2017 - Formulaire groupe</title>
 </head>
