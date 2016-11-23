@@ -1,7 +1,8 @@
- 
- /********************************/ 
+  /********************************/ 
  /*			Articles style		 */
  /********************************/ 
+
+/*--------------------------------------------All page*/ 
 .container { 
 	text-align: center;
 	margin-top: 150px;
@@ -9,9 +10,56 @@
 	margin-right: auto;
 	width: 800px;
 	border: 1px solid black;
-	/*background-color: rgba(0, 0, 0, 0.7);*/
+	background-color: rgba(0, 0, 0, 0.7);
 }
 
+.justify {
+	text-align: justify;
+}
+
+/*--------------------------------------------Index page*/
+.summary_container {
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+	width: 300px;
+	height: auto;
+} 
+
+#context {
+	display: flex;
+    flex-direction: column;
+}
+
+.summary_container a {
+	text-decoration: none;
+	color: black;
+}
+
+.summary_container h3 a{
+	text-align: center;
+	color: white;
+}
+
+.summary_container h3 a:hover {
+	color: #FF7100
+}
+
+.summary {
+	font-size: 11;
+}
+
+.date {
+	display: block;
+	color: white;
+}
+
+#btncreate {
+	margin-left: 425px;
+}
+
+/*--------------------------------------------Add page*/
 .containercreate {
 	margin-top: 150px;
 	margin-left: auto;
@@ -19,35 +67,8 @@
 	width: 800px;
 	border: 1px solid black;
 	/*background-color: rgba(0, 0, 0, 0.7);*/
-}
-
-.summary_container {
-	margin-bottom: 10px;
-	border: 1px solid black;
-	width: 300px;
-	height: auto;
-	background-color: white;
-} 
-
-.summary_container a {
-	text-decoration: none;
-	color: black;
-}
-
-.summary_container h3 {
-	text-align: center;
-	background-color: grey;
-}
-
-.summary {
-	font-size: 11;
-}
-
-.justify {
-	text-align: justify;
-}
- 
-input, textarea {
+	
+	input, textarea {
     width: 150px;
     padding: 4px;
     vertical-align: top;
@@ -57,6 +78,7 @@ textarea {
     width: 600px;
     height: 20em;
 }
+
 .aligne {
     display: inline-block;
     width: 100px;
@@ -69,10 +91,10 @@ textarea {
 	margin-left: 125px; 
 }
 
-
  /********************************/ 
  /* 		Footer style		 */
- /********************************/ 
+ /********************************/
+  
 .icon {
 	width: 30px;
 	height: 30px;

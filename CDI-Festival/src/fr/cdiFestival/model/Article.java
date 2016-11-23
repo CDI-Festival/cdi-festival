@@ -57,7 +57,6 @@ public class Article {
 	public void idAuto() {
 		RequestId requete = new RequestId();
 		id = requete.getRefId() + 1;
-		requete.update(id);
 	}
 	
 	//Getters and setters
