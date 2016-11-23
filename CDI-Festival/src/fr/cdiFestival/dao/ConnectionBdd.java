@@ -32,7 +32,7 @@ public class ConnectionBdd {
 	 *This method initiate a connection with the database, using URL
 	 * 
 	 */
-	public void initConnectionLocal() throws SQLException {
+	public void initConnection() throws SQLException {
 		if(connection == null|| connection.isClosed()){
 			try {
 				Class.forName(NOM_DRIVER);

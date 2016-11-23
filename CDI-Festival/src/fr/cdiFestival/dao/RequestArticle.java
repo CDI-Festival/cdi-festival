@@ -52,14 +52,18 @@ public class RequestArticle {
 	 * 
 	 */
 	public void add(Article article) {
-		id 		= article.getId();
-		author 	= article.getAuthor();
-		date 	= article.getDate();
-		title 	= article.getTitle();
-		content = article.getContent();
+		if (article != null) {
+			if ((id != 0) && (author != null) && (date != null) && (title != null) && (content != null)) {	
+				id 		= article.getId();
+				author 	= article.getAuthor();
+				date 	= article.getDate();
+				title 	= article.getTitle();
+				content = article.getContent();
+			}
+		}
 		
 		try {
-			connection.initConnectionLocal();
+			if (connection == null) connection.initConnection();
 			
 			prepStmt = connection.prepareStatement("insert into article VALUES (?, ?, ?, ?, ?)");
 			prepStmt.setInt(1,id); 
@@ -86,7 +90,7 @@ public class RequestArticle {
 	 */
 	public void delete(int id) {
 		try {
-			connection.initConnectionLocal();
+			connection.initConnection();
 			
 			prepStmt = connection.prepareStatement("delete article where id = ?");
 			prepStmt.setInt(1, id);
@@ -111,7 +115,7 @@ public class RequestArticle {
 		article	= null;
 		
 		try {
-			connection.initConnectionLocal();
+			connection.initConnection();
 			
 			prepStmt = connection.prepareStatement("select id, author, dateC, title, content from article where id = ?");
 			prepStmt.setInt(1,id); 
@@ -148,7 +152,7 @@ public class RequestArticle {
 		article 	= null;
 
 		try {
-			connection.initConnectionLocal();
+			connection.initConnection();
 
 			prepStmt = connection.prepareStatement("select id, author, dateC, title, content from article");
 
@@ -194,7 +198,7 @@ public class RequestArticle {
 		content = article.getContent();
 
 		try {
-			connection.initConnectionLocal();
+			connection.initConnection();
 
 			prepStmt = connection.prepareStatement("UPDATE article set author = ?, dateC = ?, title = ?, content = ? where id = ?"); 
 			prepStmt.setString(1, author); 

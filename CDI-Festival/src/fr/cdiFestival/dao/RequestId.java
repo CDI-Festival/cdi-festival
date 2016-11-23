@@ -44,7 +44,7 @@ public class RequestId {
 		currentId = this.getRefId();
 		
 		try {
-			connection.initConnectionLocal();
+			connection.initConnection();
 			
 			prepStmt = connection.prepareStatement("UPDATE IDARTICLE SET Id = ?");
 			prepStmt.setInt(1,newId); 
@@ -68,7 +68,7 @@ public class RequestId {
 		currentId = 0;
 			
 			try {
-				connection.initConnectionLocal();
+				connection.initConnection();
 				
 				prepStmt = connection.prepareStatement("SELECT id from IDARTICLE");
 				result = prepStmt.executeQuery();
