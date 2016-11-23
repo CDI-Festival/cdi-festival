@@ -99,6 +99,7 @@ public class ShowCase extends HttpServlet {
 			ArrayList<Pass> lesStock = null;
 			try {
 				lesStock = stock.getAllDBPass();
+				System.out.println("taille les stock "+ lesStock.size());
 			} catch (SQLException | DaoException e) {
 				System.out.println("erreur sql "+e.getMessage());
 				url = "gestionErreur/error";
