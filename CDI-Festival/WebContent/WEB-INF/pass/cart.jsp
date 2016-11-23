@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!doctype html>
-<html>
+<html lang="fr">
 
 <head>
+<meta charset="UTF-8" />
 
 <title>Festival HELLFEST 2017</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/main.css">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/styles/grid.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/style/grid.css">
 
 </head>
 
@@ -27,7 +28,7 @@
 
 	<div>
 
-		<a href="<%= request.getContextPath() %>/index.jsp" title=""><img src="images/ios7-home.png"
+		<a href="<%= request.getContextPath() %>/" title="home"><img src="images/ios7-home.png"
 			alt="Home" style="width: 24px; height: 24px;" /></a>
 
 
@@ -51,7 +52,7 @@
 	<div class="col span_1_of_2">
         <H3>HELLFEST : BILLETS 3 JOURS</H3>
         <p class="festi-date">Du Vendredi 23/06/2017 au Dimanche 25/06/2017</p>
-        <p>Hippodrome Borély de Marseille</p>
+        <p>Hippodrome Bor&eacute;ly de Marseille</p>
         <p class="align-right">Selectionnez vos places</p>
         <hr>
         <span class="checkout"><%=request.getAttribute("description")%>

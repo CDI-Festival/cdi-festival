@@ -72,16 +72,3 @@ select {
 	color: white;
 	margin: 0px;
 }
-
-/*--------------------------------------------------- Footer*/
-footer {
-	display: flex;
-	justify-content: space-around;
-	background-color: #1c1c1c;
-	margin-bottom: 20px;
-}
-
-footer p {
-	font-size: 13px;
-	padding-top: 15px;
-}

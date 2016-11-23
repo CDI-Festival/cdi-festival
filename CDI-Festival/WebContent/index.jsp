@@ -20,7 +20,7 @@
 <body>
 
 	<%-- Include banner --%>
-	<jsp:include page="WEB-INF/include/header.jsp" />
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<!-- Include main menu -->
 	<jsp:include page="/WEB-INF/include/menu.jsp" />

@@ -50,6 +50,23 @@ p {
 	padding-top: 15px;
 }
 
+.dropsub {
+	display: none;
+	position: absolute;
+	background-color: black;
+	border: 1px solid black;
+
+}
+
+.dropdown:hover .dropsub {
+	display: block;
+}
+
+.dropsub a {
+	display: block;
+	padding: 
+}
+
 hr {
     margin-bottom: 15px;
     border: 0;
@@ -105,4 +122,57 @@ header {
 	width: 500px;
 	height: 120px;
 	margin-top: 15px;
+}
+
+/*--------------------------------------------------- Footer*/
+footer {
+	display: flex;
+	justify-content: space-around;
+	background-color: #1c1c1c;
+	margin-bottom: 20px;
+}
+
+footer p {
+	font-size: 13px;
+	padding-top: 15px;
+}
+
+.icon {
+	width: 30px;
+	height: 30px;
+}
+
+.footer_container {
+	width: 100%;
+	background-color: black;
+	display: flex;
+	justify-content: space-around;
+}
+
+.footer_socials {
+	margin-left: 1200px;
+}
+
+.footer_list { 
+	list-style-type: none;
+}
+
+.footer_list li {
+	float: left;
+}
+
+.footer_list a {
+	padding: 5px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	color: white;
+}
+
+#login {
+	padding-top: 30px;
+}
+
+#login a {
+	text-decoration: none;
+	color: grey;
 }

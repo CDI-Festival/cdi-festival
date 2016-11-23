@@ -194,10 +194,10 @@ public class ManagePass extends HttpServlet {
 			stockPack = new StockPass(prix[0], prix[1], prix[2], dayQuantity[0], dayQuantity[1], dayQuantity[2],
 					dayQuantity[3], dayQuantity[4], dayQuantity[5]);
 			stockPack.generateTickets(false);
-			url = "/WEB-INF/gestion.jsp";
+			url = "/WEB-INF/pass/gestion.jsp";
 		}else {
 			System.out.println("there is an issue in the form...");
-			url = "/WEB-INF/gestion.jsp";
+			url = "/WEB-INF/pass/gestion.jsp";
 			stockPack = new StockPass();
 
 			
