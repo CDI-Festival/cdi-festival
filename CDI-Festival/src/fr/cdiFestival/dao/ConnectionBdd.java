@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *COnnectionBdd hundle the connection with the database.
+ *ConnectionBdd handle the connection with the database.
  *
  * 
  * @author Jonathan Fuentes
