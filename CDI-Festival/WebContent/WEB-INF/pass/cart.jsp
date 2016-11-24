@@ -53,7 +53,7 @@
         <p class="align-right">Selectionnez vos places</p>
         <hr>
         <span class="checkout">Pass : <%=request.getAttribute("description")%>
-        <p id="pricing"><%=request.getAttribute("price")%> Euros</p>
+        <p id="pricing"><%=request.getAttribute("price")%></p>Euros
         <p>Les Dates <%=request.getAttribute("date").toString()%></p>
          
         <p class="checkout">Quantité :</p>  
