@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet.article;
+package fr.cdiFestival.control.article;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.cdiFestival.dao.article.RequestArticle;
+import fr.cdiFestival.dal.article.RequestArticle;
 import fr.cdiFestival.model.Article;
 
 /**

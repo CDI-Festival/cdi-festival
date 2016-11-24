@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet.band;
+package fr.cdiFestival.control.band;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet.pass;
+package fr.cdiFestival.control.pass;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.cdiFestival.dao.pass.DaoException;
+import fr.cdiFestival.dal.pass.DaoException;
 import fr.cdiFestival.model.Pass;
 import fr.cdiFestival.technic.StockPass;
 
@@ -60,6 +60,8 @@ public class ShowCase extends HttpServlet {
 		
 		// ce block est apellé des la selection d'un des pass a acheter. 
 		
+		System.out.println("-- ShowCase ---");
+		
 		if(id != null) {
 			
 			try {
@@ -87,7 +89,7 @@ public class ShowCase extends HttpServlet {
 				request.setAttribute("selectedPass", pass);
 
 				// TODO (nicolas) stoocker url aux meme endroit class propriete static...?
-				url = "/order/checkout";
+				url = "/consult/ControlShowCase/checkout/checkout";
 			}else {
 				System.out.println("erreur mauvais pass identifier ");
 				request.setAttribute("error", "[ShowCase] - mauvais pass identifier");

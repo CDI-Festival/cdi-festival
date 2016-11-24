@@ -1,4 +1,4 @@
-package fr.cdiFestival.dao.band;
+package fr.cdiFestival.dal.band;
 
 /**
  * SQL request for BandDAO.

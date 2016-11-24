@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8" />
 
-<title>Festival HELLFEST 2017</title>
+<title>Festival CDI 2017</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 <script src="${pageContext.request.contextPath}/js/cart.js"></script>
+<%@ page import="java.util.*"%>
 
 </head>
 
@@ -35,7 +36,7 @@
 
 
 		<div class="subTitle">
-			<h2>les pass disponibles</h2>
+			<h2>le pass </h2>
 		</div>
 
 		
@@ -46,14 +47,14 @@
 	alt="pass">
 	</div>
 	<div class="col span_1_of_2">
-        <H3>HELLFEST : BILLETS 3 JOURS</H3>
+        <H3>CDIFEST : BILLET <%=request.getAttribute("journée")%> JOURS</H3>
         <p class="festi-date">Du Vendredi 23/06/2017 au Dimanche 25/06/2017</p>
         <p>Hippodrome Bor&eacute;ly de Marseille</p>
         <p class="align-right">Selectionnez vos places</p>
         <hr>
-        <span class="checkout"><%=request.getAttribute("description")%>
-        <p id="pricing"><%=request.getAttribute("price")%></p>
-        <p><%=request.getAttribute("date")%></p>
+        <span class="checkout">Pass : <%=request.getAttribute("description")%>
+        <p id="pricing"><%=request.getAttribute("price")%></p>Euros
+        <p>Les Dates <%=request.getAttribute("date").toString()%></p>
          
         <p class="checkout">Quantité :</p>  
             

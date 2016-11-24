@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet.band;
+package fr.cdiFestival.control.band;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.cdiFestival.dao.band.BandDAO;
+import fr.cdiFestival.dal.band.BandDAO;
 import fr.cdiFestival.exceptions.EmptyStringException;
 import fr.cdiFestival.exceptions.FiftyCharException;
 import fr.cdiFestival.model.Band;

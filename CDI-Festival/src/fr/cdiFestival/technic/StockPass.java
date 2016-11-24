@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import fr.cdiFestival.dao.pass.DaoException;
-import fr.cdiFestival.dao.pass.PassDB;
+import fr.cdiFestival.dal.pass.DaoException;
+import fr.cdiFestival.dal.pass.PassDB;
 import fr.cdiFestival.model.Pass;
 import fr.cdiFestival.service.Passes;
 

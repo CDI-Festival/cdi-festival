@@ -1,17 +1,17 @@
-package fr.cdiFestival.servlet.pass;
+package fr.cdiFestival.control.pass;
 
 import java.io.IOException;
 
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.cdiFestival.dao.pass.DaoException;
+import fr.cdiFestival.dal.pass.DaoException;
 import fr.cdiFestival.service.Passes;
 import fr.cdiFestival.technic.StockPass;
 

@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet;
+package fr.cdiFestival.control;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sound.midi.Synthesizer;
 
-import fr.cdiFestival.dao.article.RequestArticle;
+import fr.cdiFestival.dal.article.RequestArticle;
 import fr.cdiFestival.service.Articles;
 
 /**

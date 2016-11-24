@@ -1,6 +1,6 @@
 package fr.cdiFestival.model;
 
-import fr.cdiFestival.dao.band.BandDAO;
+import fr.cdiFestival.dal.band.BandDAO;
 import fr.cdiFestival.exceptions.EmptyStringException;
 import fr.cdiFestival.exceptions.FiftyCharException;
 import fr.cdiFestival.util.ControlMethod;
