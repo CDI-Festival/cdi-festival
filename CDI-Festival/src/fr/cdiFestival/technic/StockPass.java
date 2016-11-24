@@ -13,13 +13,16 @@ import fr.cdiFestival.service.Passes;
 
 
 /**
- * Create all thew stock pass based on the percent
+ * Class is going to be use as a buffer class between the servlet and the Dao Class.
+ * it is going to old all the pass in an ArrayList.
+ * 
  * 
  * * type : 0 day 1 1 day 2 2 day 3
  * 
  * 3 days 1-2 5 days 2-3 6 days 1-2-3
  * 
- * @author Administrateur
+ * @author nicolas Tarral
+ * @version : 2016-11-24
  *
  */
 public class StockPass {
@@ -186,7 +189,7 @@ public class StockPass {
 
 	/**
 	 * This methode is going to remove qll pass from the DAO database.
-	 * @throws DaoException 
+	 * @throws DaoException coming from DB
 	 */
 	public void emptyTable() throws DaoException {
 		PassDB.deleteAllPAss();
@@ -194,7 +197,7 @@ public class StockPass {
 
 	/**
 	 * This method is going to call the Dao class to update a pass price.
-	 * @throws DaoException 
+	 * @throws DaoException coming from DB
 	 */
 	public void updatePrice() throws DaoException {	
 		if (!allPass.isEmpty()) {
@@ -211,7 +214,7 @@ public class StockPass {
 	/**
 	 * This methode is going to updqte price for a particual pass.
 	 * @param pass objet that is updated.
-	 * @throws DaoException 
+	 * @throws DaoException coming from DB
 	 */
 	public void updateQuantity(Pass pass) throws DaoException {
 		if (pass != null) {
@@ -222,9 +225,9 @@ public class StockPass {
 	/**
 	 * Cette methode soustrait le nombre de type de pass donnée en parametre
 	 * 
-	 * @param quantity
+	 * @param pass quantity to remove.
 	 * @return a boolean if the pass quantity was 
-	 * @throws DaoException 
+	 * @throws DaoException coming from DB
 	 */
 	public boolean decrementPass(int type, int quantity) throws DaoException {
 		
@@ -243,11 +246,7 @@ public class StockPass {
 		}
 
 	}
-
-	public void updatesAllPasses(Pass twoDaysPass, Pass threeDaysPass) {
-
-	}
-
+	
 	public Passes getAllDBPass() throws DaoException {
 		allPass = PassDB.getAllPAss();
 		return PassDB.getAllPAss();
@@ -271,26 +270,8 @@ public class StockPass {
 		this.allPass = allPass;
 	}
 
-	/**
-	 * This method is going to display all available passes.
-	 * 
-	 * @throws SQLException
-	 * @throws DaoException
-	 */
-	public void niceDisplay() throws SQLException, DaoException {
 
-		Passes all = getAllDBPass();
 
-		System.out.println("---     Available Passes    ---");
-		System.out.println("|    PASS TYPES   | AVAIL SPOT | PRICE |");
-		for (Pass current : all) {
 
-			System.out.printf("|%-17s|%12s places|%12s Euros|\n", current.getDayType(), current.getNombre(),
-					current.getPrice());
-		}
-
-		System.out.println("--------------------------------\n\n");
-
-	}
 
 }

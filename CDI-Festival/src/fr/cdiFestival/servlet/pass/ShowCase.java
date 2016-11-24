@@ -1,7 +1,6 @@
 package fr.cdiFestival.servlet.pass;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +19,7 @@ import fr.cdiFestival.technic.StockPass;
 
 
 /**
- * This Servlet is going to displqy all the created pass that need to be displayed to the user.
+ * This Servlet is going to display all the created pass that need to be displayed to the user.
  * 
  * Get : is going to dispatch to the consult.jsp view (defaut behavior)
  * when user select a pass it is going to dispatch to the Checkout servlet.
@@ -78,8 +77,7 @@ public class ShowCase extends HttpServlet {
 				url = "/gestionErreur/sql";
 
 				
-				//reportProblem(response, "incorrect parameters, please insert digit");
-				//return;
+
 			}
 
 			if(identifier >= 0 && identifier <7) {
@@ -104,6 +102,7 @@ public class ShowCase extends HttpServlet {
 			}
 			
 			// Ce block est apelle lorsque la page est chargée.	
+			
 		}else {
 			ArrayList<Pass> lesStock = null;
 			
@@ -115,8 +114,7 @@ public class ShowCase extends HttpServlet {
 			if(lesStock.isEmpty()) {
 				System.out.println("il n'y a pas de ticket en vente pour le moment.");
 				listFull = false;
-				
-				
+
 			}else {
 				listFull = true;
 				System.out.println("prepare to display on html...");
@@ -129,15 +127,12 @@ public class ShowCase extends HttpServlet {
 				System.out.println("erreur sql "+e.getMessage());
 				request.setAttribute("error", "[ShowCase]" + e.getMessage());
 				url = "/gestionErreur/error";
-				//url = "pass/gestionErreur/error";
-				//reportProblem(response, "Erreur de connection à la base de donnée.");
 			}
 		}
 		
 		
-		
-		
 		// ce block de code va faire un forward vers la ressource determine par url
+		// un seul forward est utilisé pour toute la methode doGet.
 		response.setContentType("text/html");
 		response.setHeader("Cache-Control","no-cache");
 		RequestDispatcher rd=request.getRequestDispatcher(url);  
