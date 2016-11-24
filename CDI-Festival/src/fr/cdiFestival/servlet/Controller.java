@@ -54,22 +54,26 @@ public class Controller extends HttpServlet {
 			goIndex(request, response);
 		}
 		
-		switch (path) {
-		
-		case "/":
-			goIndex(request, response);
-			break;
+		else {
+			switch (path) {
 			
-		case "/groupe":
-			response.sendRedirect(request.getContextPath() + "/groupes");
-			break;
+			case "/":
+				goIndex(request, response);
+				break;
+				
+			case "/groupes":
+				response.sendRedirect(request.getContextPath() + "/groupes");
+				break;
 
-		case "/pass":
-			response.sendRedirect(request.getContextPath() + "/pass");
-			break;
-		default:
-			goIndex(request, response);
+			case "/pass":
+				System.out.println("APRES PATH: PASS");
+				response.sendRedirect(request.getContextPath() + "/pass");
+				break;
+			default:
+				goIndex(request, response);
+			}
 		}
+		
 	}
 
 
