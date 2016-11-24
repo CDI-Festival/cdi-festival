@@ -15,6 +15,11 @@ import fr.cdiFestival.model.Pass;
 public class Passes extends ArrayList<Pass> {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Cette methode retourne un Pass particulier grace à son numero de type.
 	 * @param type entier representant un type de pass.
 	 * @return un objet Pass.
