@@ -13,8 +13,8 @@
 <head>
 	<meta charset="utf-8" />
 	<title>CDI-Festival index</title>
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/articleStyle.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style/articleStyle.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
 			<article id="<%=article.getId()%>" class="summary_container" role="article">
 				<header id="context">
 					<h3><a href="<%=request.getContextPath()%>/article/read?id=<%=article.getId()%>"> <%= article.getTitle() %></a></h3>
-					<time class="date" pubdate="pubdate">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></time>
+					<h5 class="date">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></h5>
 				</header>
 				<div class="summary"><p class="justify">
 				<%if (article.getContent().length() >= 149) { %>
@@ -53,10 +53,10 @@
 			</article>
 		
 		<% } %>
-	
+
 	</div>
 	
-<!-- Footer -->
+		<!-- Footer -->
 	<footer class="footer_container">
 			<ul class="footer_links, footer_list">
 				<li><a href="#">Contact</a></li>
