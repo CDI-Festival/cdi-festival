@@ -1,6 +1,6 @@
 package fr.cdiFestival.technic;
 
-import java.sql.SQLException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -46,7 +46,7 @@ public class StockPass {
 	private ArrayList<LocalDate> dates23;
 	private ArrayList<LocalDate> dates123;
 
-	private static Passes allPass;
+	private  Passes allPass;
 
 	private int prixPass1;
 	private int prixPass2;
