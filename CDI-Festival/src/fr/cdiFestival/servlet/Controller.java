@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Synthesizer;
 
 import fr.cdiFestival.dao.article.RequestArticle;
+import fr.cdiFestival.service.Articles;
 
 /**
  * Servlet implementation class Controller
@@ -25,7 +27,7 @@ public class Controller extends HttpServlet {
 
 	private	String			  path;
 	private	RequestArticle	reqArticle;
-
+	private Articles		listArticle;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -79,15 +81,18 @@ public class Controller extends HttpServlet {
 		System.out.println("Méthode doPost");
 	}
 	
-	
 	// Public index page method to display all articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqArticle = new RequestArticle();
-//		listArticle = null;
+		reqArticle 	= new RequestArticle();
+		listArticle	= reqArticle.getListArticle();
 		
-		request.setAttribute("articles", reqArticle.getArticles());
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	
-		System.out.println("Methode doIndex");
+		if (listArticle != null) {
+			request.setAttribute("articles", listArticle);
+			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+		
+		else {
+			System.out.println("Générer un HTML sans article");
+		}
 	}
 }
