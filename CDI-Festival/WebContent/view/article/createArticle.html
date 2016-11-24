@@ -13,25 +13,34 @@
 
 
 <!--  Banner with logo and text -->
-	<header class="banner">
+	<header>
 		<div class="row">
 			<h1>
 				<img id="logo" src="http://localhost:8085/CDI_Festival/images/banner/logo.png" alt="CDI Festival" />
 			</h1>
-			<img class="text" src="http://localhost:8085/CDI_Festival/images/banner/headline.png" alt="More code, more rock!" />
-			<img class="text" src="http://localhost:8085/CDI_Festival/images/banner/dates.png" alt="Du 23 au 25 juin 2017" />
+			<img class="text-header" src="http://localhost:8085/CDI_Festival/images/banner/headline.png" alt="More code, more rock!" />
+			<img class="text-header" src="http://localhost:8085/CDI_Festival/images/banner/dates.png" alt="Du 23 au 25 juin 2017" />
 		</div>
 	</header>
 
 
 <!-- Navigation menu bar -->
 	<nav>
-		<ul>
-			<li><a href="http://localhost:8085/CDI_Festival/accueil">Accueil</a></li>
-			<li><a href="#" onclick="callBandController('Groupe')">Groupe</a></li>
-			<li><a href="#">Sc&egrave;nes</a></li>
-			<li><a href="pass/show">Billetterie</a></li>
-		</ul>
+
+		<input type="hidden" id="contextPath" value="http://localhost:8085/CDI_Festival"/>
+
+			<ul>
+				<li><a href="http://localhost:8085/CDI_Festival/accueil">Accueil</a></li>
+				<li><a href="#" onclick="callBandController('Groupe')">Groupe</a></li>
+				<li><a href="#">Sc&egrave;nes</a></li>
+				<li class="dropdown" ><a href="#">Billetterie</a>	
+					<div class="dropsub">
+						<a href="http://localhost:8085/CDI_Festival/pass/show">Achat Pass</a>
+						<a href="http://localhost:8085/CDI_Festival/pass/manage">Gestion Pass</a>
+					</div>
+				</li>
+		
+			</ul>
 	</nav>
 
 
@@ -47,22 +56,15 @@
     			<button name="btncancel" type="reset">Annuler</button>
     		</div> 
 		</form>
+		
+	<footer>
+		<p>&copy; 2016-2017 CDI Festival</p>
+		<p>Mentions l&eacute;gales</p>
+		<p>Acc&egrave;s organisation</p>
+	</footer>
 	</div>
    	
 <!-- Footer with informations, partners and links -->
-	<footer class="footer_container">
-			<ul class="footer_links, footer_list">
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">Mentions légales</a></li>
-				<li><a href="#">Crédits</a></li>
-				<li><a href="#">WebMaster</a></li>
-			</ul>
-			<ul class="footer_socials, footer_list">
-				<li><a href="#"><img id="logo_FB" class="icon" src="../../images/socials/logoFB.png"></a></li>
-				<li><a href="#"><img id="logo_Twitter" class="icon" src="../../images/socials/logoTwitter.png"></a></li>
-				<li><a href="#"><img id="logo_YT" class="icon" src="../../images/socials/logoYT.png"></a></li>
-			</ul>
-	</footer>
 	
 <script src="http://localhost:8085/CDI_Festival/js/article.js"></script>
 </body>

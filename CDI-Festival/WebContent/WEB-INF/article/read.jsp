@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="fr.cdiFestival.model.Article" %>
+
+<%-- Getting the article sent from the controller --%>
 <%Article article = (Article)request.getAttribute("article"); %>    
 
 <!DOCTYPE html">
@@ -18,14 +20,15 @@
 <body>
 
 
-	<!--  Banner with logo and text -->
+<!--  Banner with logo and text -->
 	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<!-- Navigation menu bar -->
-	<jsp:include page="/WEB-INF/include/menu.jsp" />
+<jsp:include page="/WEB-INF/include/menu.jsp" />
 
 
 <!-- News section -->
+	<%-- Filling each part of html code with article attributes --%>
 	<div class="container">
 		<article class="summary_container" role="article">
 			<header id="context">
@@ -42,22 +45,13 @@
 				<input type="hidden" name="hiddenid" value="<%= article.getId() %>"/>
 			</form>
 		</div>
+		
+<!-- Footer -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
+		
 	</div>
 
-<!-- Footer with informations, partners and links -->
-	<footer class="footer_container">
-			<ul class="footer_links, footer_list">
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">Mentions légales</a></li>
-				<li><a href="#">Crédits</a></li>
-				<li><a href="#">Admin</a></li>
-			</ul>
-			<ul class="footer_socials, footer_list">
-				<li><a href="#"><img id="logo_FB" class="icon" src="../../images/socials/logoFB.png"></a></li>
-				<li><a href="#"><img id="logo_Twitter" class="icon" src="../../images/socials/logoTwitter.png"></a></li>
-				<li><a href="#"><img id="logo_YT" class="icon" src="../../images/socials/logoYT.png"></a></li>
-			</ul>
-	</footer>
+
 	
 </body>
 </html>
