@@ -1,63 +1,104 @@
 /**
- * Checking, and if is empty : Display message and change border
- *  
- *  @returns void
- *  
+ * Check fields before validate
+ * 
+ * @returns boolean
  */
-	function isEmpty() {
+	function validateOnClick() {
+		var authorOK  	= checkAuthor();
+		var titleOK		= checkTitle();
+		var contentOK	= checkContent();
 		
 		
-		/*Getting values by ID*/
-		author 	= document.querySelector('#author').value;
-		title 	= document.querySelector('#title').value;
-		content = document.querySelector('#content').value;
-
-		/*Checking attributes value and make actions if is it*/
-		if (author == '') {	
-			document.querySelector('#author').style.border 	= "2px solid red";
-			messErreur('author', "Champs vide");
-		}
-		if (title == '') {
-			document.querySelector('#title').style.border 	= "2px solid red";
-			messErreur('title', "Champs vide");
-		}
-		
-		if (content == '') 	{
-			document.querySelector('#content').style.border = "2px solid red";
-			messErreur('content', "Champs vide");
-		}
-		
-		
+		if ((authorOK == true) && (titleOK == true) && (contentOK == true));
 		else {
 			return true;
 		}
-
+		
 		return false;
 	}
 
-/*Warning message before deletion*/
+/**
+ * Check author value
+ * 
+ * @returns {Boolean}
+ */
+	function checkAuthor () {
+		author = document.querySelector('#author').value;
+		
+		if (author == '') {	
+			document.querySelector('#author').style.border = "2px solid red";
+			alert("Auteur vide");
+		}
+		
+		if (author.length > 20) 	{
+			alert("Attention Auteur : Nombre de caractère limité à 20");
+		}
+		
+		else {
+			return true
+		}
+	
+	return false
+	}
+	
+/**
+* Check title value
+* 
+* @returns {Boolean}
+*/
+	function checkTitle () {
+		author = document.querySelector('#title').value;
+		
+		if (author == '') {	
+			document.querySelector('#title').style.border = "2px solid red";
+			alert("Titre vide");
+		}
+		
+		if (author.length > 50) 	{
+			alert("Attention Titre : Nombre de caractère limité à 50");
+		}
+		
+		else {
+			return true
+		}
+	
+	return false
+	}
+		
+/**
+* Check content value
+*
+* @returns {Boolean}
+*/
+	function checkContent () {
+		title = document.querySelector('#content').value;
+			
+		if (title == '') {
+			document.querySelector('#content').style.border = "2px solid red";
+			alert("Contenu vide");
+		}
+			
+		if (title.lenth > 4000)		 	{
+			alert("Attention Contenu : Nombre de caractère limité à 4000");
+		}
+			
+		else {
+			return true
+		}
+		
+	return false
+	}
+	
+	
+/**
+ * Warning message before deletion
+ * 
+ * @returns boolean
+ */
 	function deleteConfirm() {
 		var ok=confirm("Êtes-vous sûr de vouloir supprimer l'article ?");
 	
 		if (ok) return true;	
 
 	return false;
-	}
-
-/**
-* Permet d'indiquer les champs manquants à l'utilisateur (coloration de la
-* bordure de l'élément passé en paramètre et le texte à afficher)
-* 
-* @param idElement
-* @param text
-* @returns
-*/
-	function messErreur(idElement, text) {
-		var afficheErreur = document.createElement('span');
-		afficheErreur.setAttribute('class', 'spanErreur')
-		afficheErreur.setAttribute("style", "color : red");
-		var txt = document.createTextNode(text);
-		afficheErreur.appendChild(txt);
-		var nodeParent = document.getElementById(idElement);
-		nodeParent.parentNode.insertBefore(afficheErreur, nodeParent.nextSibling);
 	}
