@@ -51,9 +51,10 @@ public class Controller extends HttpServlet {
 		System.out.println("Controller path contexte =" + request.getContextPath() );
 		
 		if (path == null) {
+			System.out.println("path est null line 54");
 			goIndex(request, response);
 		}
-		
+		System.out.println("path est null line 57");
 		switch (path) {
 		
 		case "/":
@@ -90,5 +91,6 @@ public class Controller extends HttpServlet {
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	
 		System.out.println("Methode doIndex");
+		return;
 	}
 }
