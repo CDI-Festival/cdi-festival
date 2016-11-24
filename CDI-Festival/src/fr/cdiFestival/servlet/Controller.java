@@ -44,13 +44,16 @@ public class Controller extends HttpServlet {
 		path = request.getPathInfo();
 
 		if (path == null) {
+			System.out.println("path est null "+path);
 			goIndex(request, response);
 		}
 		else {
+			
 			switch (path) {
 			
 			case "/":
 				goIndex(request, response);
+				System.out.println("in the /");
 				break;
 				
 			case "/groupes":
@@ -62,6 +65,7 @@ public class Controller extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/pass");
 				break;
 			default:
+				System.out.println("aller dans goIndex...");
 				goIndex(request, response);
 			}
 		}
@@ -78,8 +82,10 @@ public class Controller extends HttpServlet {
 	
 	// Public index page method to display all articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		reqArticle 	= new RequestArticle();
 		listArticle	= reqArticle.getListArticle();
+
 		
 
 		if (listArticle != null) {
@@ -91,7 +97,6 @@ public class Controller extends HttpServlet {
 			System.out.println("Générer un HTML sans article");
 		}
 		
-		return;
 
 	}
 }
