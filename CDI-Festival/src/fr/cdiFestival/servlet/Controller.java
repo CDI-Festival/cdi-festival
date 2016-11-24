@@ -42,11 +42,7 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getPathInfo();
-		
-		System.out.println("Controller path=" + path );
-		System.out.println("Controller path2=" + path );
-		System.out.println("Controller path contexte =" + request.getContextPath() );
-		
+
 		if (path == null) {
 			goIndex(request, response);
 		}

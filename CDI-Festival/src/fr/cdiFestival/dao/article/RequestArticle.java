@@ -52,16 +52,17 @@ public class RequestArticle {
 	 * 
 	 */
 	public boolean add(Article article) {
-		//Checking the article value, and the article attributes value
+		//Checking the article value, and the article attributes value (null or empty)
 		if (article != null) {
 			if ((article.getId() != 0) && (article.getAuthor() != null) && (article.getDate() != null) && (article.getTitle() != null) && (article.getContent() != null)) {
-				id 		= article.getId();
-				author 	= article.getAuthor().trim();
-				date 	= article.getDate().trim();
-				title 	= article.getTitle().trim();
-				content = article.getContent().trim();
+				if ((article.getAuthor().isEmpty() != true) && (article.getDate().isEmpty() != true) && (article.getTitle().isEmpty() != true) && (article.getContent().isEmpty() != true)) {
+					id 		= article.getId();
+					author 	= article.getAuthor().trim();
+					date 	= article.getDate().trim();
+					title 	= article.getTitle().trim();
+					content = article.getContent().trim();
 				
-				//Starting connection with database
+					//Starting connection with database
 					try {
 						connection.initConnection();
 
@@ -78,11 +79,14 @@ public class RequestArticle {
 						if (prepStmt != null)	prepStmt.close();
 						if (connection != null)	connection.closeConnection();
 			
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					
 				//Return true if adding worked
 				return true;
+				
+				}
 			}
 		}
 		//Return false if adding failed
@@ -151,14 +155,14 @@ public class RequestArticle {
 	
 				//Getting the values
 				while (result.next()) {
-					author		= result.getString("author");
-					date		= result.getString("dateC");
-					title		= result.getString("title");
-					content		= result.getString("content");
+					author		= result.getString("author").trim();
+					date		= result.getString("dateC").trim();
+					title		= result.getString("title").trim();
+					content		= result.getString("content").trim();
 				}
 					//Checking the values and creating article instance
-					if ((id != 0) && (author != null) && (date != null) && (title != null) && (content != null)) {	
-							article	= new Article(id, author, date, title, content);
+					if ((id != 0) && (author.isEmpty() != true) && (date.isEmpty() != true) && (title.isEmpty() != true) && (content.isEmpty() != true)) {
+					article	= new Article(id, author, date, title, content);
 					}
 					
 					//Request and connection closure
@@ -193,14 +197,14 @@ public class RequestArticle {
 			//Getting values
 			while (result.next()) {
 				id			= result.getInt("id");
-				author		= result.getString("author");
-				date		= result.getString("dateC");
-				title		= result.getString("title");
-				content		= result.getString("content");
+				author		= result.getString("author").trim();
+				date		= result.getString("dateC").trim();
+				title		= result.getString("title").trim();
+				content		= result.getString("content").trim();
 
 				//Checking values and creating article instance
-				if ((id != 0) && (author != null) && (date != null) && (title != null) && (content != null)) {	
-					article	= new Article(id, author, date, title, content);
+				if ((id != 0) && (author.isEmpty() != true) && (date.isEmpty() != true) && (title.isEmpty() != true) && (content.isEmpty() != true)) {
+						article	= new Article(id, author, date, title, content);
 				}
 				
 				//Adding article to the arrayList<Article> (Articles class)
@@ -230,37 +234,38 @@ public class RequestArticle {
 		//Checking article value and creating a difference Article instance (I need to keep the sent one) to look for if it exist
 		if (article != null) {
 			Article articleTest = this.getArticle(article.getId());
-			
+					
 			if (articleTest != null) {
 				if ((article.getId() != 0) && (article.getAuthor() != null) && (article.getDate() != null) && (article.getTitle() != null) && (article.getContent() != null)) {
-					id 		= article.getId();
-					author 	= article.getAuthor().trim();
-					date 	= article.getDate().trim();
-					title 	= article.getTitle().trim();
-					content = article.getContent().trim();
+					if ((article.getAuthor().isEmpty() != true) && (article.getDate().isEmpty() != true) && (article.getTitle().isEmpty() != true) && (article.getContent().isEmpty() != true)) {
+						id 		= article.getId();
+						author 	= article.getAuthor().trim();
+						date 	= article.getDate().trim();
+						title 	= article.getTitle().trim();
+						content = article.getContent().trim();
 				
-					//Starting connection
-					try {
-						connection.initConnection();
+						//Starting connection
+						try {
+							connection.initConnection();
 					
-						//Making request
-						prepStmt = connection.prepareStatement("UPDATE article set author = ?, dateC = ?, title = ?, content = ? where id = ?"); 
-						prepStmt.setString(1, author); 
-						prepStmt.setString(2, date);
-						prepStmt.setString(3,title); 
-						prepStmt.setString(4, content);
-						prepStmt.setInt(5,id);
-						prepStmt.executeUpdate();
+							//Making request
+							prepStmt = connection.prepareStatement("UPDATE article set author = ?, dateC = ?, title = ?, content = ? where id = ?"); 
+							prepStmt.setString(1, author); 
+							prepStmt.setString(2, date);
+							prepStmt.setString(3,title); 
+							prepStmt.setString(4, content);
+							prepStmt.setInt(5,id);
+							prepStmt.executeUpdate();
 
-						//Request and connection closure
-						if (prepStmt != null)	prepStmt.close();
-						if (connection != null)	connection.closeConnection();
+							//Request and connection closure
+							if (prepStmt != null)	prepStmt.close();
+							if (connection != null)	connection.closeConnection();
 
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					return true;
-				
+					}
 				}
 			}	
 					

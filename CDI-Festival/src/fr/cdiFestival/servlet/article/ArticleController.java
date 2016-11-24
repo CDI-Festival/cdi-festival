@@ -128,27 +128,35 @@ public class ArticleController extends HttpServlet {
 	 */
 	private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Initializing useful attributes
+		System.out.println("add mehtode");
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		
 		//Encoding informations in UTF-8 (Thank you Dominique)
 		request.setCharacterEncoding("UTF-8");
-		
+
 		//Getting and checking values from the form and initialize date
-		if (request.getParameter("author")  != null) author  = request.getParameter("author");
-		if (request.getParameter("title")   != null) title   = request.getParameter("title");
-		if (request.getParameter("content") != null) content = request.getParameter("content");
+		if ((request.getParameter("author").isEmpty()  != true) && (request.getParameter("title").isEmpty()  != true) 
+				&& (request.getParameter("content").isEmpty() != true)) {
+			
+			author  = request.getParameter("author").trim();
+			title   = request.getParameter("title").trim();
+			content = request.getParameter("content").trim();
+
+			date = (LocalDate.now().format(format));
 		
-		date = (LocalDate.now().format(format));
+			article = new Article(author, date, title, content);
 		
-		//Second check to be sure and making article instance
-		if ((author != null) && (title != null) && (content != null)) article = new Article(author, date, title, content);
+			//Making request to add the article into database
+			reqArticle.add(article);
 		
-		//Making request to add the article into database
-		reqArticle.add(article);
+			//Redirect into index page
+			this.redirIndex(request, response);
+		}
+		else {
+			this.goAddPage(request, response);
+		}
 		
-		//Redirect into index page
-		this.redirIndex(request, response);
 	}
 	
 	
@@ -182,28 +190,37 @@ public class ArticleController extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Initializing useful attributes
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
-		
+				
 		//Encoding informations in UTF-8 (Thank you Dominique)
 		request.setCharacterEncoding("UTF-8");
-		
+
 		//Getting and checking values from the form and initialize date
-		if (request.getParameter("author")  != null) author  = request.getParameter("author");
-		if (request.getParameter("title")   != null) title   = request.getParameter("title");
-		if (request.getParameter("content") != null) content = request.getParameter("content");
+		if ((request.getParameter("hiddenid") != null) && (request.getParameter("author").isEmpty()  != true) && (request.getParameter("title").isEmpty()  != true) 
+				&& (request.getParameter("content").isEmpty() != true)) {
+			
+			id = Integer.parseInt(request.getParameter("hiddenid"));	
+			author  = request.getParameter("author").trim();
+			title   = request.getParameter("title").trim();
+			content = request.getParameter("content").trim();
+
+			date = (LocalDate.now().format(format));
+			
+			article = new Article(id, author, date, title, content);
+
+			//Making request to add the article into database
+			reqArticle.upDate(article);
 				
-		date = (LocalDate.now().format(format));
-				
-		//Second check to be sure and making article instance
-		if ((author != null) && (title != null) && (content != null)) article = new Article(author, date, title, content);
-		
-		//Making request to update database
-		reqArticle.add(article);
-		
-		//Send to index page
-		this.redirIndex(request, response);
+			//Redirect into index page
+			this.redirIndex(request, response);
 		}
+		
+		else {
+			this.goAddPage(request, response); //I'm sure I can do better than this with a little more time (or maybe not)
+		}
+	}
 	
 
 	/**
