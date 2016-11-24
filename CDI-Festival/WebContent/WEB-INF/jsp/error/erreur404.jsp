@@ -5,17 +5,17 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bandstyle.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/bandstyle.css" />
 <title>CDI Festival 2017 - Erreur 404</title>
 </head>
 <body>
 
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 	<%--Include the main administration menu --%>
 	<jsp:include page="/WEB-INF/include/menu-admin.jsp" />
 
 	<div id="container">
-
-		<jsp:include page="/WEB-INF/include/header.jsp" />
 
 		<h2>Erreur 404</h2>
 		
@@ -23,7 +23,7 @@
 		
 			<div id="main-content">
 				<p>"Looks like you found a dead link!"</p>
-				<img id="error" src="${pageContext.request.contextPath}/img/deadLink.png" alt="Dead Link" />
+				<img id="error" src="${pageContext.request.contextPath}/images/deadLink.png" alt="Dead Link" />
 			</div>
 			
 			<p>Désolé, la page demandée n'existe pas !
@@ -38,8 +38,6 @@
 		
 	</div>
 
-	<%-- To handle calls to servlet from link and button. --%>
-	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
 	<%-- To handle form submit --%>
 	<script src="${pageContext.request.contextPath}/js/bandformscript.js"></script>
 	

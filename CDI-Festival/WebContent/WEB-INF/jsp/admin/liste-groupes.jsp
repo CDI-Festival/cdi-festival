@@ -16,6 +16,7 @@
 	<%-- Attributes for JSP --%>
 	<jsp:useBean id="bandNameList" type="java.util.ArrayList<String>" scope="request" />
 
+	<%--Include the main header menu --%>
 	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<%--Include the main administration menu --%>
@@ -71,9 +72,6 @@
 		<jsp:include page="/WEB-INF/include/footer.jsp" />
 
 	</div>
-
-	<%-- To handle calls to servlet from link and button. --%>
-	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
 
 </body>
 </html>
