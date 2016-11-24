@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bandstyle.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/bandstyle.css" />
 <title>CDI Festival 2017 - Erreur 404</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
 		
 			<div id="main-content">
 				<p>"Looks like you found a dead link!"</p>
-				<img id="error" src="${pageContext.request.contextPath}/img/deadLink.png" alt="Dead Link" />
+				<img id="error" src="${pageContext.request.contextPath}/images/deadLink.png" alt="Dead Link" />
 			</div>
 			
 			<p>Désolé, la page demandée n'existe pas !
