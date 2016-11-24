@@ -18,8 +18,7 @@ License: GNU GPLv3
 }
 
 #inner-container {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 15px;
 	background-color: #000;	
 }
 
@@ -27,6 +26,11 @@ License: GNU GPLv3
 	width: 320px;
 	margin: 0px auto;
 	padding: 20px;
+}
+
+#error {
+	width: 150px;
+	margin-left: 25%;
 }
 
 /*--------------------------------------------------------- Administration*/
@@ -38,8 +42,9 @@ label {
 }
 
 /*-------------------------------------------------- Lists*/
-select {
+#listband {
 	margin-bottom: 20px;
+	width: 340px;
 }
 
 /*------------------------------------------------------------------ Public*/

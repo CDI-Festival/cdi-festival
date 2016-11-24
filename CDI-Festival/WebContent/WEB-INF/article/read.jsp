@@ -9,43 +9,33 @@
 <html lang="fr">
 
 <head>
-<meta charset="utf-8" />
-<title>Accueil Festival</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
+	<meta charset="utf-8" />
+	<title>Accueil Festival</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
 </head>
 
 <body>
 
 
-<!--  Banner with logo and text -->
-	<header class="banner">
-		<img id="banner_logo" src="../../images//banner/logo.png">
-		<h1 id="slogan">More code, more ROCK !!</h1>
-		<img id="banner_dates" src="../../images/banner/dates.png">
-	</header>
+	<!--  Banner with logo and text -->
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 
+	<!-- Navigation menu bar -->
+	<jsp:include page="/WEB-INF/include/menu.jsp" />
 
-<!-- Navigation menu bar -->
-	<nav id="menu">
-		<ul>
-			<li><a href="#">Accueil</a></li>
-			<li><a href="#">Groupes</a></li>
-			<li><a href="#">Programmation</a></li>
-			<li><a href="#">Billeterie</a></li>
-		</ul>
-	</nav>
 
 <!-- News section -->
 	<div class="container">
-		<article class="fullnews_container" role="article">
-			<header>
-     			<h1> <%= article.getTitle() %> </h1>
-     			<time class="date" pubdate="pubdate">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></time>
+		<article class="summary_container" role="article">
+			<header id="context">
+     			<h3> <%= article.getTitle() %> </h3>
+     			<h5 class="date">Le :<%= article.getDate() %>, par :<%=article.getAuthor()%></h5>
     		</header>   
     		<br />           
-    	<div class="full_news"><p class="justify"><%= article.getContent() %></p></div>
+    	<div class="summary"><p class="justify"><%= article.getContent() %></p></div>
 		</article>
-		<div id="btn">
+		<div class="btn">
 			<a href="<%=request.getContextPath()%>/article/updatepage?id= <%= article.getId() %>"><button onsubmit="">Modifier</button></a>
 			<form onsubmit="" action="<%=request.getContextPath()%>/article/delete" method="post"> 
 				<button type="submit">Supprimer</button>

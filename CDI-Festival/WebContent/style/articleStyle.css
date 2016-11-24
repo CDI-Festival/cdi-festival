@@ -1,29 +1,26 @@
-  /********************************/ 
- /*			Articles style		 */
- /********************************/ 
-
 /*--------------------------------------------All page*/ 
 .container { 
-	text-align: center;
-	margin-top: 150px;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 800px;
-	border: 1px solid black;
-	background-color: rgba(0, 0, 0, 0.7);
+	border: 2px solid black;
+	border-bottom: none;
+	padding-bottom: 0;
 }
 
 .justify {
+	background-color: rgba(255, 255, 255, 0.7);
 	text-align: justify;
 }
 
 /*--------------------------------------------Index page*/
 .summary_container {
-
+	margin-left: 130px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border: 1px solid black;
-	width: 300px;
+	width: 500px;
 	height: auto;
 } 
 
@@ -32,23 +29,15 @@
     flex-direction: column;
 }
 
-.summary_container a {
-	text-decoration: none;
+.summary_container h3{
+	border: 2px solid white;
+}
+
+.summary p{
+	font-size: 16;
 	color: black;
 }
 
-.summary_container h3 a{
-	text-align: center;
-	color: white;
-}
-
-.summary_container h3 a:hover {
-	color: #FF7100
-}
-
-.summary {
-	font-size: 11;
-}
 
 .date {
 	display: block;
@@ -56,22 +45,26 @@
 }
 
 #btncreate {
-	margin-left: 425px;
+	margin-left: 430px;
 }
 
-/*--------------------------------------------Add page*/
+*--------------------------------------------Add page*/
 .containercreate {
 	margin-top: 150px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 800px;
 	border: 1px solid black;
-	/*background-color: rgba(0, 0, 0, 0.7);*/
-	
-	input, textarea {
+}
+
+input, textarea {
     width: 150px;
     padding: 4px;
     vertical-align: top;
+}
+
+input {
+	width: 600px;
 }
 
 textarea {
@@ -88,50 +81,5 @@ textarea {
 }
 
 .btn {
-	margin-left: 125px; 
+	margin-left: 120px;
 }
-
- /********************************/ 
- /* 		Footer style		 */
- /********************************/
-  
-.icon {
-	width: 30px;
-	height: 30px;
-}
-
-.footer_container {
-	width: 100%;
-	background-color: black;
-	display: flex;
-	justify-content: space-around;
-}
-
-.footer_socials {
-	margin-left: 1200px;
-}
-
-.footer_list { 
-	list-style-type: none;
-}
-
-.footer_list li {
-	float: left;
-}
-
-.footer_list a {
-	padding: 5px;
-	letter-spacing: 1px;
-	text-decoration: none;
-	color: white;
-}
-
-#login {
-	padding-top: 30px;
-}
-
-#login a {
-	text-decoration: none;
-	color: grey;
-}
-

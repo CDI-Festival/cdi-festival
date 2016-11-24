@@ -37,12 +37,13 @@
 		}
 	</jsp:scriptlet>
 
+	<%--Include the main header menu --%>
+	<jsp:include page="/WEB-INF/include/header.jsp" />
+
 	<%--Include the main administration menu --%>
 	<jsp:include page="/WEB-INF/include/menu-admin.jsp" />
 
 	<div id="container">
-
-		<jsp:include page="/WEB-INF/include/header.jsp" />
 
 		<%-- Attributes to change the h2 title --%>
 		<jsp:scriptlet>
