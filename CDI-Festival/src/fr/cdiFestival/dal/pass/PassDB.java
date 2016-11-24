@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,9 +47,6 @@ public class PassDB {
 			try {
 				connection = DBConnection.getConnect();
 
-				String date1 = null;
-				String date2 = null;
-				String date3 = null;
 				String date = null;
 
 				int type = passToInsert.gettype();
@@ -231,7 +228,7 @@ public class PassDB {
 
 			Connection connection = null;
 			PreparedStatement statement = null;
-			ResultSet rs = null;
+			@SuppressWarnings("unused")
 			int row = 0;
 
 			try {
@@ -267,6 +264,7 @@ public class PassDB {
 
 			Connection connection = null;
 			PreparedStatement statement = null;
+			@SuppressWarnings("unused")
 			int row = 0;
 
 			try {
