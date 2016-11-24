@@ -84,7 +84,7 @@ public class PassDB {
 
 			} catch (SQLException e) {
 				System.out.println("erreur SQL");
-				throw new DaoException("SQL error in (Insert).");
+				throw new DaoException("[insertPass] SQL error");
 
 			}
 		} else {
@@ -156,7 +156,7 @@ public class PassDB {
 
 		} catch (SQLException e) {
 			System.out.println("erreur SQL");
-			throw new DaoException("SQL error in (GET).");
+			throw new DaoException("[getAllPAss] SQL error");
 		}
 		return myPasses;
 
@@ -213,7 +213,7 @@ public class PassDB {
 
 		} catch (SQLException e) {
 			System.out.println("erreur SQL ");
-			throw new DaoException("SQL error in (getPass).");
+			throw new DaoException("[getPass] SQL error");
 		}
 		return monPass;
 
@@ -247,10 +247,10 @@ public class PassDB {
 
 			} catch (SQLException e) {
 				System.out.println("erreur SQL ");
-				throw new DaoException("SQL error in (update Quantity).");
+				throw new DaoException("[updatePassQuantity] SQL error");
 			}
 		} else {
-			throw new DaoException("Object to insert is null.");
+			throw new DaoException("[updatePassQuantity] - Object to insert is null.");
 		}
 
 	}
@@ -267,7 +267,6 @@ public class PassDB {
 
 			Connection connection = null;
 			PreparedStatement statement = null;
-			ResultSet rs = null;
 			int row = 0;
 
 			try {
@@ -284,11 +283,11 @@ public class PassDB {
 
 			} catch (SQLException e) {
 				System.out.println("erreur SQL ");
-				throw new DaoException("SQL error in (update Price).");
+				throw new DaoException("[updatePass] SQL error");
 			}
 
 		} else {
-			throw new DaoException("Object to insert is null.");
+			throw new DaoException("updatePass - Object to insert is null.");
 		}
 
 	}
@@ -302,7 +301,7 @@ public class PassDB {
 
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet rs = null;
+		@SuppressWarnings("unused")
 		int row = 0;
 
 		try {
@@ -316,8 +315,8 @@ public class PassDB {
 			connection.commit();
 
 		} catch (SQLException e) {
-			System.out.println("erreur SQL ");
-			throw new DaoException("SQL error in (update Quantity).");
+			System.out.println("[deleteAllPAss] erreur SQL");
+			throw new DaoException("[deleteAllPAss] SQL error");
 
 		}
 
