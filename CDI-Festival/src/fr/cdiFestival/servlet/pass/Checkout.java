@@ -27,7 +27,7 @@ import fr.cdiFestival.technic.StockPass;
 @WebServlet(
 		name = "Checkout", 
 		description = "Controleur checkout", 
-		urlPatterns = {"/consult/ControlShowCase/checkout/*"}
+		urlPatterns = {"/order/*"}
 		)
 public class Checkout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -61,7 +61,7 @@ public class Checkout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		stock = (StockPass) getServletContext().getAttribute("stock");
-		url = "/WEB-INF/pass/cartOk.html";
+		url = "/WEB-INF/pass/voidCart.html";
 		System.out.println(" --- in do post ---");
 		String option = (String) request.getParameter("ticketQuantity");
 	
@@ -87,7 +87,7 @@ public class Checkout extends HttpServlet {
 			System.out.println(request.getServletContext());
 			System.out.println(request.getContextPath());
 			System.out.println(request.getServletPath());
-			response.sendRedirect(request.getContextPath() + "/");
+			response.sendRedirect(request.getContextPath() + "accueil/");
 		}else {
 			System.out.println("not enough tickets");
 			System.out.println(request.getServletContext());

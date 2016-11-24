@@ -96,7 +96,7 @@ public class ShowCase extends HttpServlet {
 				request.setAttribute("selectedPass", pass);
 
 				// TODO (nicolas) stoocker url aux meme endroit class propriete static...?
-				url = "/consult/ControlShowCase/checkout/Checkout";
+				url = "/order/checkout";
 			}else {
 				System.out.println("erreur mauvais pass identifier ");
 				request.setAttribute("error", "[ShowCase] - mauvais pass identifier");
