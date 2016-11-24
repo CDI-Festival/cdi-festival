@@ -1,4 +1,4 @@
-package fr.cdiFestival.dao.band;
+package fr.cdiFestival.dal.band;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import fr.cdiFestival.dao.DBConnection;
+import fr.cdiFestival.dal.DBConnection;
 import fr.cdiFestival.exceptions.EmptyStringException;
 import fr.cdiFestival.exceptions.FiftyCharException;
 import fr.cdiFestival.model.Band;

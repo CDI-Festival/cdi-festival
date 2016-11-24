@@ -1,6 +1,6 @@
 package fr.cdiFestival.model;
 
-import fr.cdiFestival.dao.article.RequestId;
+import fr.cdiFestival.dal.article.RequestId;
 
 /**
  * Article is Used to create and manipulate article

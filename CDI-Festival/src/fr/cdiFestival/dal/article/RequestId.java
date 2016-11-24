@@ -1,10 +1,10 @@
-package fr.cdiFestival.dao.article;
+package fr.cdiFestival.dal.article;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import fr.cdiFestival.dao.ConnectionBdd;
+import fr.cdiFestival.dal.ConnectionBdd;
 
 /**
  *ResquestArticle is used to make some request into the article table in the database.

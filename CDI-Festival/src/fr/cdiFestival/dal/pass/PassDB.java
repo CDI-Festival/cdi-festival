@@ -1,4 +1,4 @@
-package fr.cdiFestival.dao.pass;
+package fr.cdiFestival.dal.pass;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
