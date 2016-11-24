@@ -5,17 +5,17 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bandstyle.css" />
 <title>CDI Festival 2017 - Erreur 404</title>
 </head>
 <body>
 
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 	<%--Include the main administration menu --%>
 	<jsp:include page="/WEB-INF/include/menu-admin.jsp" />
 
 	<div id="container">
-
-		<jsp:include page="/WEB-INF/include/header.jsp" />
 
 		<h2>Erreur 404</h2>
 		
