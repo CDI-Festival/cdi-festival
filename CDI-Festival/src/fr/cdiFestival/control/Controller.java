@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet;
+package fr.cdiFestival.control;
 
 import java.io.IOException;
 

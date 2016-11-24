@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet.pass;
+package fr.cdiFestival.control.pass;
 
 import java.io.IOException;
 import java.util.ArrayList;

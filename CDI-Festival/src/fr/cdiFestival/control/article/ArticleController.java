@@ -1,4 +1,4 @@
-package fr.cdiFestival.servlet.article;
+package fr.cdiFestival.control.article;
 
 import java.io.IOException;
 import java.time.LocalDate;
