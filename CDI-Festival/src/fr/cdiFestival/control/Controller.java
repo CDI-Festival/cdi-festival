@@ -7,13 +7,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sound.midi.Synthesizer;
 
 import fr.cdiFestival.dal.article.RequestArticle;
 import fr.cdiFestival.service.Articles;
 
 /**
+ * Main controller
  * Servlet implementation class Controller
+ * 
+ * @author Jonathan / Claire / Nicolas
  */
 @WebServlet(
 		name = "Controleur", 
@@ -80,13 +82,18 @@ public class Controller extends HttpServlet {
 		System.out.println("Méthode doPost");
 	}
 	
-	// Public index page method to display all articles
-	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	/**
+	 * Open the index page and display a article list
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		listArticle	= reqArticle.getListArticle();
-
-		
 
 		if (listArticle != null) {
 			request.setAttribute("articles", listArticle);
