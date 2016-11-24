@@ -33,7 +33,7 @@
 		<form onsubmit="A VENIR" name="btncreate" action="http://localhost:8085/CDI_Festival/article/update" method="post">
 			
 			<p>	<label class="aligne" for="author">Auteur</label> 
-				<input type="text" id="author" name="author" value="<jsp:expression> =article.getAuthor()</jsp:expression">
+				<input type="text" id="author" name="author" value="<jsp:expression> article.getAuthor()</jsp:expression">
 			</p>
 			<p> 
 				<label class="aligne" for="date">Date création</label> 

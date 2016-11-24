@@ -73,8 +73,5 @@
 
 	</div>
 
-	<%-- To handle calls to servlet from link and button. --%>
-	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
-
 </body>
 </html>

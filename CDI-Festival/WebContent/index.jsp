@@ -21,10 +21,10 @@
 
 <body>
 
-	<!-- Include banner -->
+<!-- Include banner -->
 	<jsp:include page="/WEB-INF/include/header.jsp" />
 
-	<!-- Include main menu -->
+<!-- Include main menu -->
 	<jsp:include page="/WEB-INF/include/menu.jsp" />
 
 
@@ -57,23 +57,10 @@
 			</article>
 		
 		<% } %>
-
+		
+	<!-- Footer -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 	</div>
-	
-		<!-- Footer -->
-	<footer class="footer_container">
-			<ul class="footer_links, footer_list">
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">Mentions légales</a></li>
-				<li><a href="#">Crédits</a></li>
-			</ul>
-			<ul class="footer_socials, footer_list">
-				<li><a href="#"><img id="logo_FB" class="icon" src="images/socials/logoFB.png"></a></li>
-				<li><a href="#"><img id="logo_Twitter" class="icon" src="images/socials/logoTwitter.png"></a></li>
-				<li><a href="#"><img id="logo_YT" class="icon" src="images/socials/logoYT.png"></a></li>
-			</ul>
-			<div id="login"><a href="#">Login</a></div>
-	</footer>
 	
 	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
 	

@@ -2,7 +2,6 @@ package fr.cdiFestival.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.cdiFestival.dao.article.RequestArticle;
-import fr.cdiFestival.service.Articles;
 
 /**
  * Servlet implementation class Controller
@@ -24,11 +22,8 @@ import fr.cdiFestival.service.Articles;
 public class Controller extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	
-	private	RequestDispatcher dispatcher;
+
 	private	String			  path;
-	
-	private Articles		listArticle;
 	private	RequestArticle	reqArticle;
 
 	
@@ -51,26 +46,28 @@ public class Controller extends HttpServlet {
 		System.out.println("Controller path contexte =" + request.getContextPath() );
 		
 		if (path == null) {
-			System.out.println("path est null line 54");
 			goIndex(request, response);
 		}
-		System.out.println("path est null line 57");
-		switch (path) {
-		
-		case "/":
-			goIndex(request, response);
-			break;
+		else {
+			switch (path) {
 			
-		case "/groupe":
-			response.sendRedirect(request.getContextPath() + "/groupes");
-			break;
+			case "/":
+				goIndex(request, response);
+				break;
+				
+			case "/groupes":
+				response.sendRedirect(request.getContextPath() + "/groupes");
+				break;
 
-		case "/pass":
-			response.sendRedirect(request.getContextPath() + "/pass");
-			break;
-		default:
-			goIndex(request, response);
+			case "/pass":
+				System.out.println("APRES PATH: PASS");
+				response.sendRedirect(request.getContextPath() + "/pass");
+				break;
+			default:
+				goIndex(request, response);
+			}
 		}
+		
 	}
 
 
