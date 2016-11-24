@@ -28,6 +28,7 @@
 
 
 <!-- News section -->
+	
 	<%-- Filling each part of html code with article attributes --%>
 	<div class="container">
 		<article class="summary_container" role="article">
@@ -38,9 +39,11 @@
     		<br />           
     	<div class="summary"><p class="justify"><%= article.getContent() %></p></div>
 		</article>
+		
+		<!-- action buttons, one in a form to apply a JS control (delete), the other one redirect to the update page -->
 		<div class="btn">
 			<a href="<%=request.getContextPath()%>/article/updatepage?id= <%= article.getId() %>"><button onsubmit="">Modifier</button></a>
-			<form onsubmit="" action="<%=request.getContextPath()%>/article/delete" method="post"> 
+			<form onsubmit="return deleteConfirm()" action="<%=request.getContextPath()%>/article/delete" method="post"> 
 				<button type="submit">Supprimer</button>
 				<input type="hidden" name="hiddenid" value="<%= article.getId() %>"/>
 			</form>
@@ -51,7 +54,7 @@
 		
 	</div>
 
-
+<script src="http://localhost:8085/CDI_Festival/js/article.js"></script>
 	
 </body>
 </html>

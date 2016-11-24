@@ -91,7 +91,7 @@ public class ArticleController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		
 		//Getting ID from the .jsp 
@@ -112,7 +112,7 @@ public class ArticleController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void goAddPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void goAddPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Just redirect into the creation form
 		response.sendRedirect("http://localhost:8085/CDI_Festival/view/article/createArticle.html");
 	}
@@ -122,13 +122,17 @@ public class ArticleController extends HttpServlet {
 	 * Get all the form informations and add a new article in the database
 	 * @param request
 	 * @param response
+	 * @return 
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Initializing useful attributes
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		
+		//Encoding informations in UTF-8 (Thank you Dominique)
+		request.setCharacterEncoding("UTF-8");
 		
 		//Getting and checking values from the form and initialize date
 		if (request.getParameter("author")  != null) author  = request.getParameter("author");
@@ -155,7 +159,7 @@ public class ArticleController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void goUpDatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void goUpDatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		
 		//Getting ID from the .jsp
@@ -177,9 +181,12 @@ public class ArticleController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void upDate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		
+		//Encoding informations in UTF-8 (Thank you Dominique)
+		request.setCharacterEncoding("UTF-8");
 		
 		//Getting and checking values from the form and initialize date
 		if (request.getParameter("author")  != null) author  = request.getParameter("author");
@@ -206,7 +213,7 @@ public class ArticleController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqArticle 	= new RequestArticle();
 		
 		//Getting and checking ID value
@@ -214,16 +221,19 @@ public class ArticleController extends HttpServlet {
 		
 		//Making deletion request
 		reqArticle.delete(id);
+		
+		//Redirect into index page
+		this.redirIndex(request, response);
 	}
 	
 	/**
-	 * Redirect to index page
+	 * Redirects to index page
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void redirIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void redirIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect(request.getContextPath() + "/accueil");
 	}
 	

@@ -7,6 +7,7 @@
 
 <%-- Getting Article list from the Main controller --%>
 <% Articles listArticle = (Articles) request.getAttribute("articles"); %>
+<% System.out.println(listArticle); %>
 
 <!DOCTYPE html>
 
