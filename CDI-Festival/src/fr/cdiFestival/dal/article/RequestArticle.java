@@ -1,10 +1,10 @@
-package fr.cdiFestival.dao.article;
+package fr.cdiFestival.dal.article;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import fr.cdiFestival.dao.ConnectionBdd;
+import fr.cdiFestival.dal.ConnectionBdd;
 import fr.cdiFestival.model.Article;
 import fr.cdiFestival.service.Articles;
 

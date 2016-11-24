@@ -1,6 +1,6 @@
 package test;
 
-import fr.cdiFestival.dao.article.RequestArticle;
+import fr.cdiFestival.dal.article.RequestArticle;
 import fr.cdiFestival.model.Article;
 
 public class Test {

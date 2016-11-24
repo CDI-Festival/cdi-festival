@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.cdiFestival.dao.pass;
+package fr.cdiFestival.dal.pass;
 
 /**
  * @author nicolas Tarral

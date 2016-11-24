@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.cdiFestival.dao.pass.DaoException;
+import fr.cdiFestival.dal.pass.DaoException;
 import fr.cdiFestival.service.Passes;
 import fr.cdiFestival.technic.StockPass;
 

@@ -1,4 +1,4 @@
-package fr.cdiFestival.dao;
+package fr.cdiFestival.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
