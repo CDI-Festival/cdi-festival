@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *COnnectionBdd hundle the connection with the database.
+ *ConnectionBdd handle the connection with the database.
  *
  * 
  * @author Jonathan Fuentes
@@ -16,32 +16,31 @@ import java.sql.Statement;
 public class ConnectionBdd {
 
 	
-	//Class attributes
+	//Class attributes (different URL to different connections)
 	private static final	String 			NOM_DRIVER			= "oracle.jdbc.driver.OracleDriver";
 //	private	static final	String 			DB_URL_JUNON 		= "jdbc:oracle:thin:stag09/stag09pw@junon:1521:afpa";
-	private static final	String			DB_URL_JUNON_ECFWEB = "jdbc:oracle:thin:cdifestival/stagpw@junon:1521:afpa";
-//	private static final	String 			DB_URL_LOCALHOST 	= "jdbc:oracle:thin:jonathan/pw@localhost:1521:xe";   
+//	private static final	String			DB_URL_JUNON_ECFWEB = "jdbc:oracle:thin:cdifestival/stagpw@junon:1521:afpa";
+	private static final	String 			DB_URL_LOCALHOST 	= "jdbc:oracle:thin:jonathan/pw@localhost:1521:xe";   
 	private					Connection		connection;
 	
 	public ConnectionBdd() {
 	}
 
-	//Méthode d'initialisation de la connection soit à la BDD AFPA soit sur mon PC en LocalHost
 	
 	/**
-	 *This method initiate a connection with the database, using URL
+	 *This method initiate a connection with the database, using URL (Class static final attributes)
 	 * 
 	 */
 	public void initConnection() throws SQLException {
-		if(connection == null|| connection.isClosed()){
+		if(connection == null || connection.isClosed()){
 			try {
 				Class.forName(NOM_DRIVER);
-				connection = DriverManager.getConnection(DB_URL_JUNON_ECFWEB);
+				connection = DriverManager.getConnection(DB_URL_LOCALHOST);
 				}
-				catch(ClassNotFoundException e){ // 1
+				catch(ClassNotFoundException e){
 					System.err.println("Erreur Appel2Connexion1 : " + e);
 				}
-				catch (SQLException s){ // 2
+				catch (SQLException s){
 					System.err.println("Erreur Appel2Connexion2 : "
 							+ s.getSQLState() + " , "
 							+ " (" + s + ")" );

@@ -13,13 +13,11 @@ import java.util.Arrays;
 import fr.cdiFestival.model.Pass;
 import fr.cdiFestival.service.Passes;
 
-
-
-
-
 /**
- * Class which is going to manipulate data with the database, it is going to implement all CRUD methods.
- * @author 	nicolas Tarral
+ * Class which is going to manipulate data with the database, it is going to
+ * implement all CRUD methods.
+ * 
+ * @author nicolas Tarral
  * @version 2016-11-21
  *
  */
@@ -36,34 +34,34 @@ public class PassDB {
 
 	// TODO (nicolas) verifier si object en entree son null, si nulle throw
 	// exception 5own except)
-	
-	
+
 	/**
-	 *  Method used to insert a Pass in the BDD
+	 * Method used to insert a Pass in the BDD
+	 * 
 	 * @param passToInsert
 	 */
 	public static void insertPass(Pass passToInsert) {
 
-		if(passToInsert != null) {
-			
-			Connection connection 		= null;
+		if (passToInsert != null) {
+
+			Connection connection = null;
 			PreparedStatement statement = null;
 
 			try {
 				connection = DBConnection.getConnect();
 
-				String date1 	= null;
-				String date2 	= null;
-				String date3 	= null;
-				String date 	= null;
+				String date1 = null;
+				String date2 = null;
+				String date3 = null;
+				String date = null;
 
 				int type = passToInsert.gettype();
 				int number = passToInsert.getNombre();
 				int price = passToInsert.getPrice();
 				String dayType = passToInsert.getDayType();
 
-// transforming LocalDate Array in a String separated by ",". 
-				
+				// transforming LocalDate Array in a String separated by ",".
+
 				String comma = "";
 				StringBuilder allGenres = new StringBuilder();
 				for (LocalDate g : passToInsert.getDate()) {
@@ -92,10 +90,10 @@ public class PassDB {
 				// e.printStackTrace();
 
 			}
-		}else {
-			
+		} else {
+
 		}
-		
+
 	}
 
 	/**
@@ -105,54 +103,64 @@ public class PassDB {
 	 * @throws SQLException
 	 * @throws DaoException
 	 */
-	public static Passes getAllPAss() throws SQLException, DaoException {
+	public static Passes getAllPAss() throws DaoException {
 
-		Connection connection 		= null;
+		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet rs 				= null;
-		Pass monPass 				= null;
-		Passes myPasses 			= new Passes();
+		ResultSet rs = null;
+		Pass monPass = null;
+		Passes myPasses = new Passes();
 		ArrayList<LocalDate> daysLocal = null;
-		connection 					= DBConnection.getConnect();
-		
+		connection = DBConnection.getConnect();
+
 		if (connection == null) {
 			throw new DaoException("Connection inexistante.");
 		}
 
-
 		String query = "SELECT type, numbers, price, day_description, day from PASS";
+		int typePass = 0;
+		int numbers = 0;
+		int price = 0;
+		String dayDesc = null;
+		String date = null;
 
-		statement = connection.prepareStatement(query);
+		try {
+			statement = connection.prepareStatement(query);
 
-		rs = statement.executeQuery();
-		connection.commit();
-		
-		while (rs.next()) {
+			rs = statement.executeQuery();
+			connection.commit();
 
-			monPass 		= new Pass();
+			while (rs.next()) {
 
-			int typePass 	= rs.getInt("TYPE");
-			int numbers 	= rs.getInt("NUMBERS");
-			int price 		= rs.getInt("PRICE");
-			String dayDesc 	= rs.getString("DAY_DESCRIPTION");
-			String date 	= rs.getString("DAY");
+				monPass = new Pass();
 
-			String[] allDays = date.split(",");
-			daysLocal = new ArrayList<LocalDate>();
-			System.out.println("taille allDays "+ allDays.length);
-			ArrayList<String> days = new ArrayList<String>(Arrays.asList(allDays));
+				typePass = rs.getInt("TYPE");
+				numbers = rs.getInt("NUMBERS");
+				price = rs.getInt("PRICE");
+				dayDesc = rs.getString("DAY_DESCRIPTION");
+				date = rs.getString("DAY");
 
-			for (String current : days) {
-				System.out.println(current);
-				daysLocal.add(StringToLocalDate(current));
+				String[] allDays = date.split(",");
+				daysLocal = new ArrayList<LocalDate>();
+				
+				ArrayList<String> days = new ArrayList<String>(Arrays.asList(allDays));
+
+				for (String current : days) {
+					
+					daysLocal.add(StringToLocalDate(current));
+				}
+
+				monPass.setType(typePass);
+				monPass.setNombre(numbers);
+				monPass.setPrice(price);
+				monPass.setDayType(dayDesc);
+				monPass.setDates(daysLocal);
+				myPasses.add(monPass);
 			}
 
-			monPass.setType(typePass);
-			monPass.setNombre(numbers);
-			monPass.setPrice(price);
-			monPass.setDayType(dayDesc);
-			monPass.setDates(daysLocal);
-			myPasses.add(monPass);
+		} catch (SQLException e) {
+			throw new DaoException("SQL error [GET].");
+
 		}
 
 		return myPasses;
@@ -162,20 +170,21 @@ public class PassDB {
 	/**
 	 * this method will return a pass by its Type Id
 	 * 
-	 * @param the type (int) of the Pass to look for.
+	 * @param the
+	 *            type (int) of the Pass to look for.
 	 * @return a Pass object.
 	 */
 	public static Pass getPAss(int type) {
 
-		Connection connection 		= null;
+		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet rs 				= null;
-		Pass monPass 				= null;
+		ResultSet rs = null;
+		Pass monPass = null;
 		ArrayList<LocalDate> daysLocal = new ArrayList<LocalDate>();
 		try {
 			connection = DBConnection.getConnect();
 			String query = "SELECT type, numbers, price, day_description, day from pass WHERE type = ?";
-			statement 			  = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 
 			statement.setInt(1, type);
 
@@ -185,18 +194,18 @@ public class PassDB {
 			while (rs.next()) {
 
 				monPass = new Pass();
-				int typePass 	= rs.getInt("TYPE");
-				int numbers 	= rs.getInt("NUMBERS");
-				int price 		= rs.getInt("PRICE");
-				String dayDesc 	= rs.getString("DAY_DESCRIPTION");
-				String date 	= rs.getString("DAY");
-				String[] allDays= date.split(",");
+				int typePass = rs.getInt("TYPE");
+				int numbers = rs.getInt("NUMBERS");
+				int price = rs.getInt("PRICE");
+				String dayDesc = rs.getString("DAY_DESCRIPTION");
+				String date = rs.getString("DAY");
+				String[] allDays = date.split(",");
 
 				ArrayList<String> days = new ArrayList<String>(Arrays.asList(allDays));
 				for (String current : days) {
 					daysLocal.add(StringToLocalDate(current));
 				}
-				
+
 				monPass.setType(typePass);
 				monPass.setNombre(numbers);
 				monPass.setPrice(price);
@@ -220,9 +229,9 @@ public class PassDB {
 	 */
 	public static void updatePassQuantity(Pass passtoEdit) {
 
-		Connection connection 		= null;
+		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet rs 				= null;
+		ResultSet rs = null;
 		int row = 0;
 
 		try {
@@ -250,9 +259,9 @@ public class PassDB {
 	 */
 	public static void updatePass(Pass passtoEdit) {
 
-		Connection connection 		= null;
+		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet rs 				= null;
+		ResultSet rs = null;
 		int row = 0;
 
 		try {
@@ -263,7 +272,6 @@ public class PassDB {
 
 			statement.setInt(1, passtoEdit.getPrice());
 			statement.setInt(2, passtoEdit.gettype());
-
 
 			row = statement.executeUpdate();
 			connection.commit();
@@ -280,9 +288,9 @@ public class PassDB {
 	 */
 	public static void deleteAllPAss() {
 
-		Connection connection 		= null;
+		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet rs 				= null;
+		ResultSet rs = null;
 		int row = 0;
 
 		try {

@@ -100,7 +100,7 @@
             <div class="center">
         <input type="submit" name="button" value="Ajouter">
         <input type="submit" name="button" value="Modifier">
-        <input type="submit" name="button" value="Supprimer">
+        <input type="submit" name="button" value="Supprimer" onClick="return confirmSubmit()">
             </div>
         </div>
     

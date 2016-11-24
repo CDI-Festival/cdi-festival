@@ -4,7 +4,7 @@
 package fr.cdiFestival.dao.pass;
 
 /**
- * @author Afpa
+ * @author nicolas Tarral
  *
  */
 public class DaoException extends Exception {

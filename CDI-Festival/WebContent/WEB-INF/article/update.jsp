@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="fr.cdiFestival.model.Article" %>
-<%Article article = (Article)request.getAttribute("article"); %>    
+<jsp:scriptlet>Article article = (Article)request.getAttribute("article"); </jsp:scriptlet> 
 
 <!DOCTYPE html>
 
@@ -27,12 +27,25 @@
 
 
 <!-- News maker -->
+
 	<div class="container">
+
 		<form onsubmit="A VENIR" name="btncreate" action="http://localhost:8085/CDI_Festival/article/update" method="post">
-			<p>	<label class="aligne" for="author">Auteur</label> <input type="text" id="author" name="author" value="<%=article.getAuthor() %>"></p>
-			<p> <label class="aligne" for="date">Date création</label> <label> <%= article.getDate() %> </label></p>
-   	 		<p> <label class="aligne" for="title">Titre</label> <input type="text" id="inputtitle" name="title" value="<%=article.getTitle()%>"> </p>
-   	 		<p> <label class="aligne" for="content">Article</label> <textarea id="content" name="content"><%= article.getContent() %></textarea> </p>
+			
+			<p>	<label class="aligne" for="author">Auteur</label> 
+				<input type="text" id="author" name="author" value="<jsp:expression> =article.getAuthor()</jsp:expression">
+			</p>
+			<p> 
+				<label class="aligne" for="date">Date création</label> 
+				<label> <jsp:expression> article.getDate() </jsp:expression> </label>
+			</p>
+   	 		<p> <label class="aligne" for="title">Titre</label> 
+   	 			<input type="text" id="inputtitle" name="title" value="<jsp:expression> article.getTitle() </jsp:expression"> 
+   	 		</p>
+   	 		<p> <label class="aligne" for="content">Article</label> 
+   	 			<textarea id="content" name="content"><jsp:expression> article.getContent() </jsp:expression></textarea> 
+   	 		</p>
+   	 		
    	 		<div class="btn">
     			<button name="btnvalidate" type="submit">Valider</button>
     			<button name="btncancel" type="button" onclick="back()">Annuler</button>
