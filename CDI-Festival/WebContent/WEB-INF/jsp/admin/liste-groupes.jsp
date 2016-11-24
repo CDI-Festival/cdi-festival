@@ -16,6 +16,7 @@
 	<%-- Attributes for JSP --%>
 	<jsp:useBean id="bandNameList" type="java.util.ArrayList<String>" scope="request" />
 
+	<%--Include the main header menu --%>
 	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<%--Include the main administration menu --%>
