@@ -49,7 +49,7 @@ public class Article {
 	 *
 	 *@param RequestId
 	 */
-	public void idAuto() {
+	private void idAuto() {
 		//Initialize RequestId, get the current value and give it to Article ID. Then update the ID in database
 		RequestId request = new RequestId();
 		id = request.getRefId() + 1;

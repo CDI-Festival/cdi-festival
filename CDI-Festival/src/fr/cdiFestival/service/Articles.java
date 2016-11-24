@@ -8,7 +8,7 @@ import fr.cdiFestival.model.Article;
  *Articles extends ArrayList.
  *Use to manipulate a list of article.
  * @see Article
- * 
+ *
  * @author Jonathan Fuentes
  * @version 22/11/2012
  */
