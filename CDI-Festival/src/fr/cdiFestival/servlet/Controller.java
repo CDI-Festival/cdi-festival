@@ -2,12 +2,12 @@ package fr.cdiFestival.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Synthesizer;
 
 import fr.cdiFestival.dao.article.RequestArticle;
 import fr.cdiFestival.service.Articles;
@@ -24,13 +24,10 @@ import fr.cdiFestival.service.Articles;
 public class Controller extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	
-	private	RequestDispatcher dispatcher;
-	private	String			  path;
-	
-	private Articles		listArticle;
-	private	RequestArticle	reqArticle;
 
+	private	String			  path;
+	private	RequestArticle	reqArticle;
+	private Articles		listArticle;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,25 +48,32 @@ public class Controller extends HttpServlet {
 		System.out.println("Controller path contexte =" + request.getContextPath() );
 		
 		if (path == null) {
+			System.out.println("path est null "+path);
 			goIndex(request, response);
 		}
-		
-		switch (path) {
-		
-		case "/":
-			goIndex(request, response);
-			break;
+		else {
 			
-		case "/groupe":
-			response.sendRedirect(request.getContextPath() + "/groupes");
-			break;
+			switch (path) {
+			
+			case "/":
+				goIndex(request, response);
+				System.out.println("in the /");
+				break;
+				
+			case "/groupes":
+				response.sendRedirect(request.getContextPath() + "/groupes");
+				break;
 
-		case "/pass":
-			response.sendRedirect(request.getContextPath() + "/pass");
-			break;
-		default:
-			goIndex(request, response);
+			case "/pass":
+				System.out.println("APRES PATH: PASS");
+				response.sendRedirect(request.getContextPath() + "/pass");
+				break;
+			default:
+				System.out.println("aller dans goIndex...");
+				goIndex(request, response);
+			}
 		}
+		
 	}
 
 
@@ -80,15 +84,23 @@ public class Controller extends HttpServlet {
 		System.out.println("Méthode doPost");
 	}
 	
-	
 	// Public index page method to display all articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqArticle = new RequestArticle();
-//		listArticle = null;
+
+		reqArticle 	= new RequestArticle();
+		listArticle	= reqArticle.getListArticle();
+
 		
-		request.setAttribute("articles", reqArticle.getArticles());
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	
-		System.out.println("Methode doIndex");
+
+		if (listArticle != null) {
+			request.setAttribute("articles", listArticle);
+			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+		
+		else {
+			System.out.println("Générer un HTML sans article");
+		}
+		
+
 	}
 }

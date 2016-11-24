@@ -3,18 +3,22 @@ package fr.cdiFestival.servlet.pass;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.cdiFestival.technic.StockPass;
+
 
 
 /**
  * 
  * Main controller for pass managment, it is going to dispatch user to  ShowCase servlet to displqy pass, or ManagePass servlet to manage all the pass. 
- * or to the index.jsp if 
+ * or to the index.jsp.
+ * It is going to creqte StockPass object and qssign it to the application context.
  * 
  * @author Nicolas Tarral
  * @version 2016-11-22
@@ -26,14 +30,13 @@ import javax.servlet.http.HttpServletResponse;
 		)
 public class PassController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ServletContext application;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PassController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public void init() {
+		StockPass appStock = new StockPass();
+		application = getServletContext();
+		application.setAttribute("stock", appStock);
+	}
 
 
     /**
@@ -64,7 +67,7 @@ public class PassController extends HttpServlet {
 			System.out.println("SendRedirect to the main "+request.getContextPath() + "/");
 			//response.sendRedirect(request.getContextPath() + "/main.html");
 			url = "/";
-			//response.encodeRedirectURL(request.getContextPath() + "/main.html");
+
 		}
 		
 		// the request dispatcher used for any forward request.
@@ -75,12 +78,5 @@ public class PassController extends HttpServlet {
 		
 	}
 
-
-
-	
-	private void reportProblem(HttpServletResponse response, String message)
-			throws IOException {
-		response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
-	}
 	
 }

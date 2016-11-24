@@ -178,7 +178,7 @@ public class RequestArticle {
 	 * @return Articles (Article arrayList)
 	 * 
 	 */
-	public Articles getArticles() {
+	public Articles getListArticle() {
 		//Initialization of an arrayList<Article> (Articles class)
 		listArticle = new Articles();
 
@@ -267,5 +267,7 @@ public class RequestArticle {
 		}
 		return false;
 	}
+
+
 
 }

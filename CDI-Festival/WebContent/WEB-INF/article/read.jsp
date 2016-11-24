@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="fr.cdiFestival.model.Article" %>
+
+<%-- Getting the article sent from the controller --%>
 <%Article article = (Article)request.getAttribute("article"); %>    
 
 <!DOCTYPE html">
@@ -18,14 +20,16 @@
 <body>
 
 
-	<!--  Banner with logo and text -->
+<!--  Banner with logo and text -->
 	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<!-- Navigation menu bar -->
-	<jsp:include page="/WEB-INF/include/menu.jsp" />
+<jsp:include page="/WEB-INF/include/menu.jsp" />
 
 
 <!-- News section -->
+	
+	<%-- Filling each part of html code with article attributes --%>
 	<div class="container">
 		<article class="summary_container" role="article">
 			<header id="context">
@@ -35,29 +39,22 @@
     		<br />           
     	<div class="summary"><p class="justify"><%= article.getContent() %></p></div>
 		</article>
+		
+		<!-- action buttons, one in a form to apply a JS control (delete), the other one redirect to the update page -->
 		<div class="btn">
 			<a href="<%=request.getContextPath()%>/article/updatepage?id= <%= article.getId() %>"><button onsubmit="">Modifier</button></a>
-			<form onsubmit="" action="<%=request.getContextPath()%>/article/delete" method="post"> 
+			<form onsubmit="return deleteConfirm()" action="<%=request.getContextPath()%>/article/delete" method="post"> 
 				<button type="submit">Supprimer</button>
 				<input type="hidden" name="hiddenid" value="<%= article.getId() %>"/>
 			</form>
 		</div>
+		
+<!-- Footer -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
+		
 	</div>
 
-<!-- Footer with informations, partners and links -->
-	<footer class="footer_container">
-			<ul class="footer_links, footer_list">
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">Mentions légales</a></li>
-				<li><a href="#">Crédits</a></li>
-				<li><a href="#">Admin</a></li>
-			</ul>
-			<ul class="footer_socials, footer_list">
-				<li><a href="#"><img id="logo_FB" class="icon" src="../../images/socials/logoFB.png"></a></li>
-				<li><a href="#"><img id="logo_Twitter" class="icon" src="../../images/socials/logoTwitter.png"></a></li>
-				<li><a href="#"><img id="logo_YT" class="icon" src="../../images/socials/logoYT.png"></a></li>
-			</ul>
-	</footer>
+<script src="http://localhost:8085/CDI_Festival/js/article.js"></script>
 	
 </body>
 </html>
