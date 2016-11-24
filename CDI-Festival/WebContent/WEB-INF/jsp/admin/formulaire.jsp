@@ -19,7 +19,7 @@
 		String bandName = "";
 		String bandBiography = "";
 		String bandWebsite = "";
-		String attribute = "required";
+		String attribute = ""; // je n'ai pas utilise required de HTML 5 pour faire tourner JavaScript
 		
 		if (band != null) {
 			
@@ -37,12 +37,12 @@
 		}
 	</jsp:scriptlet>
 
-	<jsp:include page="/WEB-INF/include/header.jsp" />
-	
 	<%--Include the main administration menu --%>
 	<jsp:include page="/WEB-INF/include/menu-admin.jsp" />
 
 	<div id="container">
+
+		<jsp:include page="/WEB-INF/include/header.jsp" />
 
 		<%-- Attributes to change the h2 title --%>
 		<jsp:scriptlet>
@@ -70,10 +70,12 @@
 					<label>Photo</label>
 					<br /><br />
 					<br /> <label>Biographie</label>
+					<br />
 					<textarea name="bandbio"><jsp:expression>bandBiography</jsp:expression></textarea>
 					<br /><br />
 					<!-- TODO text field + year box? -->
 					<label>Discographie</label>
+					<br />
 					<textarea name="banddisco"></textarea>
 					<br /> <br />
 					<label>Site Internet</label>

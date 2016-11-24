@@ -1,10 +1,9 @@
 package fr.cdiFestival.model;
 
-import fr.cdiFestival.dao.RequestId;
+import fr.cdiFestival.dao.article.RequestId;
 
 /**
- * Article is the article fonctionality main class
- * Used to manipulate article
+ * Article is Used to create and manipulate article
  * 
  * @author Jonathan Fuentes
  * @version 22/11/2016
@@ -19,9 +18,8 @@ public class Article {
 	private String		content;
 
 	
-	//Constructor with auto generated ID (GUI)
 	/**
-	 *Constructor with auto generated ID (use with the GUI createArticle)
+	 *Constructor with auto generated ID (usde with the GUI createArticle)
 	 */
 	public Article (String author, String date, String title, String content) {
 		this.idAuto();
@@ -31,9 +29,8 @@ public class Article {
 		this.content = content;
 	}
 	
-	//DAO constructor (ID already exists)
 	/**
-	 *Constructor (use with DAO to research a Article in the database)
+	 *Constructor (used with DAO to research a Article in the database)
 	 */
 	public Article (int id, String author, String date, String title, String content) {
 		this.id		 = id; 
@@ -44,18 +41,19 @@ public class Article {
 	}
 
 	
-	//Id maker
 	/**
-	 *idAuto id an id maker.
-	 *start a connection with the database, take the last id, make +1 
+	 *idAuto is an id maker.
+	 *start a connection with the database, take the last id, do +1 
 	 *and give it to the new Article instance.
 	 *Update directly the database after the operation.
+	 *
 	 *@param RequestId
 	 */
 	public void idAuto() {
-		RequestId requete = new RequestId();
-		id = requete.getRefId() + 1;
-		requete.update(id);
+		//Initialize RequestId, get the current value and give it to Article ID. Then update the ID in database
+		RequestId request = new RequestId();
+		id = request.getRefId() + 1;
+		request.update(id);
 	}
 	
 	//Getters and setters
@@ -68,6 +66,7 @@ public class Article {
 
 	/**
 	 * Update The article author
+	 * @param author
 	 */
 	public void setAuthor(String author) {
 		this.author = author;
@@ -82,6 +81,7 @@ public class Article {
 
 	/**
 	 * Update Creation article date
+	 * @param date
 	 */
 	public void setDate(String date) {
 		this.date = date;
@@ -96,6 +96,7 @@ public class Article {
 
 	/**
 	 * Update The article title
+	 * @param title
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -110,6 +111,7 @@ public class Article {
 
 	/**
 	 * Update the article content
+	 * @param content
 	 */
 	public void setContent(String content) {
 		this.content = content;

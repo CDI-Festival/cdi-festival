@@ -7,13 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import fr.cdiFestival.dao.DBConnection;
+import fr.cdiFestival.exceptions.EmptyStringException;
+import fr.cdiFestival.exceptions.FiftyCharException;
 import fr.cdiFestival.model.Band;
+import fr.cdiFestival.util.ControlMethod;
 
 /**
  * Handle the SQL request for the BAND table in database.
  * 
  * @author Claire
- * @version 20161120
+ * @version 20161123
  */
 public class BandDAO {
 
@@ -68,11 +71,16 @@ public class BandDAO {
 				bandName = resultSet.getString(1);
 				bandBiography = resultSet.getString(2);
 				bandWebsite = resultSet.getString(3);
-				band = new Band(bandName, bandBiography, bandWebsite);
+				try {
+					band = new Band(bandName, bandBiography, bandWebsite);
+				} catch (EmptyStringException | FiftyCharException e) {
+					// TODO (Claire) DAO gerer exception Band (search)
+					e.printStackTrace();
+				}
 			}
 			
 		} catch (SQLException e) {
-			System.err.println("Erreur DAO - requête incorrecte : la recherche n'a pas pu être exécutée.");
+			System.err.println("Erreur DAO - requête incorrecte : la recherche n'a pas pu être exécutée."); // TEST CODE
 			e.printStackTrace();	
 		} finally {
 			closeRequest(searchBandName);
@@ -88,8 +96,11 @@ public class BandDAO {
 	 * @param band
 	 * @return result
 	 * @version 20161116
+	 * @throws FiftyCharException 
+	 * @throws EmptyStringException 
+	 * @throws SQLException 
 	 */
-	public int create(Band band) {
+	public int create(Band band) throws EmptyStringException, FiftyCharException, SQLException {
 		
 		result = 0;
 		
@@ -98,6 +109,8 @@ public class BandDAO {
 		bandName = band.getName();
 		bandBiography = band.getBiography();
 		bandWebsite = band.getWebsite();
+		
+		isNameOK(bandName);
 		
 		try {
 			createBand = connection.prepareStatement(SQLRequest.INSERT_INTO);
@@ -110,8 +123,9 @@ public class BandDAO {
 			result = createBand.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.err.println("Erreur DAO - requête incorrecte : le groupe n'a pas pu être créé.");
+			System.err.println("Erreur DAO - requête incorrecte : le groupe n'a pas pu être créé."); // TEST CODE
 			e.printStackTrace();
+			throw new SQLException("Le groupe n'a pas pû être enregistré. Contactez l'administrateur.");
 		} finally {
 			closeRequest(createBand);
 		}
@@ -140,7 +154,7 @@ public class BandDAO {
 				idList.add(id);
 			}
 		} catch (SQLException e) {
-			System.err.println("Erreur DAO - requête incorrecte : la liste d'ID n'a pas pu être affichée.");
+			System.err.println("Erreur DAO - requête incorrecte : la liste d'ID n'a pas pu être affichée."); // TEST CODE
 			e.printStackTrace();
 		} finally {
 			closeRequest(readAllId);
@@ -173,7 +187,7 @@ public class BandDAO {
 			System.out.println("DAO:" + bandNameList);
 			
 		} catch (SQLException e) {
-			System.err.println("Erreur DAO - requête incorrecte : la liste de nom(s) de groupe n'a pas pu être affichée.");
+			System.err.println("Erreur DAO - requête incorrecte : la liste de nom(s) de groupe n'a pas pu être affichée."); // TEST CODE
 			e.printStackTrace();
 		} finally {
 			closeRequest(readAllBandName);
@@ -211,7 +225,7 @@ public class BandDAO {
 			System.out.println("DAO result update : " + result);
 			
 		} catch (SQLException e) {
-			System.err.println("Erreur DAO - requête incorrecte : le groupe n'a pas pu être mis à jour.");
+			System.err.println("Erreur DAO - requête incorrecte : le groupe n'a pas pu être mis à jour."); // TEST CODE
 			e.printStackTrace();
 		} finally {
 			closeRequest(updateBand);
@@ -239,7 +253,7 @@ public class BandDAO {
 			result = deleteBand.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.err.println("Erreur DAO - requête incorrecte : le groupe n'a pas pu être supprimé.");
+			System.err.println("Erreur DAO - requête incorrecte : le groupe n'a pas pu être supprimé."); // TEST CODE
 			e.printStackTrace();
 		} finally {
 			closeRequest(deleteBand);
@@ -289,10 +303,10 @@ public class BandDAO {
 			while (resultSet.next()) {
 				bandName = resultSet.getString(1);
 			}
-			System.out.println("Retour nom demandé : " + bandName);
+			System.out.println("DAO, retour nom demandé : " + bandName);
 			
 		} catch (SQLException e) {
-			System.err.println("Erreur DAO - requête incorrecte : la vérification du nom n'a pas pû être effectuée.");
+			System.err.println("Erreur DAO - requête incorrecte : la vérification du nom n'a pas pû être effectuée."); // TEST CODE
 			e.printStackTrace();
 		}
 		
@@ -319,7 +333,7 @@ public class BandDAO {
 		try {
 			connection.commit();
 		} catch (SQLException e1) {
-			System.err.println("Erreur DAO : le commit ne s'est pas exécuté.");
+			System.err.println("Erreur DAO : le commit ne s'est pas exécuté."); // TEST CODE
 			e1.printStackTrace();
 		}
 		
@@ -327,9 +341,39 @@ public class BandDAO {
 			try {
 				prepStmt.close();
 			} catch (SQLException e) {
-				System.err.println("Erreur DAO : la requête n'a pas pû être clôturée.");
+				System.err.println("Erreur DAO : la requête n'a pas pû être clôturée."); // TEST CODE
 				e.printStackTrace();
 			}
 		}
 	}
+	
+	/**
+	 * This method checks the band name received before trying an insert request.
+	 * 
+	 * @author Claire
+	 * @param bandName
+	 * @returns nameOK
+	 * @version 20161123
+	 * @throws EmptyStringException 
+	 * @throws FiftyCharException 
+	 */
+	private boolean isNameOK(String bandName) throws EmptyStringException, FiftyCharException {
+		
+		boolean nameOK = false;
+		
+		if (ControlMethod.isEmptyOrNull(bandName)) {
+			System.out.println("BandDAO, isNameOK : empty."); // TEST CODE
+			throw new EmptyStringException("Le nom du groupe doit être renseigné.");
+		}
+		else if (ControlMethod.isSup50(bandName)) {
+			System.out.println("BandDAO, isNameOK : too long."); // TEST CODE
+			throw new FiftyCharException("Le nom du groupe ne peut pas dépasser cinquante caractères.");
+		}
+		else {
+			nameOK = true;
+			return nameOK;
+		}
+		
+	}
+	
 }

@@ -101,6 +101,8 @@ public class Pass {
 	public ArrayList<LocalDate> getDate() {
 		return dates;
 	}
+
+	
 	
 
 	/**

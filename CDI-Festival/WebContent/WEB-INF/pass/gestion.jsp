@@ -14,25 +14,16 @@
 <body>
 
 
-	<%-- Include banner --%>
-	<jsp:include page="../include/header.jsp" />
+    	<%-- Include banner --%>
+	<jsp:include page="/WEB-INF/include/header.jsp" />
 
 	<!-- Include main menu -->
-	<jsp:include page="../include/menu.jsp" />
+	<jsp:include page="/WEB-INF/include/menu.jsp" />
 
     <div class="title">
         <H1>Gestionnaire de Pass</H1>
     </div>
     
-    <div>
-    
-    <a href="<%= request.getContextPath() %>/" title="home"><img src="<%= request.getContextPath() %>/images/ios7-home-outline.png" alt="Home" style="width:24px;height:24px;"/></a>
-        
-        
-    </div>
-
-
-
     
     <form id="form" onSubmit="return myFunction();"  action="<%= request.getContextPath() %>/ControlManager/ManagePass" method="post">
 
@@ -109,7 +100,7 @@
             <div class="center">
         <input type="submit" name="button" value="Ajouter">
         <input type="submit" name="button" value="Modifier">
-        <input type="submit" name="button" value="Supprimer">
+        <input type="submit" name="button" value="Supprimer" onClick="return confirmSubmit()">
             </div>
         </div>
     
@@ -141,7 +132,7 @@
 
     </table>
     
-   <jsp:include page="../include/footer.jsp" /> 
+                <jsp:include page="/WEB-INF/include/footer.jsp" />  
   <!--   <a  href="<%= request.getContextPath() %>/ControlManager/gene"/><input type="button" name="generate" value="envoie"/></a>
     -->
 

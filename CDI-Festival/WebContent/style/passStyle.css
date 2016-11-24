@@ -16,10 +16,6 @@ H2 {
     text-align: center;
 }
 
-
-
-
-
 .content-color {
     
     
@@ -84,18 +80,16 @@ H2 {
    width:auto;
 }
 
-img pass {
-    margin-left: 40px;
-    margin-right: 10px;
-    margin-bottom: 40px;
-    margin-top: 40px;
+.pass {
+    display: block
+    margin: 0 auto
     
-    width: 70%;
-    height: 400px;
+    
+    height: 350px;
     
     background-repeat: no-repeat;
     background-size: contain;
-    border: 1px solid red;
+    
 }
 
 
@@ -144,6 +138,19 @@ span div div img {
 
 }
 
+/*--------------------------------------------------- Footer*/
+footer {
+	display: flex;
+	justify-content: space-around;
+	background-color: #1c1c1c;
+	margin-bottom: 20px;
+}
+
+footer p {
+	font-size: 13px;
+	padding-top: 15px;
+}
+
 
 /* --------------------------------------------------------- */
 /* PAGE CART cart.jsp  */
@@ -154,6 +161,11 @@ span div div img {
     display: inline;
     margin:0px;
      padding:0px;
+     color: white;
+}
+.pass {
+    padding-left:10px;
+    margin-bottom: 50px;
 }
 
 .total {
@@ -161,6 +173,33 @@ span div div img {
     border: 3px solid black;
 }
 
+.section-pass {
+	background:black;
+
+	width: 720px;
+	margin: 0px auto;
+	padding: 20px;
+	
+}
+
+.text {
+	width: 500px;
+	height: 120px;
+	margin-top: 15px;
+}
+
+h1 {
+	margin: 0px;
+}
+
+.row {
+	display: flex;
+	justify-content: space-around;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
 
 
 /* --------------------------------------------------------- */
@@ -232,7 +271,9 @@ table, th, td {
 /*  COLUMN SETUP  */
 .col {
 	display: block;
+
 	float:left;
+    margin: 0, auto;
 	margin: 1% 0 1% 10%;
 }
 
@@ -254,6 +295,21 @@ table, th, td {
 	width: 45%;
 }
 
+/* --------------------------------------------------------- */
+/* HEADER  */
+/* ---------------------------------------------------------*/
+
+#logo {
+	width: 260px;
+	height: 120px;
+	margin: 15px 120px 0px 120px;
+}
+
+.text {
+	width: 500px;
+	height: 120px;
+	margin-top: 15px;
+}
 
 
 

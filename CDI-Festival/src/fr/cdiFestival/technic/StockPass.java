@@ -217,10 +217,14 @@ public class StockPass {
 	 * Cette methode soustrait le nombre de type de pass donnée en parametre
 	 * 
 	 * @param quantity
-	 * @return
+	 * @return a boolean if the pass quantity was 
 	 */
 	public boolean decrementPass(int type, int quantity) {
-
+		
+		
+		if((type >= 0 && type < 7) || quantity <= 0) {
+			return false;
+		}
 		Pass passType = PassDB.getPAss(type);
 		int passquantity = passType.getNombre();
 		if (passquantity - quantity < passquantity) {

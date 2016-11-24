@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Main controller for all the pages about bands.
  * 
  * @author Claire
- * @version 20161120
+ * @version 20161122
  */
 @WebServlet(name = "BandController",
 description = "Main controller for pages about bands.",
@@ -47,6 +47,10 @@ public class BandController extends HttpServlet {
 
 		switch (pathInfo) {
 
+		case "/":
+			response.sendRedirect(request.getContextPath() + "/index-bandadmin.jsp");
+			break;
+		
 		// Dispatch to the management servlet
 		case "/gerer":
 			
@@ -86,7 +90,8 @@ public class BandController extends HttpServlet {
 			break;
 
 		default:
-			// TODO (Claire) error page
+			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur404.jsp");
+			dispatch.forward(request, response);
 			System.out.println("BandController : page 404."); // TEST CODE
 			break;
 		}
@@ -110,7 +115,11 @@ public class BandController extends HttpServlet {
 			dispatch.forward(request, response);
 		}
 		
-		// TODO (Claire) if pathInfo unknown
+		else {
+			dispatch = request.getRequestDispatcher("/WEB-INF/jsp/error/erreur404.jsp");
+			dispatch.forward(request, response);
+			System.out.println("BandController : page 404."); // TEST CODE
+		}
 		
 	}
 }

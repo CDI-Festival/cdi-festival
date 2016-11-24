@@ -1,5 +1,5 @@
 <%-- Main header --%>
-<header class="banner">
+<header>
 	<div class="row">
 		<h1>
 			<img id="logo" src="${pageContext.request.contextPath}/images/banner/logo.png" alt="CDI Festival" />
