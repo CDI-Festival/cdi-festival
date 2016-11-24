@@ -105,8 +105,6 @@
 		
 	</div>
 
-	<%-- To handle calls to servlet from link and button. --%>
-	<script src="${pageContext.request.contextPath}/js/bandscript.js"></script>
 	<%-- To handle form submit --%>
 	<script src="${pageContext.request.contextPath}/js/bandformscript.js"></script>
 	
