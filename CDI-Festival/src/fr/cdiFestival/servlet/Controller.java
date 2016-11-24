@@ -46,13 +46,16 @@ public class Controller extends HttpServlet {
 		System.out.println("Controller path contexte =" + request.getContextPath() );
 		
 		if (path == null) {
+			System.out.println("path est null "+path);
 			goIndex(request, response);
 		}
 		else {
+			
 			switch (path) {
 			
 			case "/":
 				goIndex(request, response);
+				System.out.println("in the /");
 				break;
 				
 			case "/groupes":
@@ -64,6 +67,7 @@ public class Controller extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/pass");
 				break;
 			default:
+				System.out.println("aller dans goIndex...");
 				goIndex(request, response);
 			}
 		}
@@ -81,13 +85,15 @@ public class Controller extends HttpServlet {
 	
 	// Public index page method to display all articles
 	public void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("Methode doIndex");
 		reqArticle = new RequestArticle();
 //		listArticle = null;
 		
 		request.setAttribute("articles", reqArticle.getArticles());
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 	
-		System.out.println("Methode doIndex");
-		return;
+		
+	
 	}
 }
