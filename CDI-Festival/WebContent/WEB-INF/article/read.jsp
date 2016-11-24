@@ -12,7 +12,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Accueil Festival</title>
+	<title>Consultation d'article</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 	<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
 </head>
