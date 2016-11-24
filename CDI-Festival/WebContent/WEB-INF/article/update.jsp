@@ -9,10 +9,10 @@
 <html lang="fr">
 
 <head>
-<meta charset="utf-8" />
-<title>Accueil Festival</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
+	<meta charset="utf-8" />
+	<title>Accueil Festival</title>
+	<link rel="stylesheet" type="text/css" href="http://localhost:8085/CDI_Festival/style/articleStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 </head>
 
 <body>
@@ -50,6 +50,9 @@
    	 		<div class="btn">
     			<button name="btnvalidate" type="submit">Valider</button>
     			<button name="btncancel" type="button" onclick="back()">Annuler</button>
+    			
+    			<%-- Just to pass the article ID --%>
+    			<input type="hidden" name="hiddenid" value="<%= article.getId() %>"/> 
     		</div> 
 		</form>
 		

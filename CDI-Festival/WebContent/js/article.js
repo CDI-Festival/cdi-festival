@@ -5,6 +5,8 @@
  *  
  */
 	function isEmpty() {
+		
+		
 		/*Getting values by ID*/
 		author 	= document.querySelector('#author').value;
 		title 	= document.querySelector('#title').value;
@@ -40,4 +42,22 @@
 		if (ok) return true;	
 
 	return false;
+	}
+
+/**
+* Permet d'indiquer les champs manquants à l'utilisateur (coloration de la
+* bordure de l'élément passé en paramètre et le texte à afficher)
+* 
+* @param idElement
+* @param text
+* @returns
+*/
+	function messErreur(idElement, text) {
+		var afficheErreur = document.createElement('span');
+		afficheErreur.setAttribute('class', 'spanErreur')
+		afficheErreur.setAttribute("style", "color : red");
+		var txt = document.createTextNode(text);
+		afficheErreur.appendChild(txt);
+		var nodeParent = document.getElementById(idElement);
+		nodeParent.parentNode.insertBefore(afficheErreur, nodeParent.nextSibling);
 	}

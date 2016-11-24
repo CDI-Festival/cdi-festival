@@ -45,7 +45,9 @@
 			<a href="<%=request.getContextPath()%>/article/updatepage?id= <%= article.getId() %>"><button onsubmit="">Modifier</button></a>
 			<form onsubmit="return deleteConfirm()" action="<%=request.getContextPath()%>/article/delete" method="post"> 
 				<button type="submit">Supprimer</button>
-				<input type="hidden" name="hiddenid" value="<%= article.getId() %>"/>
+				
+				<%-- Just to pass the article ID --%>
+				<input type="hidden" name="hiddenid" value="<%= article.getId() %>"/> <%-- Just to pass the article ID --%>
 			</form>
 		</div>
 		
