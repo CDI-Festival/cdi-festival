@@ -111,6 +111,9 @@ public class PassDB {
 		Pass monPass = null;
 		Passes myPasses = new Passes();
 		ArrayList<LocalDate> daysLocal = null;
+		ArrayList<String> days = null;
+		String[] allDays = null;
+
 		connection = DBConnection.getConnect();
 
 		if (connection == null) {
@@ -118,6 +121,7 @@ public class PassDB {
 		}
 
 		String query = "SELECT type, numbers, price, day_description, day from PASS";
+
 		int typePass = 0;
 		int numbers = 0;
 		int price = 0;
@@ -126,27 +130,22 @@ public class PassDB {
 
 		try {
 			statement = connection.prepareStatement(query);
-
 			rs = statement.executeQuery();
 			connection.commit();
 
 			while (rs.next()) {
 
 				monPass = new Pass();
-
 				typePass = rs.getInt("TYPE");
 				numbers = rs.getInt("NUMBERS");
 				price = rs.getInt("PRICE");
 				dayDesc = rs.getString("DAY_DESCRIPTION");
 				date = rs.getString("DAY");
 
-				String[] allDays = date.split(",");
+				allDays = date.split(",");
 				daysLocal = new ArrayList<LocalDate>();
-				
-				ArrayList<String> days = new ArrayList<String>(Arrays.asList(allDays));
-
+				days = new ArrayList<String>(Arrays.asList(allDays));
 				for (String current : days) {
-					
 					daysLocal.add(StringToLocalDate(current));
 				}
 
@@ -159,10 +158,9 @@ public class PassDB {
 			}
 
 		} catch (SQLException e) {
-			throw new DaoException("SQL error [GET].");
-
+			System.out.println("erreur SQL");
+			throw new DaoException("SQL error in (GET).");
 		}
-
 		return myPasses;
 
 	}
@@ -173,21 +171,21 @@ public class PassDB {
 	 * @param the
 	 *            type (int) of the Pass to look for.
 	 * @return a Pass object.
+	 * @throws DaoException 
 	 */
-	public static Pass getPAss(int type) {
+	public static Pass getPass(int type) throws DaoException {
 
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet rs = null;
 		Pass monPass = null;
 		ArrayList<LocalDate> daysLocal = new ArrayList<LocalDate>();
+
 		try {
-			connection = DBConnection.getConnect();
 			String query = "SELECT type, numbers, price, day_description, day from pass WHERE type = ?";
+			connection = DBConnection.getConnect();
 			statement = connection.prepareStatement(query);
-
 			statement.setInt(1, type);
-
 			rs = statement.executeQuery();
 			connection.commit();
 
@@ -215,8 +213,8 @@ public class PassDB {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("SQL Error In the insertMessage...");
-			e.printStackTrace();
+			System.out.println("erreur SQL ");
+			throw new DaoException("SQL error in (getPass).");
 		}
 		return monPass;
 
@@ -226,8 +224,9 @@ public class PassDB {
 	 * This method is going to update pass quantity
 	 * 
 	 * @param passtoEdit
+	 * @throws DaoException 
 	 */
-	public static void updatePassQuantity(Pass passtoEdit) {
+	public static void updatePassQuantity(Pass passtoEdit) throws DaoException {
 
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -246,8 +245,8 @@ public class PassDB {
 			connection.commit();
 
 		} catch (SQLException e) {
-			System.out.println("SQL Error In the insertMessage...");
-			e.printStackTrace();
+			System.out.println("erreur SQL ");
+			throw new DaoException("SQL error in (update Quantity).");
 		}
 
 	}
@@ -256,8 +255,9 @@ public class PassDB {
 	 * This method is going to change price of a pass.
 	 * 
 	 * @param passtoEdit
+	 * @throws DaoException 
 	 */
-	public static void updatePass(Pass passtoEdit) {
+	public static void updatePass(Pass passtoEdit) throws DaoException {
 
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -277,16 +277,17 @@ public class PassDB {
 			connection.commit();
 
 		} catch (SQLException e) {
-			System.out.println("SQL Error In the insertMessage...");
-			e.printStackTrace();
+			System.out.println("erreur SQL ");
+			throw new DaoException("SQL error in (update Price).");
 		}
 
 	}
 
 	/**
 	 * Delete all passes from database.
+	 * @throws DaoException 
 	 */
-	public static void deleteAllPAss() {
+	public static void deleteAllPAss() throws DaoException {
 
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -304,8 +305,8 @@ public class PassDB {
 			connection.commit();
 
 		} catch (SQLException e) {
-			System.out.println("SQL Error In the insertMessage...");
-			e.printStackTrace();
+			System.out.println("erreur SQL ");
+			throw new DaoException("SQL error in (update Quantity).");
 
 		}
 

@@ -37,6 +37,7 @@ public class ShowCase extends HttpServlet {
 	
 	private String url;
 	private static final long serialVersionUID = 1L;
+	private StockPass stock;
      
     /**
      * @see HttpServlet#HttpServlet()
@@ -59,11 +60,11 @@ public class ShowCase extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(" -- ShowCase -- in the GET method");
 		
-		StockPass stock 	= new StockPass();
+		stock = (StockPass) getServletContext().getAttribute("stock");
+		System.out.println("l'object stock est "+stock);
 		boolean listFull 	= false;
 		String id 			= request.getParameter("id");
 		int identifier 		= 0;
-		Boolean isPass		= false;
 		
 		// ce block est apellé des la selection d'un des pass a acheter. 
 		
@@ -74,7 +75,7 @@ public class ShowCase extends HttpServlet {
 			}catch (NumberFormatException e) {
 				System.out.println("erreur dans conversion String to Int");
 				request.setAttribute("error", "[ShowCase]" + e.getMessage());
-				url = "/gestionErreur/error";
+				url = "/gestionErreur/sql";
 
 				
 				//reportProblem(response, "incorrect parameters, please insert digit");
@@ -83,8 +84,13 @@ public class ShowCase extends HttpServlet {
 
 			if(identifier >= 0 && identifier <7) {
 				Pass pass = new Pass();
-				System.out.println("the type of passes is "+identifier);
-				pass = stock.getAPass(identifier);
+				try {
+					pass = stock.getAPass(identifier);
+				} catch (DaoException e) {
+					System.out.println("erreur SQL dans Manage Pass");
+					request.setAttribute("error", e.getMessage());
+					url = "/gestionErreur/sql";
+				}
 				System.out.println(pass);
 				
 				request.setAttribute("selectedPass", pass);
@@ -94,14 +100,14 @@ public class ShowCase extends HttpServlet {
 			}else {
 				System.out.println("erreur mauvais pass identifier ");
 				request.setAttribute("error", "[ShowCase] - mauvais pass identifier");
-				url = "/gestionErreur/error";
-				//reportProblem(response, "incorrect parameters, doit etre compris entre 0 et 6");
-				//return;
+				url = "/gestionErreur/sql";
 			}
 			
 			// Ce block est apelle lorsque la page est chargée.	
 		}else {
 			ArrayList<Pass> lesStock = null;
+			
+			
 			try {
 				lesStock = stock.getAllDBPass();
 				System.out.println("taille les stock "+ lesStock.size());
@@ -119,7 +125,7 @@ public class ShowCase extends HttpServlet {
 			request.setAttribute("listAvail",listFull);
 			request.setAttribute("allPasses", lesStock);
 			url = "/WEB-INF/pass/consult.jsp";
-			} catch (SQLException | DaoException e) {
+			} catch ( DaoException e) {
 				System.out.println("erreur sql "+e.getMessage());
 				request.setAttribute("error", "[ShowCase]" + e.getMessage());
 				url = "/gestionErreur/error";

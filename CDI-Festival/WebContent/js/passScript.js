@@ -69,9 +69,6 @@ function inserer(textNode,  unId) {
 
 
 
-
-
-
 function removeWarningLabel() {
 	if(document.getElementById("jour1ID") != undefined) {
 		remove("jour1ID");
@@ -91,8 +88,7 @@ var ok=confirm("vous etes sur ?");
 if (ok){
 	return true;	
 }
-	return false;
- 
+	return false; 
 }
 
 

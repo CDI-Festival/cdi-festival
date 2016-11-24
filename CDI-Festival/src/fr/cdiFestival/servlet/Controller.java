@@ -50,7 +50,6 @@ public class Controller extends HttpServlet {
 		if (path == null) {
 			goIndex(request, response);
 		}
-		
 		else {
 			switch (path) {
 			
@@ -86,6 +85,7 @@ public class Controller extends HttpServlet {
 		reqArticle 	= new RequestArticle();
 		listArticle	= reqArticle.getListArticle();
 		
+
 		if (listArticle != null) {
 			request.setAttribute("articles", listArticle);
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
@@ -94,5 +94,8 @@ public class Controller extends HttpServlet {
 		else {
 			System.out.println("Générer un HTML sans article");
 		}
+		
+		return;
+
 	}
 }
