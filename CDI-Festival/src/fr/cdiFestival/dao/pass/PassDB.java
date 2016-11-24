@@ -24,18 +24,18 @@ import fr.cdiFestival.service.Passes;
 public class PassDB {
 
 	private static final String TABLE_NAME = "pass";
-	private static final String TYPE 	   = "type";
-	private static final String NUMBERS    = "numbers";
-	private static final String PRICE 		= "price";
+	private static final String TYPE = "type";
+	private static final String NUMBERS = "numbers";
+	private static final String PRICE = "price";
 	private static final String DAY_DESCRIPTION = "day_description";
 	private static final String DAY = "day";
-
 
 	/**
 	 * Method used to insert a Pass in the BDD
 	 * 
-	 * @param passToInsert is a Pass object.
-	 * @throws DaoException 
+	 * @param passToInsert
+	 *            is a Pass object.
+	 * @throws DaoException
 	 */
 	public static void insertPass(Pass passToInsert) throws DaoException {
 
@@ -168,7 +168,7 @@ public class PassDB {
 	 * @param the
 	 *            type (int) of the Pass to look for.
 	 * @return a Pass object.
-	 * @throws DaoException 
+	 * @throws DaoException
 	 */
 	public static Pass getPass(int type) throws DaoException {
 
@@ -196,6 +196,8 @@ public class PassDB {
 				String date = rs.getString("DAY");
 				String[] allDays = date.split(",");
 
+				System.out.println(typePass);
+
 				ArrayList<String> days = new ArrayList<String>(Arrays.asList(allDays));
 				for (String current : days) {
 					daysLocal.add(StringToLocalDate(current));
@@ -221,33 +223,33 @@ public class PassDB {
 	 * This method is going to update pass quantity
 	 * 
 	 * @param passtoEdit
-	 * @throws DaoException 
+	 * @throws DaoException
 	 */
 	public static void updatePassQuantity(Pass passtoEdit) throws DaoException {
 
 		if (passtoEdit != null) {
-		
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet rs = null;
-		int row = 0;
 
-		try {
-			connection = DBConnection.getConnect();
-			String updateSQL = "UPDATE pass SET numbers = ? WHERE TYPE = ?";
+			Connection connection = null;
+			PreparedStatement statement = null;
+			ResultSet rs = null;
+			int row = 0;
 
-			statement = connection.prepareStatement(updateSQL);
+			try {
+				connection = DBConnection.getConnect();
+				String updateSQL = "UPDATE pass SET numbers = ? WHERE TYPE = ?";
 
-			statement.setInt(1, passtoEdit.getNombre());
-			statement.setInt(2, passtoEdit.gettype());
-			row = statement.executeUpdate();
-			connection.commit();
+				statement = connection.prepareStatement(updateSQL);
 
-		} catch (SQLException e) {
-			System.out.println("erreur SQL ");
-			throw new DaoException("SQL error in (update Quantity).");
-		}
-		}else {
+				statement.setInt(1, passtoEdit.getNombre());
+				statement.setInt(2, passtoEdit.gettype());
+				row = statement.executeUpdate();
+				connection.commit();
+
+			} catch (SQLException e) {
+				System.out.println("erreur SQL ");
+				throw new DaoException("SQL error in (update Quantity).");
+			}
+		} else {
 			throw new DaoException("Object to insert is null.");
 		}
 
@@ -257,38 +259,35 @@ public class PassDB {
 	 * This method is going to change price of a pass.
 	 * 
 	 * @param passtoEdit
-	 * @throws DaoException 
+	 * @throws DaoException
 	 */
 	public static void updatePass(Pass passtoEdit) throws DaoException {
 
-		
 		if (passtoEdit != null) {
-	
 
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet rs = null;
-		int row = 0;
+			Connection connection = null;
+			PreparedStatement statement = null;
+			ResultSet rs = null;
+			int row = 0;
 
-		try {
-			connection = DBConnection.getConnect();
-			String updateSQL = "UPDATE pass SET PRICE = ? WHERE TYPE = ?";
+			try {
+				connection = DBConnection.getConnect();
+				String updateSQL = "UPDATE pass SET PRICE = ? WHERE TYPE = ?";
 
-			statement = connection.prepareStatement(updateSQL);
+				statement = connection.prepareStatement(updateSQL);
 
-			statement.setInt(1, passtoEdit.getPrice());
-			statement.setInt(2, passtoEdit.gettype());
+				statement.setInt(1, passtoEdit.getPrice());
+				statement.setInt(2, passtoEdit.gettype());
 
-			row = statement.executeUpdate();
-			connection.commit();
+				row = statement.executeUpdate();
+				connection.commit();
 
-		} catch (SQLException e) {
-			System.out.println("erreur SQL ");
-			throw new DaoException("SQL error in (update Price).");
-		}
-		
-		
-		}	else {
+			} catch (SQLException e) {
+				System.out.println("erreur SQL ");
+				throw new DaoException("SQL error in (update Price).");
+			}
+
+		} else {
 			throw new DaoException("Object to insert is null.");
 		}
 
@@ -296,7 +295,8 @@ public class PassDB {
 
 	/**
 	 * Delete all passes from database.
-	 * @throws DaoException 
+	 * 
+	 * @throws DaoException
 	 */
 	public static void deleteAllPAss() throws DaoException {
 

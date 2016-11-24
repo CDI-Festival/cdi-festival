@@ -60,6 +60,8 @@ public class ShowCase extends HttpServlet {
 		
 		// ce block est apellé des la selection d'un des pass a acheter. 
 		
+		System.out.println("-- ShowCase ---");
+		
 		if(id != null) {
 			
 			try {
@@ -87,7 +89,7 @@ public class ShowCase extends HttpServlet {
 				request.setAttribute("selectedPass", pass);
 
 				// TODO (nicolas) stoocker url aux meme endroit class propriete static...?
-				url = "/order/checkout";
+				url = "/consult/ControlShowCase/checkout/checkout";
 			}else {
 				System.out.println("erreur mauvais pass identifier ");
 				request.setAttribute("error", "[ShowCase] - mauvais pass identifier");

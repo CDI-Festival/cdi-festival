@@ -3,10 +3,12 @@ function calculTotal() {
     if(document.getElementById("total") != undefined) {
         remove("total");
     }
+    concole.log("action");
     var priceElem = document.getElementById("pricing").innerHTML;
-
     var selectElem = document.getElementById('mySelect').value;
     var totalPrice = priceElem * selectElem;
+    console.log("price "+ priceElem + " select "+selectElem);
+    console.log("total "+ totalPrice);
     inserer(totalPrice, "total"); 
 }
 
