@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ErrorServlet
+ * Ce servlet va servir à centraliser les erreurs provenant des autres servlet, et de rediriger vers un message d'erreur.
  */
 @WebServlet(
 		name = "ErrorServlet", 
@@ -18,13 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ErrorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ErrorServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,6 +36,9 @@ public class ErrorServlet extends HttpServlet {
 		
 		
 	}
+	/*
+	 * Cette methode va envoyé l'utilisateur vers une page d'erreur.
+	 */
 	private void reportProblem(HttpServletResponse resp, String message) throws IOException {
 		resp.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
 		return;

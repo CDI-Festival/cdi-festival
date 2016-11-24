@@ -38,13 +38,6 @@ public class ShowCase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StockPass stock;
      
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowCase() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
     
     public void init() {
     	url = "/WEB-INF/pass/consult.jsp";

@@ -173,8 +173,9 @@ public class StockPass {
 
 	/**
 	 * This method is going to be used to add new created passes
+	 * @throws DaoException 
 	 */
-	public void storeInDatabase() {
+	public void storeInDatabase() throws DaoException {
 
 		if (!allPass.isEmpty()) {
 			for (Pass current : allPass) {

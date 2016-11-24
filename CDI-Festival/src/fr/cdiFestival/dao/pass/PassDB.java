@@ -24,23 +24,20 @@ import fr.cdiFestival.service.Passes;
 public class PassDB {
 
 	private static final String TABLE_NAME = "pass";
-	private static final String TYPE = "type";
-	private static final String NUMBER = "numbers";
-	private static final String PRICE = "price";
-
+	private static final String TYPE 	   = "type";
+	private static final String NUMBERS    = "numbers";
+	private static final String PRICE 		= "price";
 	private static final String DAY_DESCRIPTION = "day_description";
-
 	private static final String DAY = "day";
 
-	// TODO (nicolas) verifier si object en entree son null, si nulle throw
-	// exception 5own except)
 
 	/**
 	 * Method used to insert a Pass in the BDD
 	 * 
-	 * @param passToInsert
+	 * @param passToInsert is a Pass object.
+	 * @throws DaoException 
 	 */
-	public static void insertPass(Pass passToInsert) {
+	public static void insertPass(Pass passToInsert) throws DaoException {
 
 		if (passToInsert != null) {
 
@@ -72,7 +69,7 @@ public class PassDB {
 
 				date = allGenres.toString();
 
-				String insertQuery = "insert into pass (" + TYPE + "," + NUMBER + "," + PRICE + "," + DAY_DESCRIPTION
+				String insertQuery = "insert into pass (" + TYPE + "," + NUMBERS + "," + PRICE + "," + DAY_DESCRIPTION
 						+ ", " + DAY + ") values (?, ?, ?, ?, ?)";
 
 				statement = connection.prepareStatement(insertQuery);
@@ -86,12 +83,12 @@ public class PassDB {
 				connection.commit();
 
 			} catch (SQLException e) {
-				System.out.println("connexion erreur " + e.getMessage());
-				// e.printStackTrace();
+				System.out.println("erreur SQL");
+				throw new DaoException("SQL error in (Insert).");
 
 			}
 		} else {
-
+			throw new DaoException("Object to insert is null.");
 		}
 
 	}
@@ -228,6 +225,8 @@ public class PassDB {
 	 */
 	public static void updatePassQuantity(Pass passtoEdit) throws DaoException {
 
+		if (passtoEdit != null) {
+		
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet rs = null;
@@ -248,6 +247,9 @@ public class PassDB {
 			System.out.println("erreur SQL ");
 			throw new DaoException("SQL error in (update Quantity).");
 		}
+		}else {
+			throw new DaoException("Object to insert is null.");
+		}
 
 	}
 
@@ -258,6 +260,10 @@ public class PassDB {
 	 * @throws DaoException 
 	 */
 	public static void updatePass(Pass passtoEdit) throws DaoException {
+
+		
+		if (passtoEdit != null) {
+	
 
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -279,6 +285,11 @@ public class PassDB {
 		} catch (SQLException e) {
 			System.out.println("erreur SQL ");
 			throw new DaoException("SQL error in (update Price).");
+		}
+		
+		
+		}	else {
+			throw new DaoException("Object to insert is null.");
 		}
 
 	}
