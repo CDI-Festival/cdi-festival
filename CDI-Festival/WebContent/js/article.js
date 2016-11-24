@@ -11,10 +11,10 @@
 		
 		if ((authorOK == true) && (titleOK == true) && (contentOK == true));
 		else {
-			return true;
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 
 /**
@@ -71,14 +71,14 @@
 * @returns {Boolean}
 */
 	function checkContent () {
-		title = document.querySelector('#content').value;
+		content = document.querySelector('#content').value;
 			
-		if (title == '') {
+		if (content == '') {
 			document.querySelector('#content').style.border = "2px solid red";
 			alert("Contenu vide");
 		}
 			
-		if (title.lenth > 4000)		 	{
+		if (content.lenth > 4000)		 	{
 			alert("Attention Contenu : Nombre de caractère limité à 4000");
 		}
 			

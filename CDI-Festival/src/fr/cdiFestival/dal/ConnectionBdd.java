@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *ConnectionBdd handle the connection with the database.
@@ -64,20 +63,16 @@ public class ConnectionBdd {
 		}
 	}
 
-	/**
-	 *Used to initiate requests to the database
-	 * 
-	 */
-	public Statement createStatement() throws SQLException {
-		return connection.createStatement();
-		
-	}
 
 	/**
-	 *Used to initiate requests to the database (safer)
+	 * Used to initiate requests to the database (safer)
 	 * 
+	 * @param sql
+	 * @return
+	 * @throws SQLException
+	 * @throws NullPointerException
 	 */
-	public PreparedStatement prepareStatement(String sql) throws SQLException {
+	public PreparedStatement prepareStatement(String sql) throws SQLException, NullPointerException {
 		return connection.prepareStatement(sql);
 	}
 }

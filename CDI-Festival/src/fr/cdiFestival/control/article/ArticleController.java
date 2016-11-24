@@ -62,9 +62,26 @@ public class ArticleController extends HttpServlet {
 		path = request.getPathInfo();
 
 		//Check the path value and redirecting to the appropriate method
-		if (path.equals("/read")) this.read(request, response);
-		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
-		if (path.equals("/addpage")) this.goAddPage(request, response);
+		switch (path) {
+		
+		case "/read" :
+			this.read(request, response);
+			break;
+		
+		case "/updatepage" :
+			this.goUpDatePage(request, response);
+			break;
+			
+		case "/addpage" :
+			this.goAddPage(request, response);
+			break;
+			
+		default:
+			this.redirIndex(request, response);
+		}
+//		if (path.equals("/read")) this.read(request, response);
+//		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
+//		if (path.equals("/addpage")) this.goAddPage(request, response);
 	}
 
 
@@ -73,12 +90,29 @@ public class ArticleController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		path = request.getPathInfo();
 
 		//Check the path value and redirecting to the appropriate method
-		if (path.equals("/add")) this.add(request, response);
-		if (path.equals("/update")) this.upDate(request, response);
-		if (path.equals("/delete")) this.delete(request, response);
+		switch (path) {
+		
+		case "//add" :
+			this.add(request, response);
+			break;
+		
+		case "/update" :
+			this.upDate(request, response);
+			break;
+			
+		case "/delete" :
+			this.delete(request, response);
+			break;
+			
+		default:
+			this.redirIndex(request, response);
+		}
+		
+//		if (path.equals("/add")) this.add(request, response);
+//		if (path.equals("/update")) this.upDate(request, response);
+//		if (path.equals("/delete")) this.delete(request, response);
 	}
 	
 	
@@ -128,7 +162,6 @@ public class ArticleController extends HttpServlet {
 	 */
 	private void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Initializing useful attributes
-		System.out.println("add mehtode");
 		reqArticle  = new RequestArticle();
 		format		= DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		
@@ -154,6 +187,7 @@ public class ArticleController extends HttpServlet {
 			this.redirIndex(request, response);
 		}
 		else {
+			//If some mistake reboot the page.
 			this.goAddPage(request, response);
 		}
 		
