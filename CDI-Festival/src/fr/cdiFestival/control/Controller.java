@@ -45,18 +45,16 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = request.getPathInfo();
 
-		if (path == null || path.equals("/")) {
-			System.out.println("path est null ou / "+path);
+		if (path == null) {
 			goIndex(request, response);
 		}
 		else {
 			
 			switch (path) {
 			
-//			case "/":
-//				goIndex(request, response);
-//				System.out.println("in the /");
-//				break;
+			case "/":
+				goIndex(request, response);
+				break;
 				
 			case "/groupes":
 				response.sendRedirect(request.getContextPath() + "/groupes");
@@ -92,7 +90,6 @@ public class Controller extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void goIndex (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("méthode goIndex");
 		reqArticle 	= new RequestArticle();
 		listArticle = reqArticle.getListArticle();
 
