@@ -25,12 +25,14 @@
 	function checkAuthor () {
 		author = document.querySelector('#author').value;
 		
+		//If it's emppty
 		if (author == '') {	
 			document.querySelector('#author').style.border = "2px solid red";
 			alert("Auteur vide");
 		}
 		
-		if (author.length > 20) 	{
+		//If it's too long
+		else if (author.length > 20) 	{
 			alert("Attention Auteur : Nombre de caractère limité à 20");
 		}
 		
@@ -47,14 +49,16 @@
 * @returns {Boolean}
 */
 	function checkTitle () {
-		author = document.querySelector('#title').value;
+		title = document.querySelector('#title').value;
 		
-		if (author == '') {	
+		//If it's emppty
+		if (title == '') {	
 			document.querySelector('#title').style.border = "2px solid red";
 			alert("Titre vide");
 		}
 		
-		if (author.length > 50) 	{
+		//If it's too long
+		else if (title.length > 50) 	{
 			alert("Attention Titre : Nombre de caractère limité à 50");
 		}
 		
@@ -70,15 +74,17 @@
 *
 * @returns {Boolean}
 */
-	function checkContent () {
+	function checkContent() {
 		content = document.querySelector('#content').value;
 			
+		//If it's emppty
 		if (content == '') {
 			document.querySelector('#content').style.border = "2px solid red";
 			alert("Contenu vide");
 		}
 			
-		if (content.lenth > 4000)		 	{
+		//If it's too long
+		else if (content.lenth > 4000)		 	{
 			alert("Attention Contenu : Nombre de caractère limité à 4000");
 		}
 			

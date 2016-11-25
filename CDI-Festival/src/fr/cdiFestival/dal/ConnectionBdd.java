@@ -19,7 +19,6 @@ public class ConnectionBdd {
 	private static final	String 			NOM_DRIVER			= "oracle.jdbc.driver.OracleDriver";
 //	private	static final	String 			DB_URL_JUNON 		= "jdbc:oracle:thin:stag09/stag09pw@junon:1521:afpa";
 	private static final	String			DB_URL_JUNON_ECFWEB = "jdbc:oracle:thin:cdifestival/stagpw@junon:1521:afpa";
-	private static final	String 			DB_URL_LOCALHOST 	= "jdbc:oracle:thin:jonathan/pw@localhost:1521:xe";   
 	private					Connection		connection;
 	
 	public ConnectionBdd() {

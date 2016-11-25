@@ -10,7 +10,7 @@
 	<ul>
 		<li><a href="<%=request.getContextPath()%>">Accueil</a></li>
 		<li><a href="#" onclick="callBandController('Groupe')">Groupe</a></li>
-		<li><a href="#">Sc&egrave;nes</a></li>
+		<li><a href="${pageContext.request.contextPath}/Festival">Sc&egrave;nes</a></li>
 		<li class="dropdown" ><a href="#">Billetterie</a>	
 		<div class="dropsub">
 			<a href="${pageContext.request.contextPath}/pass/show">Achat Pass</a>
