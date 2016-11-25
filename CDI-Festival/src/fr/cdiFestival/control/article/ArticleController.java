@@ -62,26 +62,9 @@ public class ArticleController extends HttpServlet {
 		path = request.getPathInfo();
 
 		//Check the path value and redirecting to the appropriate method
-		switch (path) {
-		
-		case "/read" :
-			this.read(request, response);
-			break;
-		
-		case "/updatepage" :
-			this.goUpDatePage(request, response);
-			break;
-			
-		case "/addpage" :
-			this.goAddPage(request, response);
-			break;
-			
-		default:
-			this.redirIndex(request, response);
-		}
-//		if (path.equals("/read")) this.read(request, response);
-//		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
-//		if (path.equals("/addpage")) this.goAddPage(request, response);
+		if (path.equals("/read")) this.read(request, response);
+		if (path.equals("/updatepage")) this.goUpDatePage(request, response);
+		if (path.equals("/addpage")) this.goAddPage(request, response);
 	}
 
 
@@ -92,27 +75,9 @@ public class ArticleController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//Check the path value and redirecting to the appropriate method
-		switch (path) {
-		
-		case "//add" :
-			this.add(request, response);
-			break;
-		
-		case "/update" :
-			this.upDate(request, response);
-			break;
-			
-		case "/delete" :
-			this.delete(request, response);
-			break;
-			
-		default:
-			this.redirIndex(request, response);
-		}
-		
-//		if (path.equals("/add")) this.add(request, response);
-//		if (path.equals("/update")) this.upDate(request, response);
-//		if (path.equals("/delete")) this.delete(request, response);
+		if (path.equals("/add")) this.add(request, response);
+		if (path.equals("/update")) this.upDate(request, response);
+		if (path.equals("/delete")) this.delete(request, response);
 	}
 	
 	
