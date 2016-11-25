@@ -16,40 +16,14 @@ H2 {
     text-align: center;
 }
 
-.content-color {
-    
-    
-    background: #ECF0F1
-    
+
+span div div img {
+    padding-left:auto;
+    padding-right:auto;
 }
-
-.lazy {
-    padding: 55px;
-    
-    background: #ECF0F1
-}
-
-
-.new-div {
-    
-    background:#333;
-    display:block;
-    margin: auto;1
-    padding: 10px;
-    color: white;
-       
-    
-}
-
-.cart {
-    display: inline-block;
-
-}
-
-
 
 .container {
-    background: black;
+    
     margin-top:80px;
 	margin-left: auto;
 	margin-right: auto;
@@ -57,47 +31,12 @@ H2 {
 	}
 
 .container p {
-    background: black;
+    color:black;
 }
-
-.fond {
-    background: black;
-}
-
-.fixed_width {
-   background:green;
-   width:160px;
-   height:300px;
-   border:6px dashed #153410;
-   display:table-cell;
-}
-
-.dynamic_width {
-   background:blue;
-   height:300px;
-   border:6px dashed #f6c230;
-   display:table-cell;
-   width:auto;
-}
-
-.pass {
-    display: block
-    margin: 0 auto
-    
-    
-    height: 350px;
-    
-    background-repeat: no-repeat;
-    background-size: contain;
-    
-}
-
-
 
 
 .title {
     text-align: center
-    
     
 }
 
@@ -123,20 +62,21 @@ H2 {
     padding-left:200px;
 }
 
-span div div img {
-    padding-left:auto;
-    padding-right:auto;
-}
 
 
-.festi-date {
+.pass {
+    display: block
+    margin: 0 auto
     
-    color:#d9006d;
-        font-size: 17px;
-    font-weight: 400;
-    text-align: left;
-
+    height: 350px;
+    
+    background-repeat: no-repeat;
+    background-size: contain;
+    
 }
+
+
+
 
 /*--------------------------------------------------- Footer*/
 footer {
@@ -201,6 +141,10 @@ h1 {
 	padding-top: 15px;
 }
 
+p price {
+	block:inline;
+}
+
 
 /* --------------------------------------------------------- */
 /* PAGE ACCEUIL main.html  */
@@ -247,12 +191,15 @@ table, th, td {
 }
 
 .center {
-    position: absolute;
     left: 0;
     top: 50%;
     width: 100%;
     text-align: center;
     font-size: 18px;
+}
+
+.checkout {
+	display:inline;
 }
 
 

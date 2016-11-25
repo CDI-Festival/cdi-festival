@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 
-<title>Festival CDI 2017</title>
+<title>CDI Festival 2017</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
 <script src="${pageContext.request.contextPath}/js/cart.js"></script>
@@ -52,8 +52,9 @@
         <p>Hippodrome Bor&eacute;ly de Marseille</p>
         <p class="align-right">Selectionnez vos places</p>
         <hr>
-        <span class="checkout">Pass : <%=request.getAttribute("description")%>
-        <p id="pricing"><%=request.getAttribute("price")%></p>Euros
+        <p  class="price"><span  class="checkout">Pass : <%=request.getAttribute("description")%>
+        <span id="pricing"><%=request.getAttribute("price")%></span> Euros
+        </span></p>
         <p>Les Dates <%=request.getAttribute("date").toString()%></p>
          
         <p class="checkout">Quantité :</p>  
@@ -75,7 +76,7 @@
 
 							</select> <input type="submit">
 						</form>
-					</span>
+					
 					
 					
 					<div id=result>

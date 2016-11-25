@@ -25,7 +25,7 @@ public class ErrorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String path = request.getPathInfo();
-		if(path.equals("sql")) {
+		if(path.equals("/sql")) {
 			String err = (String) request.getAttribute("error");
 			System.out.println("--- dans error servlet ---");
 			reportProblem(response, "VERY BIG PROBLEMS " + err);

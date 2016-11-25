@@ -88,6 +88,9 @@ public class ManagePass extends HttpServlet {
 
 		String button = request.getParameter("button");
 		stock = (StockPass) getServletContext().getAttribute("stock");
+		if(stock == null) {
+			System.out.println("stock est null");
+		}
 		
 		try {
 			stock = initParameters(request, response);
@@ -95,6 +98,8 @@ public class ManagePass extends HttpServlet {
 			request.setAttribute("error", e2.getMessage());
 			url = "/gestionErreur/sql";
 		}
+		System.out.println("-"+stock.getAllPass());
+		System.out.println("-"+button);
 		if (stock.getAllPass() == null && !button.equals("Supprimer")) {
 			try {
 				dispatchToGestion(request, response, stock, "/gestionErreur/Error");
@@ -165,7 +170,7 @@ public class ManagePass extends HttpServlet {
 			stock.generateTickets(false);
 			url = "/WEB-INF/pass/gestion.jsp";
 		} else {
-			url = "/WEB-INF/gestion.jsp";
+			url = "/WEB-INF/pass/gestion.jsp";
 		}
 		return stock;
 	}
@@ -207,7 +212,8 @@ public class ManagePass extends HttpServlet {
 				System.out.println(formValues[3] + " " + formValues[4] + " " + formValues[5]);
 			} catch (NumberFormatException n) {
 				System.out.println("one of the paraméter is not a number or field is empty !");
-
+				
+				
 				return false;
 
 			}

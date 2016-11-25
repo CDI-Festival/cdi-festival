@@ -9,7 +9,7 @@
 
     <head>
 
-        <title>Festival HELLFEST 2017</title>
+        <title>CDI Festival 2017</title>
         <link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
          <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

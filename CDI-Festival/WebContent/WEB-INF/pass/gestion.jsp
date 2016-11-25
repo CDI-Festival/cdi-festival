@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Gestion des pass</title>
+    <title>CDI Festival 2017</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/style/passStyle.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css" />
     <script src="<%= request.getContextPath() %>/js/passScript.js"></script>
@@ -90,9 +90,15 @@
             </td>
             <td><input  id="idPrice-ven-sam-dim" name="price" type="number" placeholder="Tarif"  value="<%=(int) request.getAttribute("price123")%>"> Euros</td>
         </tr>
-
-
     </table>
+    
+    <div class="container">
+    
+    <p>Modification : Seulement les prix peuvent etre modifié.</p>
+    <p>Ajout 		: Supprimer un pack de pass avant l'ajout d'un nouveau.</p>
+    <p>Les pass par jour doivent être maximum de 1000.</p>
+    
+    </div>
        
 
 
